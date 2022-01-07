@@ -22,11 +22,26 @@ namespace AppTreino.Controllers
         {
             return View();
         }
-
-        public IActionResult Login()
+          public IActionResult Login()
         {
             return View();
         }
+
+          public IActionResult ConsultaTreino()
+        {
+            return View();
+        }
+          public IActionResult AddTopico()
+        {
+            return View();
+        }
+          public IActionResult ConsultaTreinoAtleta()
+        {
+            return View();
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
