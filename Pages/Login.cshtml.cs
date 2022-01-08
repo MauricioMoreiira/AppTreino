@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AppTreino.Pages
 {
-    public class PageExemploModel : PageModel
+    public class LoginModel : PageModel
     {
         public void OnGet()
         {
