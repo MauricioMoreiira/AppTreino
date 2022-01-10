@@ -47,7 +47,7 @@ namespace AppTreino
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action}"
+                    pattern: "{controller=Home}/{action=Index}"
                );
             });
         }
