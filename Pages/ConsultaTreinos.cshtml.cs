@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AppTreino.Pages
+namespace AppTreinoCarlos.Pages
 {
-    public class ConsultaTreinoModel : PageModel
+    public class ConsultaTreinosModel : PageModel
     {
         public void OnGet()
         {
