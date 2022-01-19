@@ -61,7 +61,7 @@
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs "
                     style="display: flex; justify-content: center;">
                     <p>
-                        <span class="material-icons" id="modalHid"
+                        <span class="material-icons" id="mod alHiden"
                             style="color: purple; font-size: 55px; cursor: pointer;" href="#open-modal"
                             onclick="exibir();">
                             add_circle
@@ -69,18 +69,15 @@
                     </p>
                 </div>
 
-
-
-
-                <div  id="modalHid" x-show="isModalOpen" x-transition:enter="transition ease-out duration-150"
+                <div id="modalHid" x-show="isModalOpen" x-transition:enter="transition ease-out duration-150"
                     x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                     x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
-                    class=" hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center" 
+                    class=" hidden   fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
                     <!-- Modal -->
                     <div id="mostraTd" x-show="isModalOpen"
                         class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-                        role="dialog" id="modal" >
+                        role="dialog" id="modal">
                         <header class="flex justify-end">
                             <button
                                 class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
@@ -102,14 +99,14 @@
                                 <span class="text-gray-700 dark:text-gray-400">Treino:</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane Doe">
+                                    placeholder="">
                             </label>
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane Doe">
+                                    placeholder="">
                             </label>
 
                             <label class="block text-sm" style="margin: 10px;">
@@ -118,6 +115,21 @@
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     placeholder="Jane Doe" type="date">
                             </label>
+
+
+
+                            <label class="block text-sm" style="margin: 10px;">
+                                <span class="text-gray-700 dark:text-gray-400">Quantidade de atletas:</span>
+                                <select
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </label>
+
+
                         </div>
                         <footer
                             class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
@@ -163,7 +175,8 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p class="font-semibold" style="cursor: pointer;" onclick="addTopico();">Crossfit</p>
+                                                    <p class="font-semibold" style="cursor: pointer;"
+                                                        onclick="addTopico();">Crossfit</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -450,7 +463,7 @@
             document.getElementById('modalHid').style.display = "block";
         }
 
-        function addTopico(){
+        function addTopico() {
             window.location = "./addTopico";
         }
     </script>
