@@ -4,7 +4,38 @@
 <html>
 
 <head>
-        <link rel="stylesheet" type="text/css" href="~/css/stars">
+    <style>
+        input {
+            margin: 5px;
+            border: solid 1px;
+            width: 65px;
+            border-color: black;
+        }
+
+        .div1 {
+            width: 50%;
+            display: inline;
+            float: left;
+        }
+
+        .div2 {
+            width: 50%;
+            display: inline;
+            float: right;
+        }
+
+        .titulo {
+            background-color: #7e3af2;
+            color: white;
+            padding: 8px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+    </style>
 </head>
 
 <body style="display: flex;">
@@ -14,34 +45,19 @@
                 Adiciona Tópicos
             </h2>
 
-            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <div>
-                    <label class="block text-sm" style="display: inline;">
-                        <span class="text-gray-700 dark:text-gray-400">Atleta</span>
-                        <input
-                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            placeholder="Nome" style="width: 50%; display: inline; margin: 5px;">
-                    </label>
-                    <button
-                        class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                        Adicionar
-                    </button>
-                </div>
-            </div>
-
             <table class="w-full whitespace-no-wrap " style="">
                 <thead>
                     <tr
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th style="width: 10%;" class="px-4 py-3">Treinos</th>
                         <th style="width: 10%;" class="px-4 py-3">Data</th>
-                        <th style="width: 10%;" class="px-4 py-3"></th>
+                        <th style="width: 10%;" class="px-4 py-3">Avaliar</th>
                         <th style="width: 10%;" class="px-4 py-3"></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3">
+                        <td>
                             <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -63,163 +79,20 @@
                         </td>
 
                         <td>
-                            <button onclick="exibir();"
-                                class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                Avaliar
-                            </button>
+
+
+                            <span class="material-icons" id="mod alHiden"
+                                style="color: purple; font-size: 35px; cursor: pointer;" href="#open-modal"
+                                onclick="exibir();">
+                                add_circle
+                            </span>
+
                         </td>
 
-                        <div id="modal2"
-                            class=" hidden max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                            <header class="flex justify-end">
-                                <button
-                                    class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-                                    aria-label="close">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img"
-                                        aria-hidden="true">
-                                        <path
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </header>
-                            <div class="mt-4 mb-6">
-                                <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
-                                    Cardeneta de Avaliações
-                                </p>
-                                <!-- Modal description -->
-
-                                <p class="mb-2  font-semibold text-gray-700 dark:text-gray-300">
-                                    Ataque
-                                </p>
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">Força:</span>
-                                    <link rel="stylesheet"
-                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                    <div class="estrelas">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                    </div>
-                                </label>
-
-
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">Agilidade:</span>
-                                    <link rel="stylesheet"
-                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                    <div class="estrelas">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                    </div>
-                                </label>
-
-
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">Velocidade:</span>
-                                    <link rel="stylesheet"
-                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                    <div class="estrelas">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                    </div>
-                                </label>
-
-
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400"> Explosão:</span>
-                                    <link rel="stylesheet"
-                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                    <div class="estrelas">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                    </div>
-                                </label>
-
-
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">resistência:</span>
-                                    <link rel="stylesheet"
-                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                    <div class="estrelas">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                    </div>
-                                </label>
-
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
-                                    <input
-                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="">
-                                </label>
-
-                            </div>
-                            <footer
-                                class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-                                <button
-                                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
-                                    Cancel
-                                </button>
-                                <button
-                                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                    Enviar
-                                </button>
-                            </footer>
-                        </div>
 
                         <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">
-                                <button
+                                <button style="margin: 0px;"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                     aria-label="Edit">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -228,7 +101,7 @@
                                         </path>
                                     </svg>
                                 </button>
-                                <button
+                                <button style="margin: 0px;"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                     aria-label="Delete">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -242,12 +115,102 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="modal2"
+                class=" hidden modaltwo max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                style="width: 100%; padding: 0px;">
+                <header class="flex justify-end">
+                    <button onclick="fecha();"
+                        class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
+                        aria-label="close">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
+                            <path
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </header>
+                <div class="mt-4 mb-6">
+                    <p class="my-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Cardeneta de Avaliações
+                    </p><br>
+                    <!-- Modal description -->
+
+                    <div style="display: flex; width: 100%;">
+                        <div class="div2">
+                            <table>
+                                <p class="mb-2  font-semibold text-gray-700 dark:text-gray-300">
+                                    Ataque
+                                </p>
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Força:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Agilidade:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Velocidade:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Resistência:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="div2">
+                            <table>
+                                <p class="mb-2  font-semibold text-gray-700 dark:text-gray-300">
+                                    Defesa
+                                </p>
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Força:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Agilidade:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Velocidade:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-gray-700 dark:text-gray-400">Resistência:</td>
+                                    <td><input type="number"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <footer class=" items-center justify-end  bg-gray-50 dark:bg-gray-800">
+                    <button style="display: flex; float: right;  justify-content: center; width: 120px; padding: 8px;"
+                        class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        Enviar
+                    </button>
+                </footer>
+            </div>
         </div>
     </main>
 
     <script>
         function exibir() {
             document.getElementById('modal2').style.display = "block";
+        }
+
+            function fecha() {
+            document.getElementById('modal2').style.display = "none";
         }
 
     </script>
