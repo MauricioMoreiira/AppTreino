@@ -52,14 +52,15 @@
     </style>
 </head>
 
-<body style="display: flex; ">
+<body style="display: flex; "><br>
+    
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Avaliar Treino
             </h2>
 
-            <table class="w-full whitespace-no-wrap" style="">
+            <table class="w-full whitespace-no-wrap">
                 <thead>
                     <tr
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -230,7 +231,7 @@
                     class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
                     role="dialog" id="modal">
                     <header class="flex justify-end">
-                        <button onclick="fecha();"
+                        <button onclick="fecha3();"
                             class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
                             aria-label="close">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
@@ -457,7 +458,7 @@
             document.getElementById('modal4').style.justifyItems = "center";
         }
 
-        function fecha() {
+        function fecha3() {
             document.getElementById('modal4').style.display = "none";
         }
 

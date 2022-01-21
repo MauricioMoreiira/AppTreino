@@ -66,7 +66,8 @@
 
 
 <body style="display: flex; position: relative;">
-    <main class="h-full overflow-y-auto" style="">
+    <br>
+    <main class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid" style="margin-right: 100px;">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Consulta Treinos
@@ -120,9 +121,6 @@
                         </span>
                     </p>
                 </div>
-
-
-
                 @* ===================================================================================== *@
                 <div id="modalHid" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
                     x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
@@ -134,7 +132,7 @@
                         class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
                         role="dialog" id="modal">
                         <header class="flex justify-end">
-                            <button onclick="fecha();"
+                            <button onclick="fechar1();"
                                 class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
                                 aria-label="close">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img"
@@ -214,7 +212,7 @@
                 <div class="w-full overflow-x-auto">
                     <div class="w-full overflow-hidden rounded-lg shadow-xs">
                         <div class="w-full overflow-x-auto">
-                            <table class="w-full whitespace-no-wrap " style="">
+                            <table class="w-full whitespace-no-wrap">
                                 <thead>
                                     <tr
                                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -521,7 +519,7 @@
             window.location = "./AvaliaTreino";
         }
 
-        function fecha() {
+        function fechar1() {
             document.getElementById('modalHid').style.display = "none";
         }
 
