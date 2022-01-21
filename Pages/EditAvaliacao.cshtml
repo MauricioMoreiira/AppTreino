@@ -14,14 +14,29 @@
     <link rel="stylesheet" href="../assets/css/tailwind.output.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
     <script src="../assets/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style>
+        .estrelas input[type=radio] {
+            display: none;
+        }
+
+        .estrelas label i.fa:before {
+            content: '\f005';
+            color: #FC0;
+        }
+
+        .estrelas input[type=radio]:checked~label i.fa:before {
+            color: #CCC;
+        }
+    </style>
 </head>
 
-<body style="display: flex;">
-
+<body style="display: flex; ">
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Avaliar Treino
+                Editar Tópicos
             </h2>
 
             <table class="w-full whitespace-no-wrap" style="width: 70%;">
@@ -53,7 +68,19 @@
                             </div>
                         </td>
                         <td>
-                            X X X X X
+                            <div class="estrelas">
+                                <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+                                <label for="cm_star-1"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-1" name="fb" value="1" />
+                                <label for="cm_star-2"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-2" name="fb" value="2" />
+                                <label for="cm_star-3"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-3" name="fb" value="3" />
+                                <label for="cm_star-4"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-4" name="fb" value="4" />
+                                <label for="cm_star-5"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-5" name="fb" value="5" />
+                            </div>
                         </td>
 
                         <td class="px-4 py-3">
@@ -90,7 +117,19 @@
                             </div>
                         </td>
                         <td>
-                            X X X X X
+                            <div class="estrelas">
+                                <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+                                <label for="cm_star-1"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-1" name="fb" value="1" />
+                                <label for="cm_star-2"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-2" name="fb" value="2" />
+                                <label for="cm_star-3"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-3" name="fb" value="3" />
+                                <label for="cm_star-4"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-4" name="fb" value="4" />
+                                <label for="cm_star-5"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-5" name="fb" value="5" />
+                            </div>
                         </td>
 
                         <td class="px-4 py-3">
@@ -127,7 +166,19 @@
                             </div>
                         </td>
                         <td>
-                            X X X X X
+                            <div class="estrelas">
+                                <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+                                <label for="cm_star-1"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-1" name="fb" value="1" />
+                                <label for="cm_star-2"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-2" name="fb" value="2" />
+                                <label for="cm_star-3"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-3" name="fb" value="3" />
+                                <label for="cm_star-4"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-4" name="fb" value="4" />
+                                <label for="cm_star-5"><i class="fa"></i></label>
+                                <input type="radio" id="cm_star-5" name="fb" value="5" />
+                            </div>
                         </td>
 
                         <td class="px-4 py-3">
@@ -144,11 +195,14 @@
                             </div>
                         </td>
                     </tr>
-
-
-
                 </tbody>
             </table>
+            <div style="margin-top: 15px;">
+                <button
+                    class="px-4 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                     Salvar
+                </button>
+            </div>
         </div>
 
 
