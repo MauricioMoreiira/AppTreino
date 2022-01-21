@@ -20,7 +20,45 @@
             border-radius: 50px;
             text-align: center;
             width: 90px;
+        }
 
+        .wrap-list2 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+
+        .wrap-list3 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+
+        .wrap-list4 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
         }
     </style>
 </head>
@@ -137,7 +175,8 @@
                                     Atletas
                                 </span>
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                <select name="selection" id="selection" class="box1 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"                               
+                                <select name="selection" id="selection"
+                                    class="box1 box2 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                     multiple="">
                                     <option value="Anderson">Anders</option>
                                     <option value="Jolina">Jolina</option>
@@ -147,6 +186,9 @@
                                 <div class="container">
                                     <span>
                                         <input id="" name="" value="" disabled class="wrap-list"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list2"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list3"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list4"></input>
                                     </span>
                                 </div>
                             </label>
@@ -489,10 +531,21 @@
         $(".box1").change(function () {
             var selected = $(this).find("option:selected").text();
             $(".wrap-list").val(selected);
-            if (selected = ! null) {
+            if (selected == null) {
                 $(".wrap-list").show();
             }
         });
+
+        $(".box1").change(function () {
+            var selected = $(this).find("option:selected").text();
+            $(".wrap-list2").val(selected);
+            if (selected == null) {
+                $(".wrap-list2").show();
+            }
+        });
+
+
+
 
     </script>
 
