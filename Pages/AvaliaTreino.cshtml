@@ -106,7 +106,7 @@
                             <div class="flex items-center space-x-4 text-sm">
                                 <button style="margin: 0px;"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                    aria-label="Edit">
+                                    aria-label="Edit" onclick="editAvaliacao();">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                         <path
                                             d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -169,7 +169,7 @@
                         <td style="display: flex; justify-content: center;">
                             <span class="material-icons" id="mod alHiden"
                                 style="margin-top: 15px; color: purple; font-size: 30px; cursor: pointer; "
-                                href="#open-modal" onclick="exibir();">
+                                href="#open-modal" >
                                 add_circle
                             </span>
 
@@ -180,7 +180,7 @@
                             <div class="flex items-center space-x-4 text-sm">
                                 <button style="margin: 0px;"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                    aria-label="Edit">
+                                    aria-label="Edit" >
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                         <path
                                             d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -363,27 +363,6 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div id="modal2"
                 class=" hidden modaltwo max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                 style="width: 100%; padding: 0px;">
@@ -480,6 +459,10 @@
 
         function fecha() {
             document.getElementById('modal4').style.display = "none";
+        }
+
+        function editAvaliacao() {
+            window.location = "./editAvaliacao";
         }
 
     </script>
