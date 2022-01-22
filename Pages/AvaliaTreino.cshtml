@@ -127,7 +127,7 @@
                                 <button style="margin: 0px;"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                     aria-label="Delete">
-                                    <span class="material-icons">
+                                    <span class="material-icons" onclick="exibir2()">
                                         print
                                     </span>
                                 </button>
@@ -361,7 +361,6 @@
                 </div>
             </div>
 
-
             <div id="modal2"
                 class=" hidden modaltwo max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
                 style="width: 100%; padding: 0px;">
@@ -452,13 +451,14 @@
 
 
 
-            <div style="color: dimgray; padding: 20px; border: solid 1px; border-color: #e9e9e9; box-shadow: #d3d3d3 2px 2px 1px; border-radius: 10px;"
+            <div id="modal5"
+                style="display: none; color: dimgray; padding: 20px; border: solid 1px; border-color: #e9e9e9; box-shadow: #d3d3d3 2px 2px 1px; border-radius: 10px;"
                 x-show=""
                 class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
                 role="dialog">
                 <header>
                     <div style="float: right;">
-                        <button onclick="fecha2();"
+                        <button onclick="fecha3();"
                             class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
                             aria-label="close">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
@@ -472,20 +472,11 @@
                     <span class="material-icons" style="font-size: 40px; ">
                         account_circle
                     </span>
-
-
-
                 </header>
-
-
-
-
                 <div style="display: flex; justify-content: center; justify-items: center; margin-bottom: 10px;">
                     <span class="material-icons" style="font-size: 100px; display: flex; justify-content: center;">
                         account_circle
                     </span><br>
-
-
                 </div>
                 <h1 style="display: flex; justify-content: center; justify-items: center;">Júlia</h1>
 
@@ -508,7 +499,7 @@
                 </div>
                 <div>
                     <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
-                        <label for="">Crossfit:</label>
+                        <label for="">Treino:</label>
                         CROSSFIT
                     </h2>
 
@@ -517,13 +508,7 @@
                         CARLOS
                     </h2>
                 </div>
-
             </div>
-
-
-
-
-
 
 
 
@@ -537,10 +522,19 @@
             document.getElementById('modal4').style.display = "block";
             document.getElementById('modal4').style.display = "flex";
             document.getElementById('modal4').style.justifyItems = "center";
+
+            document.getElementById('modal5').style.display = "block";
+            document.getElementById('modal5').style.display = "flex";
+            document.getElementById('modal5').style.justifyItems = "center";
+        }
+
+        function exibir2() {
+            document.getElementById('modal5').style.display = "block";
         }
 
         function fecha3() {
             document.getElementById('modal4').style.display = "none";
+            document.getElementById('modal5').style.display = "none";
         }
 
         function editAvaliacao() {
