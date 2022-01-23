@@ -4,7 +4,10 @@
 }
 
 <head>
+
     <link rel="stylesheet" href="~/img/instagrm_ico.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/instagram_ico">
+
 
     <style>
         input {
@@ -55,6 +58,10 @@
         .estrelaAvalia {
             display: flex;
             justify-content: center;
+        }
+
+        img {
+            display: inline;
         }
     </style>
 </head>
@@ -461,16 +468,26 @@
                 <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
                     <label for="">Instrutor:</label>
                     CARLOS
-                </h2>
+                </h2><br>
 
-                <img src="./img/instagram_ico" alt="Insta">
-                <img src="~/img/instagram_ico" alt="Insta">
-                <img src="/img/instagram_ico" alt="Insta">
+                <div>
+                    <span>
+                        <img rel="icon" src="~/img/instagram_ico" type="image/png" alt="Insta">
+                        @@teste.teste
+                    </span>
+                    <span>
+                        <img rel="icon" src="~/img/facebook_ico" type="image/png" alt="Face">
+                        @@teste
 
-                <img src="./img/facebook_ico" alt="Insta">
-                <img src="~/img/facebook_ico" alt="Insta">
-                <img src="/img/facebook_ico" alt="Insta">
-                
+                    </span>
+                    <span>
+                        <img rel="icon" src="~/img/whatsapp_ico" type="image/png" alt="WhatsApp">
+                        (99)9 9999-9999
+
+                    </span>
+                </div>
+
+
 
             </div>
         </div>
