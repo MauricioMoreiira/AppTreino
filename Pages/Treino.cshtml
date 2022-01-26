@@ -1,0 +1,554 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <style>
+        .wrap-list {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+
+        .wrap-list2 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+
+        .wrap-list3 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+
+        .wrap-list4 {
+            margin-top: 5px;
+            background-color: #e9e9e9;
+            color: dimgray;
+            padding: 5px;
+            border: solid 1px;
+            border-color: #e9e9e9;
+            box-shadow: #d3d3d3 2px 2px 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 90px;
+        }
+    </style>
+</head>
+
+
+
+<body style="display: flex; position: relative;">
+    <br>
+    <main class="h-full overflow-y-auto">
+        <div class="container px-6 mx-auto grid" style="margin-right: 100px;">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Treinos
+            </h2>
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                <!-- Card -->
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                    <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p style="padding-top: 0px; padding-bottom: 0px;" class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Total Atletas
+                        </p>
+                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            0
+                        </p>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                  d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p style="padding-top: 0px; padding-bottom: 0px;" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Treinamentos
+                        </p>
+                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            0
+                        </p>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs "
+                     style="display: flex; justify-content: center; padding-top: 0px; padding-bottom: 0px;">
+                    <p>
+                        <span class="material-icons" id="mod alHiden"
+                              style="color: purple; font-size: 55px; cursor: pointer;" href="#open-modal"
+                              onclick="exibir();">
+                            add_circle
+                        </span>
+                    </p>
+                </div>
+                @* ===================================================================================== *@
+                <div id="modalHid" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
+                     x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                     class=" hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+                    <!-- Modal -->
+                    <div id="mostraTd" x-show="isModalOpen"
+                        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+                        role="dialog" id="modal">
+                        <header class="flex justify-end">
+                            <button onclick="fechar1();"
+                                class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
+                                aria-label="close">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </header>
+                        <div class="mt-4 mb-6">
+                            <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                Adicionar Treinos
+                            </p>
+                            <!-- Modal description -->
+                            <label class="block text-sm" style="margin: 10px;">
+                                <span class="text-gray-700 dark:text-gray-400">Treino:</span>
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="">
+                            </label>
+
+                            <label class="block text-sm" style="margin: 10px;">
+                                <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="">
+                            </label>
+
+                            <label class="block text-sm" style="margin: 10px;">
+                                <span class="text-gray-700 dark:text-gray-400">Data:</span>
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Jane Doe" type="date">
+                            </label>
+
+
+                            <label class="block mt-4 text-sm">
+                                <div style="display: inline;">
+                                    <span style="float: left;" class="text-gray-700 dark:text-gray-400">
+                                        Atletas
+                                    </span>
+
+                                </div>
+
+                                <div style="display: inline;">
+                                    <span class="material-icons" id="mods"
+                                        style=" float: right;color: purple; font-size: 30px; cursor: pointer;">
+                                        add_circle</span>
+                                </div>
+                                </button>
+
+                                <script src=" https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+                                </script>
+                                <select name="selection" id="selection"
+                                    class="box1 box2 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    multiple="">
+                                    <option value="Anderson">Anders</option>
+                                    <option value="Jolina">Jolina</option>
+                                    <option value="Sarah">Sarah</option>
+                                    <option value="Juliana">Juliana</option>
+                                </select>
+                                <div class="container">
+                                    <span>
+                                        <input id="" name="" value="" disabled class="wrap-list"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list2"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list3"></input>
+                                        <input id="" name="" value="" disabled class="wrap-list4"></input>
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+                        <footer
+                            class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+                            <button
+                                class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                                Cancel
+                            </button>
+                            <button
+                                class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                Salvar
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+                @* ===================================================================================== *@
+            </div>
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                        <div class="w-full overflow-x-auto">
+                            <table class="w-full whitespace-no-wrap">
+                                <thead>
+                                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                        <th style="width: 10%;" class="px-4 py-3">Treinos</th>
+                                        <th style="width: 10%;" class="px-4 py-3">Data</th>
+                                        <th style="width: 10%;" class="px-4 py-3">Qtde</th>
+                                        <th style="width: 10%;" class="px-4 py-3"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                    <tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="">
+                                            <div class="flex items-center text-sm">
+                                                <!-- Avatar with inset shadow -->
+                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                    <span class="material-icons"
+                                                          style="font-size: 35px; display: flex; justify-content: center;">
+                                                        account_circle
+                                                    </span>
+                                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                                         aria-hidden="true">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="font-semibold" style="cursor: pointer;"
+                                                       onclick="addTopico();">Crossfit</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            18/01/2022
+                                        </td>
+                                        <td class="px-4 py-3 text-sm ">
+                                            10
+                                        </td>
+                                        <td class="">
+                                            <div class="flex items-center space-x-4 text-sm">
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Edit">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Delete">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="">
+                                            <div class="flex items-center text-sm">
+                                                <!-- Avatar with inset shadow -->
+                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                    <span class="material-icons"
+                                                          style="font-size: 35px; display: flex; justify-content: center;">
+                                                        account_circle
+                                                    </span>
+                                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                                         aria-hidden="true">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="font-semibold">Crossfit</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            18/01/2022
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            5
+                                        </td>
+                                        <td class="">
+                                            <div class="flex items-center space-x-4 text-sm">
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Edit">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Delete">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="">
+                                            <div class="flex items-center text-sm">
+                                                <!-- Avatar with inset shadow -->
+                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                    <span class="material-icons"
+                                                          style="font-size: 35px; display: flex; justify-content: center;">
+                                                        account_circle
+                                                    </span>
+                                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                                         aria-hidden="true">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="font-semibold">Vôlei</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            18/01/2022
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            6
+                                        </td>
+                                        <td class="">
+                                            <div class="flex items-center space-x-4 text-sm">
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Edit">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Delete">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="">
+                                            <div class="flex items-center text-sm">
+                                                <!-- Avatar with inset shadow -->
+                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                    <span class="material-icons"
+                                                          style="font-size: 35px; display: flex; justify-content: center;">
+                                                        account_circle
+                                                    </span>
+                                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                                         aria-hidden="true">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="font-semibold">Futsal</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            18/01/2022
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            7
+                                        </td>
+                                        <td class="">
+                                            <div class="flex items-center space-x-4 text-sm">
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Edit">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        aria-label="Delete">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @* <div
+                            class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t
+                            dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+                            <span class="flex items-center col-span-3">
+                            Showing 21-30 of 100
+                            </span>
+                            <span class="col-span-2"></span>
+                            <!-- Pagination -->
+                            <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                            <nav aria-label="Table navigation">
+                            <ul class="inline-flex items-center">
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                            aria-label="Previous">
+                            <svg class="w-4 h-4 fill-current" aria-hidden="true"
+                            viewBox="0 0 20 20">
+                            <path
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0
+                            010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                            </svg>
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            1
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            2
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0
+                            border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            3
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            4
+                            </button>
+                            </li>
+                            <li>
+                            <span class="px-3 py-1">...</span>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            8
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            9
+                            </button>
+                            </li>
+                            <li>
+                            <button
+                            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                            aria-label="Next">
+                            <svg class="w-4 h-4 fill-current" aria-hidden="true"
+                            viewBox="0 0 20 20">
+                            <path
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010
+                            1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                            </svg>
+                            </button>
+                            </li>
+                            </ul>
+                            </nav>
+                            </span>
+                            </div> *@
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <script>
+        function exibir() {
+            document.getElementById('modalHid').style.display = "block";
+            document.getElementById('modalHid').style.display = "flex";
+            document.getElementById('modalHid').style.justifyItems = "center";
+        }
+
+
+        function fechar1() {
+            document.getElementById('modalHid').style.display = "none";
+        }
+
+        function addTopico() {
+            window.location = "./AvaliaTreino";
+        }
+
+
+        $('#selectOption').change(function () {
+            var option = $('#selectOption').find(":selected").val();
+
+        });
+
+        $(".box1").change(function () {
+            var selected = $(this).find("option:selected").text();
+            $(".wrap-list").val(selected);
+            if (selected == null) {
+                $(".wrap-list").show();
+            }
+        });
+
+        $(".box1").change(function () {
+            var selected = $(this).find("option:selected").text();
+            $(".wrap-list").val(selected);
+            if (selected == null) {
+                $(".wrap-list").show();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
