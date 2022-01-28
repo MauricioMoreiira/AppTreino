@@ -232,19 +232,114 @@
                 </tbody>
             </table>
 
+            <span class="material-icons" style="margin-top: 15px; color: purple; font-size: 30px; font-weight: 700; cursor: pointer;">
+                add
+            </span>
+
+            <section id="Modal Avaliacao">
+                <div id="modal4" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
+                    x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    class="hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+                    <!-- Modal -->
+                    <div id="mostraTd" x-show="isModalOpen"
+                        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+                        role="dialog" id="modal">
+                        <header class="flex justify-end">
+                            <button onclick="fecha3();"
+                                class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
+                                aria-label="close">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </header>
+                        <div class="mt-4 mb-6">
+                            <p class="my-4 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                                style="display: flex; justify-content: center;">
+                                Avaliações
+                            <p style="color: dimgray; display: flex; justify-content: center;">Anderson</p>
+                            </p><br>
+                            <div class="">
+                                <h1 style="font-size: 18px; font-weight: 600;">Tópico</h1>
+
+                                <label class="block text-sm" style="margin: 10px;">
+                                    <span class="text-gray-800 dark:text-gray-500"
+                                        style="font-size: 15px; font-weight: 500;">Ataque</span>
+                                    <select
+                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <option disabled selected>Selecionar</option>
+                                        <option>Saque</option>
+                                        <option>Levantamento</option>
+                                        <option>Forehand </option>
+                                        <option>Backhand</option>
+                                    </select>
+                                </label>
+
+                                <label class="block text-sm" style="margin: 10px;">
+                                    <span class="text-gray-700 dark:text-gray-400"
+                                        style="font-size: 15px; font-weight: 500;">Defesa</span>
+                                    <select
+                                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <option disabled selected>Selecionar</option>
+                                        <option>Smash</option>
+                                        <option>Levantamento</option>
+                                        <option>Forehand </option>
+                                        <option>Backhand</option>
+                                    </select>
+                                </label>
+
+                                <div class="estrelaAvalia">
+                                    <link rel="stylesheet"
+                                        href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                                    <div class="estrelas" style="font-size: 30px;">
+                                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+                                        <label for="cm_star-1"><i class="fa"></i></label>
+                                        <input type="radio" id="cm_star-1" name="fb" value="1" />
+                                        <label for="cm_star-2"><i class="fa"></i></label>
+                                        <input type="radio" id="cm_star-2" name="fb" value="2" />
+                                        <label for="cm_star-3"><i class="fa"></i></label>
+                                        <input type="radio" id="cm_star-3" name="fb" value="3" />
+                                        <label for="cm_star-4"><i class="fa"></i></label>
+                                        <input type="radio" id="cm_star-4" name="fb" value="4" />
+                                        <label for="cm_star-5"><i class="fa"></i></label>
+                                        <input type="radio" id="cm_star-5" name="fb" value="5" />
+                                    </div><br>
+                                </div>
+                            </div>
+                        </div>
+                        <footer
+                            class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+                            <button
+                                class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                Adicionar
+                            </button>
+
+
+                        </footer>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
 
 
 
-            <div id="modal4" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
-                x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                class="hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-                <!-- Modal -->
-                <div id="mostraTd" x-show="isModalOpen"
-                    class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-                    role="dialog" id="modal">
-                    <header class="flex justify-end">
+
+
+        <section id="Modal canvas">
+            <div id="modal5"
+                style="display: none; color: dimgray; padding: 20px; border: solid 1px; border-color: #e9e9e9; box-shadow: #d3d3d3 2px 2px 1px; border-radius: 10px;"
+                x-show=""
+                class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+                role="dialog">
+                <header>
+                    <div style="float: right;">
                         <button onclick="fecha3();"
                             class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
                             aria-label="close">
@@ -254,256 +349,85 @@
                                     clip-rule="evenodd" fill-rule="evenodd"></path>
                             </svg>
                         </button>
-                    </header>
-                    <div class="mt-4 mb-6">
-                        <p class="my-4 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                            style="display: flex; justify-content: center;">
-                            Avaliações
-                        <p style="color: dimgray; display: flex; justify-content: center;">Anderson</p>
-                        </p><br>
-                        <div class="">
-                            <h1 style="font-size: 18px; font-weight: 600;">Tópico</h1>
+                    </div>
 
-                            <label class="block text-sm" style="margin: 10px;">
-                                <span class="text-gray-800 dark:text-gray-500"
-                                    style="font-size: 15px; font-weight: 500;">Ataque</span>
-                                <select
-                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <option disabled selected>Selecionar</option>
-                                    <option>Saque</option>
-                                    <option>Levantamento</option>
-                                    <option>Forehand </option>
-                                    <option>Backhand</option>
-                                </select>
-                            </label>
+                    <span class="material-icons" style="font-size: 35px; display: inline;">
+                        account_circle
+                    </span>
+                    <p style="display: inline;">Patrocinador</p>
+                </header>
+                <div style="display: flex; justify-content: center; justify-items: center; margin-bottom: 10px;">
+                    <span class="material-icons" style="font-size: 100px; display: flex; justify-content: center;">
+                        account_circle
+                    </span><br>
+                </div>
+                <h1 style="display: flex; justify-content: center; justify-items: center;">Júlia</h1>
 
-                            <label class="block text-sm" style="margin: 10px;">
-                                <span class="text-gray-700 dark:text-gray-400"
-                                    style="font-size: 15px; font-weight: 500;">Defesa</span>
-                                <select
-                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                    <option disabled selected>Selecionar</option>
-                                    <option>Smash</option>
-                                    <option>Levantamento</option>
-                                    <option>Forehand </option>
-                                    <option>Backhand</option>
-                                </select>
-                            </label>
+                <div style="display: flex; justify-content: center; justify-items: center;">
+                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    <div class="estrelas">
+                        <span>Nota: </span>
+                        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+                        <label for="cm_star-1"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-1" name="fb" value="1" />
+                        <label for="cm_star-2"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-2" name="fb" value="2" />
+                        <label for="cm_star-3"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-3" name="fb" value="3" />
+                        <label for="cm_star-4"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-4" name="fb" value="4" />
+                        <label for="cm_star-5"><i class="fa"></i></label>
+                        <input type="radio" id="cm_star-5" name="fb" value="5" />
+                    </div><br>
+                </div>
+                <div>
+                    <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
+                        <label for="">Treino:</label>
+                        CROSSFIT
+                    </h2>
 
-                            <div class="estrelaAvalia">
-                                <link rel="stylesheet"
-                                    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                <div class="estrelas" style="font-size: 30px;">
-                                    <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                                    <label for="cm_star-1"><i class="fa"></i></label>
-                                    <input type="radio" id="cm_star-1" name="fb" value="1" />
-                                    <label for="cm_star-2"><i class="fa"></i></label>
-                                    <input type="radio" id="cm_star-2" name="fb" value="2" />
-                                    <label for="cm_star-3"><i class="fa"></i></label>
-                                    <input type="radio" id="cm_star-3" name="fb" value="3" />
-                                    <label for="cm_star-4"><i class="fa"></i></label>
-                                    <input type="radio" id="cm_star-4" name="fb" value="4" />
-                                    <label for="cm_star-5"><i class="fa"></i></label>
-                                    <input type="radio" id="cm_star-5" name="fb" value="5" />
-                                </div><br>
-                            </div>
+                    <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
+                        <label for="">Instrutor:</label>
+                        CARLOS
+                    </h2><br>
+
+                    <div style="display: flex; justify-content: space-around;">
+                        <div style="display: inline;">
+                            <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                            </svg>
+                            @@teste.teste
+                        </div>
+                        <div style="display: inline;">
+                            <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                            </svg>
+                            @@teste
+
+                        </div>
+                        <div style="display: inline;">
+
+                            <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                            </svg>
+                            (99)9 9999-9999
                         </div>
                     </div>
-                    <footer
-                        class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-                        <button
-                            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                            Adicionar
-                        </button>
 
 
-                    </footer>
+
                 </div>
             </div>
-        </div>
-
-        <div id="modal2"
-            class=" hidden modaltwo max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-            style="width: 100%; padding: 0px;">
-            <header class="flex justify-end">
-                <button onclick="fecha();"
-                    class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-                    aria-label="close">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
-                        <path
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </header>
-            <div class="mt-4 mb-6">
-                <p class="my-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Cardeneta de Avaliações
-                </p><br>
-                <!-- Modal description -->
-
-                <div style="display: flex; width: 100%;">
-                    <div class="div2">
-                        <table>
-                            <p class="mb-2  font-semibold text-gray-700 dark:text-gray-300">
-                                Ataque
-                            </p>
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Força:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Agilidade:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Velocidade:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Resistência:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                        </table>
-                    </div>
-
-                    <div class="div2">
-                        <table>
-                            <p class="mb-2  font-semibold text-gray-700 dark:text-gray-300">
-                                Defesa
-                            </p>
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Força:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Agilidade:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Velocidade:</td>
-                                <td><input type="number"></td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-gray-700 dark:text-gray-400">Resistência:</td>
-                                <td><input type="number"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <footer class=" items-center justify-end  bg-gray-50 dark:bg-gray-800">
-                <button style="display: flex; float: right;  justify-content: center; width: 120px; padding: 8px;"
-                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                    Enviar
-                </button>
-            </footer>
-        </div>
+        </section>
 
 
 
-
-
-
-        <div id="modal5"
-            style="display: none; color: dimgray; padding: 20px; border: solid 1px; border-color: #e9e9e9; box-shadow: #d3d3d3 2px 2px 1px; border-radius: 10px;"
-            x-show=""
-            class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-            role="dialog">
-            <header>
-                <div style="float: right;">
-                    <button onclick="fecha3();"
-                        class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-                        aria-label="close">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
-                            <path
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <span class="material-icons" style="font-size: 35px; display: inline;">
-                    account_circle
-                </span>
-                <p style="display: inline;">Patrocinador</p>
-            </header>
-            <div style="display: flex; justify-content: center; justify-items: center; margin-bottom: 10px;">
-                <span class="material-icons" style="font-size: 100px; display: flex; justify-content: center;">
-                    account_circle
-                </span><br>
-            </div>
-            <h1 style="display: flex; justify-content: center; justify-items: center;">Júlia</h1>
-
-            <div style="display: flex; justify-content: center; justify-items: center;">
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                <div class="estrelas">
-                    <span>Nota: </span>
-                    <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-                    <label for="cm_star-1"><i class="fa"></i></label>
-                    <input type="radio" id="cm_star-1" name="fb" value="1" />
-                    <label for="cm_star-2"><i class="fa"></i></label>
-                    <input type="radio" id="cm_star-2" name="fb" value="2" />
-                    <label for="cm_star-3"><i class="fa"></i></label>
-                    <input type="radio" id="cm_star-3" name="fb" value="3" />
-                    <label for="cm_star-4"><i class="fa"></i></label>
-                    <input type="radio" id="cm_star-4" name="fb" value="4" />
-                    <label for="cm_star-5"><i class="fa"></i></label>
-                    <input type="radio" id="cm_star-5" name="fb" value="5" />
-                </div><br>
-            </div>
-            <div>
-                <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
-                    <label for="">Treino:</label>
-                    CROSSFIT
-                </h2>
-
-                <h2 style="margin-left: 30px;" class="font-semibold text-gray-700 dark:text-gray-200">
-                    <label for="">Instrutor:</label>
-                    CARLOS
-                </h2><br>
-
-                <div style="display: flex; justify-content: space-around;">
-                    <div style="display: inline;">
-                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-instagram" viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
-                        </svg>
-                        @@teste.teste
-                    </div>
-                    <div style="display: inline;">
-                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-facebook" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-                        </svg>
-                        @@teste
-
-                    </div>
-                    <div style="display: inline;">
-
-                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-whatsapp" viewBox="0 0 16 16">
-                            <path
-                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
-                        </svg>
-                        (99)9 9999-9999
-
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
         </div>
     </main>
 
@@ -526,6 +450,9 @@
         function editAvaliacao() {
             window.location = "./editAvaliacao";
         }
+
+
+        
     </script>
 </body>
 
