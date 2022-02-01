@@ -49,17 +49,111 @@ namespace AppTreino.Controllers
         }
 
 
-
-
-        public ActionResult UsuarioAtivo([FromBody] Credential obj)
+        public ActionResult GetAtletasCompletos([FromBody] string idAtleta, string idInstrutor)
         {
             try
             {
-                var data = _model.UsuarioAtivo(obj);
+                var data = _model.GetAtletasCompletos(idAtleta, idInstrutor);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
-                    Message = "Bem-vindo",
+                    Message = "Menu carregado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult GetAtletasTreino([FromBody] string idTreino)
+        {
+            try
+            {
+                var data = _model.GetAtletasTreino(idTreino);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Menu carregado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult GetAvaliacoesTreino([FromBody] string idTreino, string idAtleta)
+        {
+            try
+            {
+                var data = _model.GetAvaliacoesTreino(idTreino, idAtleta);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Menu carregado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult GetTreino([FromBody] string idTreino, string idInstrutor)
+        {
+            try
+            {
+                var data = _model.GetTreino(idTreino, idInstrutor);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Menu carregado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult DelTreinoAtleta([FromBody] string treinoID, string atletaID)
+        {
+            try
+            {
+                var data = _model.GetTreino(treinoID, atletaID);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Menu carregado com sucesso",
                     Title = "Sucesso",
                     EmbeddedData = data
                 }));
@@ -77,5 +171,34 @@ namespace AppTreino.Controllers
 
 
 
+
+
+
+
+
+
+        //public ActionResult UsuarioAtivo([FromBody] Credential obj)
+        //{
+        //    try
+        //    {
+        //        var data = _model.UsuarioAtivo(obj);
+        //        return Json(AjaxMessage.Create(new MessageContent
+        //        {
+        //            MessageType = MessageType.Success,
+        //            Message = "Bem-vindo",
+        //            Title = "Sucesso",
+        //            EmbeddedData = data
+        //        }));
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        return Json(AjaxMessage.Create(new MessageContent
+        //        {
+        //            MessageType = MessageType.Failure,
+        //            Message = exception.Message,
+        //            Title = "Erro de Sistema"
+        //        }));
+        //    }
+        //}
     }
 }

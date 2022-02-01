@@ -4,6 +4,7 @@ using Microsoft.Reporting.Map.WebForms.BingMaps;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -64,29 +65,21 @@ namespace AppTreinoCarlos.Services
         }
 
 
-
-
-
-
-        public Boolean UsuarioAtivo(Credential obj)
+        public List <Atleta> GetAtletasCompletos(string idAtleta, string idInstrutor)
         {
             try
             {
+                dynamic obj = new ExpandoObject();
+                obj.idAtleta = idAtleta;
+                obj.idInstrutor = idInstrutor;
                 using (var httpClient = new HttpClient())
                 {
-                    var url = BuildCall(httpClient, "usuarioAtivo");
+                    var url = BuildCall(httpClient, "GET_ATLETAS_COMPLETO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<string>(
+                        JsonConvert.DeserializeObject<List<Atleta>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-
-                    var usuario = apiResult == "Ativo" ? true : false;
-
-                    ////Criptografa senha para guardar local já que a senha não é retornada. Melhor que seja assim.
-                    //var shield = new Shield(CryptProvider.Rijndael);
-                    //usuario.Senha = shield.Lock(obj.Senha);
-
-                    return usuario;
+                    return apiResult;
                 }
             }
             catch (Exception exception)
@@ -94,6 +87,130 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
+
+
+        public List<TreinoAtletas> GetAtletasTreino(string idTreino)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.idTreino = idTreino;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "GET_ATLETAS_TREINO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<List<TreinoAtletas>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<Avaliacao> GetAvaliacoesTreino(string idTreino, string idAtleta)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.idTreino = idTreino;
+                obj.idAtleta = idAtleta;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "GET_AVALIACOES_TREINO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<List<Avaliacao>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+
+        public List<Treino> GetTreino(string idTreino, string idInstrutor)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.idTreino = idTreino;
+                obj.idInstrutor = idInstrutor;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "GET_TREINO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<List<Treino>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+
+        public bool DelTreinoAtleta(string treinoID, string atletaID)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.atletaID = treinoID;
+                obj.atletaID = atletaID;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "GET_TREINO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+
+
+
+        //public Boolean UsuarioAtivo(Credential obj)
+        //{
+        //    try
+        //    {
+        //        using (var httpClient = new HttpClient())
+        //        {
+        //            var url = BuildCall(httpClient, "usuarioAtivo");
+        //            var apiResult =
+        //                JsonConvert.DeserializeObject<string>(
+        //                    httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+        //                );
+
+        //            var usuario = apiResult == "Ativo" ? true : false;
+
+        //            ////Criptografa senha para guardar local já que a senha não é retornada. Melhor que seja assim.
+        //            //var shield = new Shield(CryptProvider.Rijndael);
+        //            //usuario.Senha = shield.Lock(obj.Senha);
+
+        //            return usuario;
+        //        }
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        throw new Exception(exception.Message);
+        //    }
+        //}
 
     }
 }
