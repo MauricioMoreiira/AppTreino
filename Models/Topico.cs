@@ -5,18 +5,18 @@ namespace AppTreinoCarlos.Models
     public class Topico
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("instrutorId")]
-        public string InstrutorId { get; set; }
+        public int InstrutorId { get; set; }
 
         [JsonProperty("descricao")]
         public string Descricao { get; set; }
 
         [JsonProperty("ativo")]
-        public string Ativo { get; set; }
+        public int Ativo { get; set; }
 
         [JsonProperty("tipo")]
-        public string Tipo { get; set; }
+        public int Tipo { get; set; }
     }
 }

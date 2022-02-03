@@ -1,25 +1,26 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace AppTreinoCarlos.Models
 {
     public class Treino
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("descricao")]
         public string Descricao { get; set; }
 
         [JsonProperty("dtInicio")]
-        public string DtInicio { get; set; }
+        public DateTime DtInicio { get; set; }
 
         [JsonProperty("dtFim")]
-        public string DtFim { get; set; }
+        public DateTime DtFim { get; set; }
 
         [JsonProperty("tipoEvento")]
-        public string TipoEvento { get; set; }
+        public int TipoEvento { get; set; }
 
         [JsonProperty("dtInclui")]
-        public string DtInclui { get; set; }
+        public DateTime DtInclui { get; set; }
     }
 }

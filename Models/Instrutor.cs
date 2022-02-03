@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace AppTreinoCarlos.Models
@@ -6,7 +7,7 @@ namespace AppTreinoCarlos.Models
     public class Instrutor
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("nome")]
         public string Nome { get; set; }
@@ -18,7 +19,7 @@ namespace AppTreinoCarlos.Models
         public string Senha { get; set; }
 
         [JsonProperty("dtInclui")]
-        public string DtInclui { get; set; }
+        public DateTime DtInclui { get; set; }
 
         [JsonProperty("celular")]
         public string Celular { get; set; }
@@ -37,6 +38,6 @@ namespace AppTreinoCarlos.Models
         public string Cpf { get; set; }
 
         [JsonProperty("ativo")]
-        public string Ativo { get; set; }
+        public int Ativo { get; set; }
     }
 }

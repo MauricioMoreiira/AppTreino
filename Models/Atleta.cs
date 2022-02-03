@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace AppTreinoCarlos.Models
 {
@@ -6,27 +7,27 @@ namespace AppTreinoCarlos.Models
     {
 
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("nivel")]
-        public string Nivel { get; set; }
+        public int Nivel { get; set; }
 
         [JsonProperty("nome")]
         public string Nome { get; set; }
 
         [JsonProperty("ativo")]
-        public string Ativo { get; set; }
+        public int Ativo { get; set; }
 
         [JsonProperty("dtInclui")]
-        public string DtInclui { get; set; }
+        public DateTime DtInclui { get; set; }
 
         [JsonProperty("dtExpira")]
-        public string DtExpira { get; set; }
+        public DateTime DtExpira { get; set; }
 
         [JsonProperty("foto")]
         public string Foto { get; set; }
 
         [JsonProperty("instrutorId")]
-        public string InstrutorId { get; set; }
+        public int InstrutorId { get; set; }
     }
 }
