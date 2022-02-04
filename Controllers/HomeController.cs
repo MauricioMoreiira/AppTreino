@@ -24,11 +24,11 @@ namespace AppTreino.Controllers
         }
 
 
-        public ActionResult Login([FromBody] Credential obj)
+        public ActionResult Login([FromBody] string email, string senha)
         {
             try
             {
-                var data = _model.Login(obj);
+                var data = _model.Login(email, senha);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,

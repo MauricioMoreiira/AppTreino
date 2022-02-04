@@ -336,8 +336,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-
-
         //public Boolean UsuarioAtivo(Credential obj)
         //{
         //    try

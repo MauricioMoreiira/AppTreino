@@ -20,8 +20,7 @@ namespace AppTreinoCarlos.Pages
 
         public void OnGet(string idTreino, string idInstrutor)
         {
-            List<Treino> treinos = new List<Treino>();
-            ViewData["AtletaTreino"] = _model.GetTreino(idTreino, idInstrutor);
+            ViewData["Treino"] = _model.GetTreino(idTreino, idInstrutor);
         }
     }
 }
