@@ -18,9 +18,10 @@ namespace AppTreinoCarlos.Pages
             _model = new CommFunctions(configuration);
         }
 
-        public void OnGet(/*string idTreino, string idInstrutor*/)
+        public void OnGet(string idTreino, string idInstrutor)
         {
-            //ViewData["AtletaTreino"] = _model.GetTreino(idTreino, idInstrutor);
+            List<Treino> treinos = new List<Treino>();
+            ViewData["AtletaTreino"] = _model.GetTreino(idTreino, idInstrutor);
         }
     }
 }

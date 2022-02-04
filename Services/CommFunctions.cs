@@ -36,11 +36,13 @@ namespace AppTreinoCarlos.Services
             return url;
         }
 
-
-        public Instrutor Login(Credential obj)
+        public Instrutor Login(string email, string senha)
         {
             try
             {
+                dynamic obj = new ExpandoObject();
+                obj.email = email;
+                obj.senha = senha;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "login");
@@ -64,7 +66,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-
         public List <Atleta> GetAtletasCompletos(string idAtleta, string idInstrutor)
         {
             try
@@ -87,7 +88,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
 
         public List<TreinoAtletas> GetAtletasTreino(string idTreino)
         {
@@ -134,7 +134,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-
         public List<Treino> GetTreino(string idTreino, string idInstrutor)
         {
             try
@@ -158,7 +157,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-
         public bool DelTreinoAtleta(string treinoID, string atletaID)
         {
             try
@@ -166,6 +164,50 @@ namespace AppTreinoCarlos.Services
                 dynamic obj = new ExpandoObject();
                 obj.atletaID = treinoID;
                 obj.atletaID = atletaID;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "DEL_TREINO_ATLETA");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetAtleta(Atleta atleta)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.atleta = atleta;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_ATLETA");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetAvaliacao(Avaliacao avaliacao)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.avaliacao = avaliacao;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "GET_TREINO");
@@ -181,6 +223,119 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
+
+        public bool SetInstrutor(Instrutor instrutor)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.instrutor = instrutor;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_INSTRUTOR");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetTopicos(Topico topico)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.topico = topico;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_TOPICOS");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetTreino(Treino treino)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.treino = treino;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_TREINO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetTreinoAtleta(string Idtreino, string idAtleta)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.Idtreino = Idtreino;
+                obj.idAtleta = idAtleta;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_TREINO_ATLETA");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public bool SetTreinoInstrutor(string Idtreino, string idInstrutor)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.Idtreino = Idtreino;
+                obj.idInstrutor = idInstrutor;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_TREINO_INSTRUTOR");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
 
 
 
