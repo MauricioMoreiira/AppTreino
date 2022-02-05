@@ -157,6 +157,31 @@ namespace AppTreinoCarlos.Services
             }
         }
 
+
+        public List<Topico> GetTopicos(string idInstrutor)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.idInstrutor = idInstrutor;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "GET_TOPICOS");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<ResponseService<List<Topico>>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult.Data;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+
+
         public bool DelTreinoAtleta(string treinoID, string atletaID)
         {
             try

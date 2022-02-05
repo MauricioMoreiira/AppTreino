@@ -4,10 +4,13 @@ using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using static AppTreinoCarlos.Utils.AjaxMessage;
 
@@ -167,6 +170,33 @@ namespace AppTreino.Controllers
                     Title = "Erro de Sistema"
                 }));
             }
+        }
+
+        public bool SetAvaliacao(dynamic obj)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_AVALIACAO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<bool>(
+                            httpClient.PostAsync(url.ToString(), 
+                            new StringContent(JsonConvert.SerializeObject(obj), 
+                            Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        private object BuildCall(HttpClient httpClient, string v)
+        {
+            throw new NotImplementedException();
         }
 
 

@@ -4,6 +4,7 @@
 @using AppTreinoCarlos.Models
 @{
     List<Treino> Treinos = (List<Treino>)ViewData["Treino"];
+    string idInstrutor = ViewData["idInstrutor"].ToString();
 }
 
 <!DOCTYPE html>
@@ -249,7 +250,7 @@
                                                         </div>
                                                         <div>
                                                             <p class="font-semibold" style="cursor: pointer;"
-                                                               onclick="addTopico();">@DadoTreino.Descricao</p>
+                                                               onclick="AvaliaTreino('@DadoTreino.Id', '@DadoTreino.TREINO_INSTRUTOR_ID');">@DadoTreino.Descricao</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -305,8 +306,8 @@
             document.getElementById('modalHid').style.display = "none";
         }
 
-        function addTopico() {
-            window.location = "./AvaliaTreino?idTreino=3";
+        function AvaliaTreino(TreinoId, TreinoInstrutorId) {
+            window.location = "./AvaliaTreino?idTreino=".concat(TreinoId).concat("&idTreinoInstrutor=").concat(TreinoInstrutorId).concat("&idInstrutor=").concat(@idInstrutor);
         }
 
 

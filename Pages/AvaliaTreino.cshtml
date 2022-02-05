@@ -1,9 +1,11 @@
 ﻿@page
 @using AppTreinoCarlos.Utils
+@using System.Collections.Generic
 @model AppTreinoCarlos.Pages.AvaliaTreinoModel
 @using AppTreinoCarlos.Models
 @{
     List<TreinoAtletas> Avalia = (List<TreinoAtletas>)ViewData["Avaliacoes"];
+    string idTreinoInstrutor = ViewData["idTreinoInstrutor"].ToString();
 }
 
 <html>
@@ -104,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold" style="cursor: pointer;">
+                                        <p class="font-semibold">
                                             @TableAvaliar.NOME
                                         </p>
                                     </div>
@@ -172,7 +174,7 @@
                 add
             </span>
 
-            <section id="Modal Avaliacao">
+            <section id="ModalAvaliacao">
                 <div id="modal4" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
                      x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
                      x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
@@ -206,11 +208,10 @@
                                     <span class="text-gray-800 dark:text-gray-500"
                                           style="font-size: 15px; font-weight: 500;">Ataque</span>
                                     <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                        <option disabled selected>Selecionar</option>
-                                        <option>Saque</option>
-                                        <option>Levantamento</option>
-                                        <option>Forehand </option>
-                                        <option>Backhand</option>
+                                        <option disabled selected>Ataque</option>
+                                        @*@foreach(Topico)*@
+                                        @Html.DropDownList("TopicoAtaque");
+                                        @*@Html.DropDownList("selectede", new SelectList((IEnumerable<string>)ViewData["TopicoAtaque"]), "Descricao");*@
                                     </select>
                                 </label>
 
@@ -350,6 +351,54 @@
     </main>
 
     <script>
+
+        $(document).ready(function () {
+            function Avalia() {
+                const obj = new Object();
+                obj.TREINO_INTRUTOR_ID = document.getElementsById('TREINO_INTRUTOR_ID').value;
+                obj.ATLETA_ID = document.getElementsById('ATLETA_ID').value;
+                obj.NOTA = document.getElementsById('NOTA').value;
+                obj.TREINO_ID = document.getElementsById('TREINO_ID').value;
+                obj.TOPICO_ID = document.getElementsById('TOPICO_ID').value;
+                //obj.OBS = document.getElementsById('OBS').value;
+
+                $.ajax({
+                    context: this,
+                    url: '/Home/SetAvaliacao',
+                    type: 'POST',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    beforeSend: function () {
+                        Notiflix.Loading.Dots('Aguarde...');
+                    },
+                    success: function (data) {
+                        Notiflix.Loading.Remove();
+                        const returnData = JSON.parse(data);
+                        if (returnData === null) {
+                            Notiflix.Loading.Dots("Aguarde...");  /* ShowMessage(data);*/
+                            return;
+                        } else {
+                            if (currentCli === null) {
+                                /*RedirectAction("/Admin/ConfigAdmin/?id=".concat(currentUser.admin));*/
+                                RedirectAction("/Admin/ConfigAdmin/?usuario=".concat("&usuario").concat(returnData.usuario).concat("&Senha").concat(returnData.Senha));
+                            }
+
+                            else {
+                                RedirectAction("Menu");
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        Notiflix.Loading.Remove();
+                        ShowMessage(data);
+                        window.location.href = "Admin/LogaAdmin";
+                    }
+                });
+            }
+        });
+
+
         function exibir() {
             document.getElementById('modal4').style.display = "block";
             document.getElementById('modal4').style.display = "flex";
@@ -367,6 +416,10 @@
 
         function goeditAvaliacao(treino, atleta, nome) {
             window.location = "./editAvaliacao?idTreino=".concat(treino).concat("&idAtleta=").concat(atleta).concat("&NomeAtleta=").concat(nome);
+        }
+
+        function goAvaliacao(treino, atleta) {
+            
         }
 
 

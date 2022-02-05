@@ -21,6 +21,8 @@ namespace AppTreinoCarlos.Pages
         public void OnGet(string idTreino, string idInstrutor)
         {
             ViewData["Treino"] = _model.GetTreino(idTreino, idInstrutor);
+            ViewData["idInstrutor"] = idInstrutor;
+
         }
     }
 }
