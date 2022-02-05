@@ -1,4 +1,5 @@
 ﻿@page
+@using AppTreinoCarlos.Utils
 @model AppTreinoCarlos.Pages.AddInstrutorModel
 @{
 }
@@ -78,8 +79,8 @@
                                 <th class="px-4 py-3">Validade</th>
                                 <th class="px-4 py-3">
                                     <span class="material-icons" id=""
-                                        style="color: purple; font-size: 30px; cursor: pointer;" href="#open-modal"
-                                        onclick="exibir();">
+                                          style="color:@Share.CorIcon; font-size: 30px; cursor: pointer;" href="#open-modal"
+                                          onclick="exibir();">
                                         add_circle
                                     </span>
                                 </th>

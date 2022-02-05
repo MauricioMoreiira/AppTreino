@@ -1,15 +1,16 @@
 ﻿@page
+@using AppTreinoCarlos.Utils
 @model AppTreinoCarlos.Pages.AvaliaTreinoModel
 @using AppTreinoCarlos.Models
 @{
     List<TreinoAtletas> Avalia = (List<TreinoAtletas>)ViewData["Avaliacoes"];
 }
 
+<html>
 <head>
 
     <link rel="stylesheet" href="~/img/instagrm_ico.png">
     <link rel="icon" type="image/png" sizes="192x192" href="~/img/instagram_ico">
-
 
     <style>
         input {
@@ -42,7 +43,6 @@
             margin-right: auto;
             width: 90%;
         }
-
 
         .estrelas input[type=radio] {
             display: none;
@@ -81,96 +81,95 @@
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Atletas</th>
-                        <th class="px-4 py-3">Data</th>
+                        <th class="px-4 py-3">QTDE</th>
                         <th class="px-4 py-3" style="text-align: center;">Avaliar</th>
                         <th class="px-4 py-3"></th>
                     </tr>
                 </thead>
 
-                @if(Avalia != null)
-                 {
-                    @foreach(TreinoAtletas TableAvaliar in Avalia)
-                     {
-                           <tr class="text-gray-700 dark:text-gray-400">
-                                 <td>
-                                     <div class="flex items-center text-sm">
-                                         <!-- Avatar with inset shadow -->
-                                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                             <span class="material-icons"
-                                                   style="font-size: 35px; display: flex; justify-content: center;">
-                                                 account_circle
-                                             </span>
-                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                             </div>
-                                         </div>
-                                         <div>
-                                             <p class="font-semibold" style="cursor: pointer;">
-                                                 @TableAvaliar.NOME
-                                             </p>
-                                         </div>
-                                     </div>
-                                 </td>
-                                 <td>
-                                     @TableAvaliar.QTDE_AVALIACOES
-                                 </td>
+                @if (Avalia != null)
+                {
+                    @foreach (TreinoAtletas TableAvaliar in Avalia)
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td>
+                                <div class="flex items-center text-sm">
+                                    <!-- ICONE DO ATLETA -->
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <span class="material-icons"
+                                              style="font-size: 35px; display: flex; justify-content: center;">
+                                            account_circle
+                                        </span>
+                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold" style="cursor: pointer;">
+                                            @TableAvaliar.NOME
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @TableAvaliar.QTDE_AVALIACOES
+                            </td>
 
-                                 <td style="display: flex; justify-content: center;">
-                                     <span class="material-icons" id="mod alHiden"
-                                           style="margin-top: 15px; color: purple; font-size: 30px; cursor: pointer; "
-                                           href="#open-modal" onclick="exibir();">
-                                         add_circle
-                                     </span>
+                            <td style="display: flex; justify-content: center;">
+                                <span class="material-icons CorIcon" id="mod alHiden"
+                                      style="margin-top: 15px;  font-size: 30px; cursor: pointer; "
+                                      href="#open-modal" onclick="exibir();">
+                                    add_circle
+                                </span>
 
-                                 </td>
+                            </td>
 
 
-                                 <td class="px-4 py-3">
-                                     <div class="flex items-center space-x-4 text-sm">
-                                         <button style="margin: 0px;"
-                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                 aria-label="Edit" onclick="editAvaliacao();">
-                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
-                                                 </path>
-                                             </svg>
-                                         </button>
-                                         <button style="margin: 0px;"
-                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                 aria-label="Delete">
-                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                                 <path fill-rule="evenodd"
-                                                       d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                       clip-rule="evenodd"></path>
-                                             </svg>
-                                         </button>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <button style="margin: 0px;"
+                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                            aria-label="Edit" 
+               @*onclick=$"window.location(./editAvaliacao?idTreino={@TableAvaliar.TREINO_ID}&idAtleta={@TableAvaliar.ATLETA_ID}&NomeAtleta={@TableAvaliar.NOME});">*@                  
+               href= " @Url.Action("editAvaliacao", "."  new ?idTreino=, @TableAvaliar.TREINO_ID, "&idAtleta=" + @TableAvaliar.ATLETA_ID + "&NomeAtleta=" + @TableAvaliar.NOME + ");">                  
+                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <button style="margin: 0px;"
+                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                            aria-label="Delete">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                  clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
 
-                                         <button style="margin: 0px;"
-                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                 aria-label="Delete">
-                                             <span class="material-icons" onclick="exibir2()">
-                                                 print
-                                             </span>
-                                         </button>
-                                         <button style="margin: 0px;"
-                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                 aria-label="Delete">
-                                             <span class="material-icons">
-                                                 description
-                                             </span>
-                                         </button>
-                                     </div>
-                                 </td>
-                            </tr>
-                     }
-                 }
+                                    <button style="margin: 0px;"
+                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                            aria-label="Delete">
+                                        <span class="material-icons" onclick="exibir2()">
+                                            print
+                                        </span>
+                                    </button>
+                                    <button style="margin: 0px;"
+                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                            aria-label="Delete">
+                                        <span class="material-icons">
+                                            description
+                                        </span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    
-
-
                 </tbody>
             </table>
 
-            <span class="material-icons" style="margin-top: 15px; color: purple; font-size: 30px; font-weight: 700; cursor: pointer;">
+            <span class="material-icons CorIcon" style="margin-top: 15px;  font-size: 30px; font-weight: 700; cursor: pointer;">
                 add
             </span>
 
@@ -179,11 +178,11 @@
                      x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
                      x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
                      x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                     class="hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+                     class="hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
                     <!-- Modal -->
                     <div id="mostraTd" x-show="isModalOpen"
                         class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-                        role="dialog" id="modal">
+                        role="dialog">
                         <header class="flex justify-end">
                             <button onclick="fecha3();"
                                 class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
@@ -256,8 +255,6 @@
                                 class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 Adicionar
                             </button>
-
-
                         </footer>
                     </div>
                 </div>
@@ -353,16 +350,9 @@
                             (99)9 9999-9999
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </section>
-
-
-
-        </div>
     </main>
 
     <script>
@@ -381,8 +371,8 @@
             document.getElementById('modal5').style.display = "none";
         }
 
-        function editAvaliacao() {
-            window.location = "./editAvaliacao";
+        function editAvaliacao(treino, atleta, nome) {
+            window.location = "./editAvaliacao?idTreino=".concat(treino).concat("&idAtleta=").concat(atleta).concat("&NomeAtleta=").concat(nome);
         }
 
 

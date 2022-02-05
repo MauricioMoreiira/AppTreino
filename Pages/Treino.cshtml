@@ -1,5 +1,6 @@
 ﻿@page
 @model TreinoModel
+@using AppTreinoCarlos.Utils
 @using AppTreinoCarlos.Models
 @{
     List<Treino> Treinos = (List<Treino>)ViewData["Treino"];
@@ -116,7 +117,7 @@
                      style="display: flex; justify-content: center; padding-top: 0px; padding-bottom: 0px;">
                     <p>
                         <span class="material-icons" id="mod alHiden"
-                              style="color: purple; font-size: 55px; cursor: pointer;" href="#open-modal"
+                              style="color: @Share.CorIcon; font-size: 55px; cursor: pointer;" href="#open-modal"
                               onclick="exibir();">
                             add_circle
                         </span>
@@ -175,9 +176,9 @@
 
                                 </div>
 
-                                <div style="display: inline;">
-                                    <span class="material-icons" id="mods"
-                                          style=" float: right;color: purple; font-size: 30px; cursor: pointer;">
+                                <div  class="CorButton" style="display: inline;">
+                                    <span class="material-icons CorButton " id="mods"
+                                          style=" float: right; font-size: 30px; cursor: pointer;">
                                         add_circle
                                     </span>
                                 </div>
@@ -330,28 +331,28 @@
             }
         });
 
-            //$(document).ready(function () {
-            //    $('.inputUnico').keypress(function (e) {
-            //        var tecla = (e.keyCode ? e.keyCode : e.which);
-            //        if (tecla == 13) {
-            //            campo = $('.inputUnico');
-            //            indice = campo.index(this);
-            //            */
-            //            if (campo[indice + 1] != null) {
-            //                proximo = campo[indice + 1];
-            //                proximo.focus();
-            //            } else {
-            //                return true;
-            //            }
-            //        }
-            //        if (tecla == 13) {
-            //            e.preventDefault(e);
-            //            return false;
-            //        } else {
-            //            return true;
-            //        }
-            //    })
-            //})
+                //$(document).ready(function () {
+                //    $('.inputUnico').keypress(function (e) {
+                //        var tecla = (e.keyCode ? e.keyCode : e.which);
+                //        if (tecla == 13) {
+                //            campo = $('.inputUnico');
+                //            indice = campo.index(this);
+                //            */
+                //            if (campo[indice + 1] != null) {
+                //                proximo = campo[indice + 1];
+                //                proximo.focus();
+                //            } else {
+                //                return true;
+                //            }
+                //        }
+                //        if (tecla == 13) {
+                //            e.preventDefault(e);
+                //            return false;
+                //        } else {
+                //            return true;
+                //        }
+                //    })
+                //})
 
 
 
