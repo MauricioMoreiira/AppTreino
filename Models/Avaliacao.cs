@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace AppTreinoCarlos.Models
 {
@@ -24,5 +25,15 @@ namespace AppTreinoCarlos.Models
 
         [JsonProperty("TREINO_ID")]
         public int TreinoId { get; set; }
+
+        [JsonProperty("TOPICO_ID")]
+        public int TOPICO_ID { get; set; }
+
+        [JsonProperty("TOPICO_DESCRICAO")]
+        public string TOPICO_DESCRICAO { get; set; }
+
+        [JsonProperty("DT_INCLUI")]
+        public DateTime DT_INCLUI { get; set; }
+
     }
 }

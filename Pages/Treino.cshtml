@@ -229,7 +229,7 @@
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
 
-                                    @if (Treinos.Count == 0)
+                                    @if (Treinos != null)
                                     {
                                         @foreach (Treino DadoTreino in Treinos)
                                         {
@@ -280,11 +280,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                         }
-                                     }
-
-
-
+                                        }
+                                    }
 
                                 </tbody>
                             </table>
@@ -308,7 +305,7 @@
         }
 
         function addTopico() {
-            window.location = "./AvaliaTreino";
+            window.location = "./AvaliaTreino?idTreino=3";
         }
 
 

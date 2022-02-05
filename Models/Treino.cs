@@ -22,5 +22,9 @@ namespace AppTreinoCarlos.Models
 
         [JsonProperty("dtInclui")]
         public DateTime DtInclui { get; set; }
+
+        [JsonProperty("TREINO_INSTRUTOR_ID")]
+        public int TREINO_INSTRUTOR_ID { get; set; }
+
     }
 }

@@ -4,19 +4,19 @@ namespace AppTreinoCarlos.Models
 {
     public class TreinoAtletas
     {
-        [JsonProperty("TA_ID")]
-        public string TA_ID { get; set; }
+        [JsonProperty("TREINO_ATLETA_ID")]
+        public string TREINO_ATLETA_ID { get; set; }
 
         [JsonProperty("ATLETA_ID")]
-        public string AtletaId { get; set; }
+        public string ATLETA_ID { get; set; }
 
         [JsonProperty("NOME")]             
-        public string Nome { get; set; }
+        public string NOME { get; set; }
 
         [JsonProperty("QTDE_AVALIACOES")]
-        public string QtdeAvaliacoes { get; set; }
+        public string QTDE_AVALIACOES { get; set; }
 
         [JsonProperty("TREINO_ID")]
-        public string TreinoId { get; set; }
+        public string TREINO_ID { get; set; }
     }
 }

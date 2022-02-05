@@ -99,10 +99,10 @@ namespace AppTreinoCarlos.Services
                 {
                     var url = BuildCall(httpClient, "GET_ATLETAS_TREINO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<List<TreinoAtletas>>(
+                        JsonConvert.DeserializeObject<ResponseService<List<TreinoAtletas>>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
@@ -122,10 +122,10 @@ namespace AppTreinoCarlos.Services
                 {
                     var url = BuildCall(httpClient, "GET_AVALIACOES_TREINO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<List<Avaliacao>>(
+                        JsonConvert.DeserializeObject<ResponseService<List<Avaliacao>>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
@@ -145,10 +145,10 @@ namespace AppTreinoCarlos.Services
                 {
                     var url = BuildCall(httpClient, "GET_TREINO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<List<Treino>>(
+                        JsonConvert.DeserializeObject<ResponseService<List<Treino>>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
