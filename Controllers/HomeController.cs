@@ -1,17 +1,11 @@
-﻿using AppTreinoCarlos.Models;
-using AppTreinoCarlos.Services;
+﻿using AppTreinoCarlos.Services;
 using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using static AppTreinoCarlos.Utils.AjaxMessage;
 
 namespace AppTreino.Controllers
@@ -181,8 +175,8 @@ namespace AppTreino.Controllers
                     var url = BuildCall(httpClient, "SET_AVALIACAO");
                     var apiResult =
                         JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url.ToString(), 
-                            new StringContent(JsonConvert.SerializeObject(obj), 
+                            httpClient.PostAsync(url.ToString(),
+                            new StringContent(JsonConvert.SerializeObject(obj),
                             Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
                     return apiResult;
