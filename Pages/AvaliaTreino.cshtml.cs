@@ -21,11 +21,8 @@ namespace AppTreinoCarlos.Pages
         {
             ViewData["Avaliacoes"] = _model.GetAtletasTreino(idTreino);
             ViewData["idTreinoInstrutor"] = idTreinoInstrutor;
+            ViewData["idInstrutor"] = idInstrutor;
 
-
-          List <Topico> Lst = _model.GetTopicos(idInstrutor);
-            ViewData["TopicoAtaque"] = Lst.Where(x => x.Tipo == 1).Select(s => s.Descricao).ToList<string>();
-            ViewData["TopicoDefesa"] = Lst.Where(x => x.Tipo == 0).ToList<Topico>();
 
         }
     }
