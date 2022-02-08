@@ -1,15 +1,15 @@
 ﻿function OpenMenu(action) {
 
-    if (action.toLowerCase() === "Index") {
-        window.location = "./Index";
+    if (action === "Treino") {
+        window.location = "./Treino?idTreino=".concat("0").concat("&idInstrutor=").concat("3");
     }
 
     if (action.toLowerCase() === "ConsultaAtleta") {
         window.location = "./ConsultaAtleta";
     }
 
-    if (action.toLowerCase() === "AddTopico") {
-        window.location = "./AddTopico";
+    if (action.toLowerCase() == "index") {
+        window.location = "./index";
     }
 
     if (action.toLowerCase() === "ConsultaTreinoAtleta") {
