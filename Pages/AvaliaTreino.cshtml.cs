@@ -22,8 +22,6 @@ namespace AppTreinoCarlos.Pages
             ViewData["Avaliacoes"] = _model.GetAtletasTreino(idTreino);
             ViewData["idTreinoInstrutor"] = idTreinoInstrutor;
             ViewData["idInstrutor"] = idInstrutor;
-
-
         }
     }
 }
