@@ -66,7 +66,7 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-        public List <Atleta> GetAtletasCompletos(string idAtleta, string idInstrutor)
+        public List<Atleta> GetAtletasCompletos(string idAtleta, string idInstrutor)
         {
             try
             {
@@ -77,10 +77,10 @@ namespace AppTreinoCarlos.Services
                 {
                     var url = BuildCall(httpClient, "GET_ATLETAS_COMPLETO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<List<Atleta>>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        JsonConvert.DeserializeObject<ResponseService<List<Atleta>>>(
+                        httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
