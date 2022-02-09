@@ -3,7 +3,7 @@
 @using AppTreinoCarlos.Models
 @model AppTreinoCarlos.Pages.ConsultaTreinosModel
 @{ 
-    List<Atleta> Atletas = (List<Atleta>)ViewData["AtletaAtleta"];
+    List<Atleta> Atletas = (List<Atleta>)ViewData["Atleta"];
 }
 
 <!DOCTYPE html>
@@ -132,12 +132,11 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            @*@foreach (Atleta TableAtleta in Atletas)
-                            {*@
+                            @foreach (Atleta TableAtleta in Atletas)
+                             {
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="">
                                         <div class="flex items-center text-sm">
-                                            <!-- Avatar with inset shadow -->
                                             <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                 <span class="material-icons" style="font-size: 35px; display: flex; justify-content: center;">
                                                     account_circle
@@ -146,15 +145,15 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <p class="font-semibold">Anderson</p>
+                                                <p class="font-semibold">@TableAtleta.Nome</p>
                                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                    Avançado
+                                                    @TableAtleta.Nivel
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        5
+                                        XX
                                     </td>
                                     <td class="">
                                         <div class="flex items-center space-x-4 text-sm">
@@ -176,9 +175,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @*}*@
-
-
+                             }
                         </tbody>
                     </table>
                 </div>

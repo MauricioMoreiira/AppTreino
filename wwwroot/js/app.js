@@ -4,8 +4,8 @@
         window.location = "./Treino?idTreino=".concat("0").concat("&idInstrutor=").concat("3");
     }
 
-    if (action.toLowerCase() === "ConsultaAtleta") {
-        window.location = "./ConsultaAtleta";
+    if (action == "ConsultaAtleta") {
+        window.location = "./ConsultaAtleta?idAtleta=".concat("0").concat("&idInstrutor=").concat("3");
     }
 
     if (action.toLowerCase() == "index") {
