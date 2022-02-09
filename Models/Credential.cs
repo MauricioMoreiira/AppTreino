@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 
 namespace AppTreinoCarlos.Models
@@ -13,6 +9,6 @@ namespace AppTreinoCarlos.Models
         public string Senha { get; set; }
 
         [JsonProperty("usuario")]
-        public string Usuario { get; set; }
+        public string Usuario { get;        set; }
     }
 }

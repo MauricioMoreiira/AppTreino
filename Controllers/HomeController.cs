@@ -1,4 +1,5 @@
-﻿using AppTreinoCarlos.Services;
+﻿using AppTreinoCarlos.Models;
+using AppTreinoCarlos.Services;
 using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -21,11 +22,12 @@ namespace AppTreino.Controllers
         }
 
 
-        public ActionResult Login([FromBody] string email, string senha)
+        public ActionResult Login([FromBody] Credential obj)
         {
             try
             {
-                var data = _model.Login(email, senha);
+                var data = _model.Login(obj.Usuario, obj.Senha);
+                if (data == null) { throw new Exception("Não Autorizado"); }
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,

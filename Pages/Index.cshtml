@@ -7,7 +7,7 @@
 }
 <html>
 
-<head>  
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -18,8 +18,10 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
     <script src="../assets/js/init-alpine.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js'></script>
     @*<link href="~/lib/notiflix/notiflix-1.9.1.min.css" rel="stylesheet" />
-    <script src="~/lib/notiflix/notiflix-1.9.1.min.js"></script>*@
+        <script src="~/lib/notiflix/notiflix-1.9.1.min.js"></script>*@
 
     <script src="~/lib/Notiflix/notiflix-loading-aio-3.2.4.min.js"></script>
     <link rel="stylesheet" href="~/lib/Notiflix/notiflix-3.2.4.min.css" />
@@ -70,7 +72,7 @@
             const email = document.getElementById("loginMail").value;
             const password = document.getElementById("pwd").value;
             if (email.length === 0) {
-                window.Notiflix.Report.Warning(
+                window.Notiflix.Report.warning(
                     'Falta informar',
                     'Necessário informar usuário.',
                     'Ok',
@@ -81,7 +83,7 @@
                 return;
             }
             if (password.length === 0) {
-                window.Notiflix.Report.Warning(
+                window.Notiflix.Report.warning(
                     'Falta informar',
                     'Necessário informar sua senha',
                     'Ok',
@@ -93,7 +95,7 @@
             }
 
             const o = new Object();
-            o.email = email;
+            o.usuario = email;
             o.senha = password;
 
             
@@ -109,6 +111,13 @@
                 },
                 success: function (data) {
                     Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    var t0 = returnData.EmbeddedData;
+                    window.location.href = '/Treino?idTreino=0&idInstrutor='.concat(t0.id);
                         return;
                 },
                 error: function (data) {

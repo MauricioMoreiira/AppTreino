@@ -51,7 +51,10 @@ namespace AppTreinoCarlos
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
             });
+
         }
     }
 }

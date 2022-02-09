@@ -41,15 +41,16 @@ namespace AppTreinoCarlos.Services
             try
             {
                 dynamic obj = new ExpandoObject();
-                obj.email = email;
+                obj.usuario = email;
                 obj.senha = senha;
                 using (var httpClient = new HttpClient())
                 {
-                    var url = BuildCall(httpClient, "login");
+                    var url = BuildCall(httpClient, "Login");
                     var apiResult =
-                        JsonConvert.DeserializeObject<Instrutor>(
+                        JsonConvert.DeserializeObject<ResponseService<Instrutor>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
+                    //var x = httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result;
 
                     var usuario = apiResult;
 
@@ -57,7 +58,7 @@ namespace AppTreinoCarlos.Services
                     //var shield = new Shield(CryptProvider.Rijndael);
                     //usuario.Senha = shield.Lock(obj.Senha);
 
-                    return usuario;
+                    return usuario.Data;
                 }
             }
             catch (Exception)
