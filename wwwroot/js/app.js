@@ -1,11 +1,15 @@
-﻿function OpenMenu(action) {
+﻿
+
+
+
+function OpenMenu(action) {
 
     if (action === "Treino") {
-        window.location = "./Treino?idTreino=".concat("0").concat("&idInstrutor=").concat("3");
+        window.location = "./Treino?idTreino=".concat("0").concat("&idInstrutor=").concat(getCookie('idInstrutor'));
     }
 
     if (action == "ConsultaAtleta") {
-        window.location = "./ConsultaAtleta?idAtleta=".concat("0").concat("&idInstrutor=").concat("3");
+        window.location = "./ConsultaAtleta?idAtleta=".concat("0").concat("&idInstrutor=").concat(getCookie('idInstrutor'));
     }
 
     if (action.toLowerCase() == "index") {
@@ -63,3 +67,13 @@ function RedirectAction(action) {
     window.location.href = action;
 }
 
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+}

@@ -16,7 +16,7 @@ namespace AppTreinoCarlos.Pages
         {
             ViewData["Treino"] = _model.GetTreino(idTreino, idInstrutor);
             ViewData["idInstrutor"] = idInstrutor;
-
+            Response.Cookies.Append("idInstrutor", idInstrutor);
         }
     }
 }
