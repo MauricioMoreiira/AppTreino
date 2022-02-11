@@ -3,10 +3,7 @@ using AppTreinoCarlos.Services;
 using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System;
-using System.Net.Http;
-using System.Text;
 using static AppTreinoCarlos.Utils.AjaxMessage;
 
 namespace AppTreino.Controllers
@@ -193,34 +190,5 @@ namespace AppTreino.Controllers
         }
 
 
-
-
-
-
-
-
-        //public ActionResult UsuarioAtivo([FromBody] Credential obj)
-        //{
-        //    try
-        //    {
-        //        var data = _model.UsuarioAtivo(obj);
-        //        return Json(AjaxMessage.Create(new MessageContent
-        //        {
-        //            MessageType = MessageType.Success,
-        //            Message = "Bem-vindo",
-        //            Title = "Sucesso",
-        //            EmbeddedData = data
-        //        }));
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        return Json(AjaxMessage.Create(new MessageContent
-        //        {
-        //            MessageType = MessageType.Failure,
-        //            Message = exception.Message,
-        //            Title = "Erro de Sistema"
-        //        }));
-        //    }
-        //}
     }
 }
