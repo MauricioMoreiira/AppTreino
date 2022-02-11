@@ -18,7 +18,6 @@ namespace AppTreino.Controllers
             //_validateToken = new ValidateToken(configuration);
         }
 
-
         public ActionResult Login([FromBody] Credential obj)
         {
             try
@@ -43,8 +42,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
-
         public ActionResult GetAtletasCompletos([FromBody] string idAtleta, string idInstrutor)
         {
             try
@@ -174,6 +171,30 @@ namespace AppTreino.Controllers
                 {
                     MessageType = MessageType.Success,
                     Message = "Avaliação com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult SetAtleta([FromBody] Atleta Atleta)
+        {
+            try
+            {
+                var data = _model.SetAtleta(Atleta);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Enviado com sucesso",
                     Title = "Sucesso",
                     EmbeddedData = data
                 }));
