@@ -5,6 +5,7 @@
 @{
     List<Treino> Treinos = (List<Treino>)ViewData["Treino"];
     string idInstrutor = ViewData["idInstrutor"].ToString();
+    string cidInstrutor = Request.Cookies["idInstrutor"];
 }
 
 <!DOCTYPE html>

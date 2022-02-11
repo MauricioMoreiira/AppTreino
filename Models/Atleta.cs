@@ -31,7 +31,7 @@ namespace AppTreinoCarlos.Models
         public int InstrutorId { get; set; }
 
         [JsonProperty("MED_NOTA")]
-        public int MED_NOTA { get; set; }
+        public Decimal MED_NOTA { get; set; }
 
         [JsonProperty("MAX_NOTA")]
         public int MAX_NOTA { get; set; }

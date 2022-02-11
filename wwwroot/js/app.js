@@ -1,8 +1,4 @@
-﻿
-
-
-
-function OpenMenu(action) {
+﻿function OpenMenu(action) {
 
     if (action === "Treino") {
         window.location = "./Treino?idTreino=".concat("0").concat("&idInstrutor=").concat(getCookie('idInstrutor'));
@@ -12,12 +8,25 @@ function OpenMenu(action) {
         window.location = "./ConsultaAtleta?idAtleta=".concat("0").concat("&idInstrutor=").concat(getCookie('idInstrutor'));
     }
 
+    if (action == "AddTopico") {
+        window.location = "./AddTopico?idInstrutor=".concat(getCookie('idInstrutor'));
+    }
+
+    if (action == "ConsultaTreinoAtleta") {
+        window.location = "./ConsultaTreinoAtleta";
+    }
+
     if (action.toLowerCase() == "index") {
         window.location = "./index";
     }
 
-    if (action.toLowerCase() === "ConsultaTreinoAtleta") {
+    if (action === "ConsultaTreinoAtleta") {
         window.location = "./ConsultaTreinoAtleta";
+    }
+
+    if (action === "Login") {
+        deleteCookie('idInstrutor')
+        window.location = "./index";
     }
 }
 
@@ -76,4 +85,27 @@ function getCookie(cName) {
         if (val.indexOf(name) === 0) res = val.substring(name.length);
     })
     return res
+}
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+function deleteCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) {
+            document.cookie = name + ";expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    })
 }
