@@ -181,8 +181,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-
-
         public bool DelTreinoAtleta(string treinoID, string atletaID)
         {
             try

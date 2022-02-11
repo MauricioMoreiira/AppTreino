@@ -271,51 +271,7 @@
 
     <script>
 
-        $(document).ready(function () {
-            function Avalia() {
-                const obj = new Object();
-                obj.TREINO_INTRUTOR_ID = document.getElementsById('TREINO_INTRUTOR_ID').value;
-                obj.ATLETA_ID = document.getElementsById('ATLETA_ID').value;
-                obj.NOTA = document.getElementsById('NOTA').value;
-                obj.TREINO_ID = document.getElementsById('TREINO_ID').value;
-                obj.TOPICO_ID = document.getElementsById('TOPICO_ID').value;
-                //obj.OBS = document.getElementsById('OBS').value;
 
-                $.ajax({
-                    context: this,
-                    url: '/Home/SetAvaliacao',
-                    type: 'POST',
-                    data: JSON.stringify(obj),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    beforeSend: function () {
-                        Notiflix.Loading.Dots('Aguarde...');
-                    },
-                    success: function (data) {
-                        Notiflix.Loading.Remove();
-                        const returnData = JSON.parse(data);
-                        if (returnData === null) {
-                            Notiflix.Loading.Dots("Aguarde...");  /* ShowMessage(data);*/
-                            return;
-                        } else {
-                            if (currentCli === null) {
-                                /*RedirectAction("/Admin/ConfigAdmin/?id=".concat(currentUser.admin));*/
-                                RedirectAction("/Admin/ConfigAdmin/?usuario=".concat("&usuario").concat(returnData.usuario).concat("&Senha").concat(returnData.Senha));
-                            }
-
-                            else {
-                                RedirectAction("Menu");
-                            }
-                        }
-                    },
-                    error: function (data) {
-                        Notiflix.Loading.Remove();
-                        ShowMessage(data);
-                        window.location.href = "Admin/LogaAdmin";
-                    }
-                });
-            }
-        });
 
         function exibir2() {
             document.getElementById('modal5').style.display = "block";

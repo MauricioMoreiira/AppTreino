@@ -168,33 +168,29 @@ namespace AppTreino.Controllers
             }
         }
 
-        public bool SetAvaliacao(dynamic obj)
+        public ActionResult SetAvaliacao([FromBody] Avaliacao avaliacao)
         {
             try
             {
-                using (var httpClient = new HttpClient())
+                var data = _model.SetAvaliacao(avaliacao);
+                return Json(AjaxMessage.Create(new MessageContent
                 {
-                    var url = BuildCall(httpClient, "SET_AVALIACAO");
-                    var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url.ToString(),
-                            new StringContent(JsonConvert.SerializeObject(obj),
-                            Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
-                        );
-                    return apiResult;
-                }
+                    MessageType = MessageType.Success,
+                    Message = "Avaliação com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
             }
             catch (Exception exception)
             {
-                throw new Exception(exception.Message);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
             }
         }
-
-        private object BuildCall(HttpClient httpClient, string v)
-        {
-            throw new NotImplementedException();
-        }
-
 
 
 

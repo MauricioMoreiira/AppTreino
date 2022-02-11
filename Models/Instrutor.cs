@@ -23,7 +23,6 @@ namespace AppTreinoCarlos.Models
         [JsonProperty("celular")]
         public string Celular { get; set; }
 
-
         [JsonProperty("whatsapp")]
         public string Whatsapp { get; set; }
 
@@ -38,5 +37,11 @@ namespace AppTreinoCarlos.Models
 
         [JsonProperty("ativo")]
         public int Ativo { get; set; }
+
+        [JsonProperty("TOT_ATLETA")]
+        public int TOT_ATLETA { get; set; }
+
+        [JsonProperty("TOT_TREINO")]
+        public int TOT_TREINO { get; set; }
     }
 }

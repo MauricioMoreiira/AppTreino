@@ -233,7 +233,7 @@
 
                                     @if (Treinos != null)
                                     {
-                                        @foreach (Treino DadoTreino in Treinos)
+                                        @foreach (Treino TableTreino in Treinos)
                                         {
                                             <tr class="text-gray-700 dark:text-gray-400">
                                                 <td class="">
@@ -250,12 +250,12 @@
                                                         </div>
                                                         <div>
                                                             <p class="font-semibold" style="cursor: pointer;"
-                                                               onclick="AvaliaTreino('@DadoTreino.Id', '@DadoTreino.TREINO_INSTRUTOR_ID');">@DadoTreino.Descricao</p>
+                                                               onclick="AvaliaTreino('@TableTreino.Id', '@TableTreino.TREINO_INSTRUTOR_ID');">@TableTreino.Descricao</p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @DadoTreino.DtInclui
+                                                    @TableTreino.DtInclui
                                                 </td>
                                                 <td class="px-4 py-3 text-sm ">
                                                     XX

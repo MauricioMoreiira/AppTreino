@@ -35,9 +35,9 @@
                     <select  id="ataque" onchange="handleAtaque()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option disabled selected>Ataque</option>
                         @foreach (Topico AtaqueTopico in TopicAtaque)
-                        {
+                         {
                             <option >@AtaqueTopico.Descricao</option>
-                        }
+                         }
                     </select>
                 </label>
 
@@ -47,17 +47,17 @@
                     <select id="defesa"  onchange="handleDefesa()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option disabled selected>Defesa</option>
                         @foreach (Topico TopicoDefesa in TopicDefesa)
-                        {
+                         {
                             <option >@TopicoDefesa.Descricao</option>
-                        }
+                         }
                     </select>
                 </label>
 
                 <div class="estrelaAvalia">
                     <link rel="stylesheet"
                           href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                    <div class="estrelas" style="font-size: 30px;">
-                        <input type="radio" id="cm_star-empty" name="fb" value="" />
+                    <div class="estrelas"  id="selected" style="font-size: 30px;">
+                        <input type="radio" id="cm_star-empty" name="fb" value="0" />
                         <label for="cm_star-1"><i class="fa"></i></label>
                         <input type="radio" id="cm_star-1" name="fb" value="1" checked />
                         <label for="cm_star-2"><i class="fa"></i></label>
@@ -73,17 +73,24 @@
             </div>
         </div>
         <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-            <button onclick="enviaAvaliacao();" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            <button onclick="AvaliaAluno();" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Adicionar
             </button>
         </footer>
+            <label id="idTopico" hidden></label>
     </div>
 
     <script>
         function handleAtaque(e) {
             var defesa = document.getElementById('defesa');
-
             defesa.value = 0;
+            var Ataques = @Html.Raw(Json.Serialize(ViewData["TopicoAtaque"]));
+            //for (var i = 0; i < Ataques.length; i = i++) {
+            //    console.log(Ataques)
+            //}
+
+
+
         }
         function handleDefesa(e) {
             var ataque = document.getElementById('ataque');
@@ -91,7 +98,70 @@
         }
 
         function idDefesa(descricao) {
-            
+
+        }
+
+        function AvaliaAluno() {
+            const selected = document.getElementById("selected");
+            if (selected.value == "0") { document.getElementById("cm_star-empty").checked = true;}
+            if (selected.value == "1") { document.getElementById("cm_star-1").checked = true;}
+            if (selected.value == "2") { document.getElementById("cm_star-2").checked = true;}
+            if (selected.value == "3") { document.getElementById("cm_star-3").checked = true;}
+            if (selected.value == "4") { document.getElementById("cm_star-4").checked = true;}
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
+            const _TREINO_INSTRUTOR_ID = urlParams.get('TREINO_INSTRUTOR_ID');
+            const _ATLETA_ID = urlParams.get('ATLETA_ID');
+            const _NOME = urlParams.get('NOME');
+            const _TREINO_ID = urlParams.get('TREINO_ID');
+            const _idInstrutor = urlParams.get('idInstrutor');
+
+
+            const o = new Object();
+
+            o.TREINO_INSTRUTOR_ID = _TREINO_INSTRUTOR_ID;
+            o.ATLETA_ID = _ATLETA_ID;
+            o.TREINO_ID = TREINO_ID;
+            o.NOTA = document.getElementById('selected').value;
+            o.OBS = '';
+            o.TOPICO_ID = _idInstrutor;
+
+
+
+            $.ajax({
+                context: this,
+                url: '/Home/SetAvaliacao',
+                type: 'POST',
+                data: JSON.stringify(o),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    /*var t0 = returnData.EmbeddedData;*/
+
+                    document.location.reload(true);
+                    return;
+
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
         }
     </script>
 </body>
