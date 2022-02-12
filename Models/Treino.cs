@@ -26,5 +26,8 @@ namespace AppTreinoCarlos.Models
         [JsonProperty("TREINO_INSTRUTOR_ID")]
         public int TREINO_INSTRUTOR_ID { get; set; }
 
+        [JsonProperty("QTDE_ATLETA")]
+        public int QTDE_ATLETA { get; set; }
+
     }
 }

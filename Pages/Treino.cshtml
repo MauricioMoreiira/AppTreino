@@ -255,7 +255,7 @@
                                                     @*@Convert.ToDateTime((TableTreino.DtInclui.Date.ToShortDateString()));*@
                                                 </td>
                                                 <td class="px-4 py-3 text-sm ">
-                                                    XX
+                                                    @TableTreino.QTDE_ATLETA
                                                 </td>
                                                 <td class="">
                                                     <div class="flex items-center space-x-4 text-sm">
@@ -370,7 +370,7 @@
 
             $.ajax({
                 context: this,
-                url: '/Home/SetAvaliacao',
+                url: '/Home/SetTreino',
                 type: 'POST',
                 data: JSON.stringify(o),
                 contentType: 'application/json; charset=utf-8',
@@ -389,7 +389,43 @@
                         ShowMessage(returnData);
                         return;
                     }
-                    /*var t0 = returnData.EmbeddedData;*/
+
+                    //const _treinoID ;
+                    //const _instrutorID  ;
+
+                    //const obj = new Object();
+                    //o.treinoID = _treinoID;
+                    //o.instrutorID = _instrutorID ;
+
+                    $.ajax({
+                        context: this,
+                        url: '/Home/SetTreinoInstrutor',
+                        type: 'POST',
+                        data: JSON.stringify(obj),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        beforeSend: function () {
+                            Notiflix.Loading.dots('Aguarde...');
+                        },
+                        success: function (data) {
+                            if (data.EmbeddedData == null) {
+                                Notiflix.Loading.remove();
+                                ShowError(data);
+                            }
+                            Notiflix.Loading.remove();
+                            const returnData = JSON.parse(data);
+                            if (returnData.MessageType !== 0) {
+                                ShowMessage(returnData);
+                                return;
+                            }
+                            return;
+
+                        },
+                        error: function (data) {
+                            Notiflix.Loading.remove();
+                            ShowError(data);
+                        }
+                    });
 
                     document.location.reload(true);
                     return;
@@ -399,8 +435,16 @@
                     Notiflix.Loading.remove();
                     ShowError(error);
                 }
+
+             
             });
+
+
+         
+
         }
+
+
     </script>
 
 </body>
