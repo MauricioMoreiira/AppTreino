@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" style="padding:0px;">
-                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500" >
+                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"" >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                   d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
@@ -146,13 +146,13 @@
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
-                                <input class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                <input id="descricao" class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                        placeholder="">
                             </label>
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Data:</span>
-                                <input class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                <input id="data" class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                        placeholder="Jane Doe" type="date">
                             </label>
 
@@ -326,29 +326,74 @@
             }
         });
 
-                //$(document).ready(function () {
-                //    $('.inputUnico').keypress(function (e) {
-                //        var tecla = (e.keyCode ? e.keyCode : e.which);
-                //        if (tecla == 13) {
-                //            campo = $('.inputUnico');
-                //            indice = campo.index(this);
-                //            */
-                //            if (campo[indice + 1] != null) {
-                //                proximo = campo[indice + 1];
-                //                proximo.focus();
-                //            } else {
-                //                return true;
-                //            }
-                //        }
-                //        if (tecla == 13) {
-                //            e.preventDefault(e);
-                //            return false;
-                //        } else {
-                //            return true;
-                //        }
-                //    })
-                //})
 
+        $('.inputUnico').keypress(function (e) {
+            var tecla = (e.keyCode ? e.keyCode : e.which);
+            if (tecla == 13) {
+                campo = $('.inputUnico');
+                indice = campo.index(this);
+                if (campo[indice + 1] != null) {
+                    proximo = campo[indice + 1];
+                    proximo.focus();
+                } else {
+                    return true;
+                }
+            }
+            if (tecla == 13) {
+                e.preventDefault(e);
+                return false;
+            } else {
+                return true;
+            }
+        })
+
+        function EnviaAtleta() {
+
+            const _descricao = document.getElementById("descricao").value;
+            const _data = document.getElementById("data").value;
+
+
+
+
+            const o = new Object();
+            o.descricao = _descricao;
+            o.data = _data;
+
+
+
+            $.ajax({
+                context: this,
+                url: '/Home/SetAvaliacao',
+                type: 'POST',
+                data: JSON.stringify(o),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    /*var t0 = returnData.EmbeddedData;*/
+
+                    document.location.reload(true);
+                    return;
+
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
+        }
 
 
 

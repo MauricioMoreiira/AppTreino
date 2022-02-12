@@ -17,7 +17,6 @@ namespace AppTreino.Controllers
             _model = new CommFunctions(configuration);
             //_validateToken = new ValidateToken(configuration);
         }
-
         public ActionResult Login([FromBody] Credential obj)
         {
             try
@@ -65,7 +64,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult GetAtletasTreino([FromBody] string idTreino)
         {
             try
@@ -89,7 +87,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult GetAvaliacoesTreino([FromBody] string idTreino, string idAtleta)
         {
             try
@@ -113,7 +110,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult GetTreino([FromBody] string idTreino, string idInstrutor)
         {
             try
@@ -137,7 +133,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult DelTreinoAtleta([FromBody] string treinoID, string atletaID)
         {
             try
@@ -161,7 +156,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult SetAvaliacao([FromBody] Avaliacao avaliacao)
         {
             try
@@ -185,7 +179,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult SetAtleta([FromBody] Atleta Atleta)
         {
             try
