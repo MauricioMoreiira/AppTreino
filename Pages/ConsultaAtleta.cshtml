@@ -2,7 +2,7 @@
 @using AppTreinoCarlos.Utils
 @using AppTreinoCarlos.Models
 @model AppTreinoCarlos.Pages.ConsultaTreinosModel
-@{ 
+@{
     List<Atleta> Atletas = (List<Atleta>)ViewData["Atleta"];
 }
 
@@ -30,8 +30,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p
-                           class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
                             Total Atletas
                         </p>
                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
@@ -66,9 +65,9 @@
                      x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                      class=" hidden fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
                     <!-- Modal -->
-                    <div id="" x-show=""
+                    <div id="modal" x-show=""
                          class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-                         role="dialog" id="modal">
+                         role="dialog">
                         <header class="flex justify-end">
                             <button onclick="fecha2();"
                                     class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
@@ -126,7 +125,7 @@
                                 <th class="px-4 py-3">Nota</th>
                                 <th class="px-4 py-3">
                                     <span class="material-icons" id="" style="color: @Share.CorIcon; font-size: 30px; cursor: pointer;"
-                                          href="#open-modal" onclick="exibir();">
+                                          onclick="exibir();">
                                         add_circle
                                     </span>
                                 </th>
@@ -134,7 +133,7 @@
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             @foreach (Atleta TableAtleta in Atletas)
-                             {
+                            {
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="">
                                         <div class="flex items-center text-sm">
@@ -148,13 +147,13 @@
                                             <div>
                                                 <p class="font-semibold">@TableAtleta.Nome</p>
                                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                    @TableAtleta.Nivel
+                                                    @(TableAtleta.Nivel==0?"Iniciante":@TableAtleta.Nivel==1?"Intermediário":"Avançado")
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        XX
+                                        @TableAtleta.MED_NOTA.ToString("0.00")
                                     </td>
                                     <td class="">
                                         <div class="flex items-center space-x-4 text-sm">
@@ -166,7 +165,8 @@
                                                 </svg>
                                             </button>
                                             <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                    aria-label="Delete">
+                                                    aria-label="Delete"
+                                                    onclick="inativaAtleta('@TableAtleta.Id');">
                                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd"
                                                           d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -176,7 +176,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                             }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -197,30 +197,30 @@
 
         function addAtleta() {
 
-            var _nome = document.getElementById("nomeAtleta").value;
+            const _nome = document.getElementById("nomeAtleta").value;
             var _nivel = document.getElementById("nivelAtleta").value;
-            var _expira = document.getElementById("dtExpira").value;
+            const _expira = document.getElementById("dtExpira").value;
             //var foto = document.getElementById("foto").value
             switch (_nivel) {
                 case 'Iniciante':
-                    nivel = 0;
+                    _nivel = '0';
                     break;
                 case 'Intermediário':
-                    nivel = 1;
+                    _nivel = '1';
                     break;
                 case 'Avançado':
-                    nivel = 3;
+                    _nivel = '2';
                     break;
                 default:
-                    ShowErrorGen(`Sorry, we are out of ${expr}.`);
+                    ShowErrorGen(`Sorry, we are out of ${_nivel}.`);
             }
 
             const a = new Object();
-            a.nivel = _nivel;
-            a.nome = _nome;
-            a.dtExpira = _expira;
-            a.foto = "";
-            a.instrutorId = getCookie("idInstrutor");
+            a.Nivel = _nivel;
+            a.Nme = _nome;
+            a.DtExpira = _expira;
+            a.Foto = "";
+            a.InstrutorId = getCookie("idInstrutor");
 
 
             $.ajax({
@@ -228,7 +228,7 @@
                 url: '/Home/SetAtleta',
                 type: 'POST',
                 data: JSON.stringify(a),
-                contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json; charset=UTF-8',
                 dataType: 'json',
                 beforeSend: function () {
                     Notiflix.Loading.dots('Aguarde...');
@@ -254,6 +254,40 @@
                 }
             });
         }
+
+        function inativaAtleta(atletaId) {
+            $.ajax({
+                context: this,
+                url: '/Home/InativaAtleta',
+                type: 'POST',
+                data: JSON.stringify(atletaId),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    document.location.reload(true);
+                    return;
+
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
+        }
+
     </script>
 </body>
 

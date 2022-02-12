@@ -179,6 +179,30 @@ namespace AppTreino.Controllers
                 }));
             }
         }
+        public ActionResult InativaAtleta([FromBody] string atletaId)
+        {
+            try
+            {
+                var data = _model.inativaAtleta(atletaId);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Avaliação com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
         public ActionResult SetAtleta([FromBody] Atleta atleta)
         {
             try
