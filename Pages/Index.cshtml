@@ -97,7 +97,7 @@
             o.usuario = email;
             o.senha = password;
 
-            
+
             $.ajax({
                 context: this,
                 url: '/Home/Login',
@@ -109,17 +109,18 @@
                     Notiflix.Loading.dots('Aguarde...');
                 },
                 success: function (data) {
-                    if (data.EmbeddedData == null) {
+                    const returnData = JSON.parse(data);
+                    if (data.EmbeddedData === null) {
                         Notiflix.Loading.remove();
                         ShowError(data);
+                        return;
                     }
                     Notiflix.Loading.remove();
-                    const returnData = JSON.parse(data);
                     if (returnData.MessageType !== 0) {
                         ShowMessage(returnData);
                         return;
                     }
-                    var t0 = returnData.EmbeddedData;                    
+                    var t0 = returnData.EmbeddedData;
                     window.location.href = '/Treino?idTreino=0&idInstrutor='.concat(t0.id);
                     return;
 
