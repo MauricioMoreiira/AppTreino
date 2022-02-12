@@ -5,7 +5,9 @@
 @{
     List<Treino> Treinos = (List<Treino>)ViewData["Treino"];
     string idInstrutor = ViewData["idInstrutor"].ToString();
+    string idTreino = ViewData["idTreino"].ToString();
     string cidInstrutor = Request.Cookies["idInstrutor"];
+    //string idTreino = Request.Cookies["idTreino"];
 }
 
 <!DOCTYPE html>
@@ -85,8 +87,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p
-                           class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
                             Total Atletas
                         </p>
                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
@@ -95,7 +96,7 @@
                     </div>
                 </div>
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" style="padding:0px;">
-                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"" >
+                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500" " >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                   d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
@@ -138,11 +139,6 @@
                                 Adicionar Treinos
                             </p>
                             <!-- Modal description -->
-                            <label class="block text-sm" style="margin: 10px;">
-                                <span class="text-gray-700 dark:text-gray-400">Treino:</span>
-                                <input class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                       placeholder="">
-                            </label>
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
@@ -152,7 +148,7 @@
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Data:</span>
-                                <input id="data" class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                <input id="dataIni" class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                        placeholder="Jane Doe" type="date">
                             </label>
 
@@ -165,7 +161,7 @@
 
                                 </div>
 
-                                <div  class="CorButton" style="display: inline;">
+                                <div class="CorButton" style="display: inline;">
                                     <span class="material-icons CorButton " id="mods"
                                           style=" float: right; font-size: 30px; cursor: pointer;">
                                         add_circle
@@ -177,10 +173,8 @@
                                 <select name="selection" id="selection"
                                         class="box1 box2 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                         multiple="">
-                                    <option value="Anderson">Anders</option>
-                                    <option value="Jolina">Jolina</option>
-                                    <option value="Sarah">Sarah</option>
-                                    <option value="Juliana">Juliana</option>
+                                    <option value="Mauricio">Mauricio</option>
+
                                 </select>
                                 <div class="container">
                                     <span>
@@ -189,14 +183,23 @@
                                         <input id="" name="" value="" disabled class="wrap-list3">
                                         <input id="" name="" value="" disabled class="wrap-list4">
                                     </span>
-                                </div>
+                                </div><br />
+
+                                <label class="block text-sm" style="margin: 10px;">
+                                    <span class="text-gray-700 dark:text-gray-400">Nivel:</span>
+                                    <select id="tipoEvento" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                        <option selected="">Tipo Evento</option>
+                                        <option value="0">Treino</option>
+                                        <option value="1">Jogo</option>
+                                    </select>
+                                </label>
                             </div>
                         </div>
                         <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
                             <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
                                 Cancel
                             </button>
-                            <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            <button onclick="EnviaTreino(@idTreino);" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 Salvar
                             </button>
                         </footer>
@@ -247,7 +250,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @TableTreino.DtInclui.ToString("mm/dd/yyyy")
+                                                    @TableTreino.DtInicio.ToString("MM/dd/yyyy")
 
                                                     @*@Convert.ToDateTime((TableTreino.DtInclui.Date.ToShortDateString()));*@
                                                 </td>
@@ -270,7 +273,8 @@
                                                                  viewBox="0 0 20 20">
                                                                 <path fill-rule="evenodd"
                                                                       d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                      clip-rule="evenodd"></path>
+                                                                      clip-rule="evenodd">
+                                                                </path>
                                                             </svg>
                                                         </button>
                                                     </div>
@@ -278,7 +282,6 @@
                                             </tr>
                                         }
                                     }
-
                                 </tbody>
                             </table>
                         </div>
@@ -347,19 +350,23 @@
             }
         })
 
-        function EnviaAtleta() {
-
+        function EnviaTreino(TreinoId) {
             const _descricao = document.getElementById("descricao").value;
-            const _data = document.getElementById("data").value;
-
+            const _dataIni = document.getElementById("dataIni").value;
+            const _dtFim = _dataIni;
+            const _selection = document.getElementById("selection").value;
+            const _tipoEvento = document.getElementById("tipoEvento").value;
 
 
 
             const o = new Object();
             o.descricao = _descricao;
-            o.data = _data;
-
-
+            o.dataIni = _dataIni;
+            o.dataFim = _dtFim;
+            o.selection = _selection;
+            o.tipoEvento = _tipoEvento;
+            o.id = TreinoId
+            /*o.id = getCookie('idTreino');*/
 
             $.ajax({
                 context: this,
@@ -394,10 +401,6 @@
                 }
             });
         }
-
-
-
-
     </script>
 
 </body>
