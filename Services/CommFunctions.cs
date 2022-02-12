@@ -292,20 +292,19 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-        public bool SetTreino(Treino treino)
+        public bool SetTreino(Treino obj)
         {
             try
             {
-                dynamic obj = new ExpandoObject();
-                obj.treino = treino;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_TREINO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    //apiResult = SetTreinoInstrutor(apiResult.Data.Id, treino);
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)

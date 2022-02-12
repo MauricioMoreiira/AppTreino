@@ -86,13 +86,13 @@
                             <!-- Modal description -->
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Nome:</span>
-                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                <input id="nomeAtleta" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                        placeholder="">
                             </label>
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Nivel:</span>
-                                <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                <select id="nivelAtleta" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                     <option selected>Iniciante</option>
                                     <option>Intermediário</option>
                                     <option>Avançado</option>
@@ -101,13 +101,14 @@
 
                             <label class="block text-sm" style="margin: 10px;">
                                 <span class="text-gray-700 dark:text-gray-400">Validade:</span>
-                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                       placeholder="Jane Doe" type="date">
+                                <input id="dtExpira" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                       placeholder="31/01/2022" type="date">
                             </label>
 
                         </div>
                         <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-                            <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    onclick="addAtleta()">
                                 Adicionar
                             </button>
                         </footer>
@@ -192,6 +193,66 @@
 
         function fecha2() {
             document.getElementById('modal3').style.display = "none";
+        }
+
+        function addAtleta() {
+
+            var _nome = document.getElementById("nomeAtleta").value;
+            var _nivel = document.getElementById("nivelAtleta").value;
+            var _expira = document.getElementById("dtExpira").value;
+            //var foto = document.getElementById("foto").value
+            switch (_nivel) {
+                case 'Iniciante':
+                    nivel = 0;
+                    break;
+                case 'Intermediário':
+                    nivel = 1;
+                    break;
+                case 'Avançado':
+                    nivel = 3;
+                    break;
+                default:
+                    ShowErrorGen(`Sorry, we are out of ${expr}.`);
+            }
+
+            const a = new Object();
+            a.nivel = _nivel;
+            a.nome = _nome;
+            a.dtExpira = _expira;
+            a.foto = "";
+            a.instrutorId = getCookie("idInstrutor");
+
+
+            $.ajax({
+                context: this,
+                url: '/Home/SetAtleta',
+                type: 'POST',
+                data: JSON.stringify(a),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    document.location.reload(true);
+                    return;
+
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
         }
     </script>
 </body>
