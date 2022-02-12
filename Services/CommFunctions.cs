@@ -247,6 +247,28 @@ namespace AppTreinoCarlos.Services
             }
         }
 
+
+        public bool SetTreinoInstrutor(TreinoAtletas treinoAtletas)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "SET_TREINO_INSTRUTOR");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult.Data;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         public bool SetAvaliacao(Avaliacao avaliacao)
         {
             try
@@ -357,28 +379,6 @@ namespace AppTreinoCarlos.Services
             }
         }
 
-        public bool SetTreinoInstrutor(string Idtreino, string idInstrutor)
-        {
-            try
-            {
-                dynamic obj = new ExpandoObject();
-                obj.Idtreino = Idtreino;
-                obj.idInstrutor = idInstrutor;
-                using (var httpClient = new HttpClient())
-                {
-                    var url = BuildCall(httpClient, "SET_TREINO_INSTRUTOR");
-                    var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
-                        );
-                    return apiResult;
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new Exception(exception.Message);
-            }
-        }
 
         //public Boolean UsuarioAtivo(Credential obj)
         //{
