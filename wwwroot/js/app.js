@@ -72,6 +72,14 @@ function ShowError(error) {
     );
 }
 
+function ShowErrorGen(error) {
+    window.Notiflix.Report.warning(
+        'Erro',
+        error,
+        "Ok"
+    );
+}
+
 function RedirectAction(action) {
     window.location.href = action;
 }

@@ -179,11 +179,11 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-        public ActionResult SetAtleta([FromBody] Atleta Atleta)
+        public ActionResult SetAtleta([FromBody] Atleta atleta)
         {
             try
             {
-                var data = _model.SetAtleta(Atleta);
+                var data = _model.SetAtleta(atleta);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
