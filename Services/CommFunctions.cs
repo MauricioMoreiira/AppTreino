@@ -225,6 +225,27 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
+        public bool inativaAtleta(string atletaid)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.atletaId = atletaid;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "INATIVA_ATLETA");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult.Data;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
 
 
         public bool SetTreinoInstrutor(TreinoAtletas treinoAtletas)
