@@ -13,7 +13,7 @@ namespace AppTreinoCarlos.Pages
         }
         public void OnGet(string idInstrutor)
         {
-            ViewData["Topicos"] = _model.GetTopicos(idInstrutor);
+            ViewData["Topicos1"] = _model.GetTopicos(idInstrutor);
         }
     }
 }

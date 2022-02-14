@@ -66,7 +66,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception("Usuário ou senha inválidos.");
             }
         }
-
         public List<Atleta> GetAtletasCompletos(string idAtleta, string idInstrutor)
         {
             try
@@ -89,7 +88,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public List<TreinoAtletas> GetAtletasTreino(string idTreino)
         {
             try
@@ -111,7 +109,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public List<Avaliacao> GetAvaliacoesTreino(string idTreino, string idAtleta)
         {
             try
@@ -134,7 +131,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public List<Treino> GetTreino(string idTreino, string idInstrutor)
         {
             try
@@ -157,8 +153,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
-
         public List<Topico> GetTopicos(string idInstrutor)
         {
             try
@@ -180,6 +174,7 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
+
 
         public bool DelTreinoAtleta(string treinoID, string atletaID)
         {
@@ -203,7 +198,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetAtleta(Atleta atleta)
         {
             try
@@ -246,8 +240,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
-
         public bool SetTreinoInstrutor(TreinoAtletas treinoAtletas)
         {
             try
@@ -268,7 +260,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetAvaliacao(Avaliacao avaliacao)
         {
             try
@@ -290,7 +281,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetInstrutor(Instrutor instrutor)
         {
             try
@@ -312,7 +302,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetTopicos(Topico topico)
         {
             try
@@ -334,7 +323,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetTreino(Treino obj)
         {
             try
@@ -355,7 +343,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
         public bool SetTreinoAtleta(string Idtreino, string idAtleta)
         {
             try
@@ -378,7 +365,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
 
         //public Boolean UsuarioAtivo(Credential obj)
         //{

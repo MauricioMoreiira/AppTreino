@@ -202,7 +202,6 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-
         public ActionResult SetAtleta([FromBody] Atleta atleta)
         {
             try
