@@ -174,8 +174,6 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-
-
         public bool DelTreinoAtleta(string treinoID, string atletaID)
         {
             try

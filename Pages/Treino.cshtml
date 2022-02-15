@@ -4,6 +4,7 @@
 @using AppTreinoCarlos.Models
 @{
     List<Treino> Treinos = (List<Treino>)ViewData["Treino"];
+    List<Atleta> Atletas = (List<Atleta>)ViewData["Atletas"];
     string idInstrutor = ViewData["idInstrutor"].ToString();
     string cidInstrutor = Request.Cookies["idInstrutor"];
     string idTreino = ViewData["idTreino"].ToString();
@@ -155,6 +156,13 @@
                                        placeholder="Jane Doe" type="date">
                             </label>
 
+                            <label class="block text-sm" style="margin: 10px;">
+                                <span class="text-gray-700 dark:text-gray-400">Tipo Evento:</span>
+                                <select id="tipoEvento" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                    <option selected value="0">Treino</option>
+                                    <option value="1">Jogo</option>
+                                </select>
+                            </label>
 
                             <div class="block mt-4 text-sm">
                                 <div style="display: inline;">
@@ -176,7 +184,14 @@
                                 <select name="selection" id="selection"
                                         class="box1 box2 block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                         multiple="">
-                                    <option value="Mauricio">Mauricio</option>
+                                    @if (Atletas != null)
+                                     {
+
+                                        @foreach (Atleta S in Atletas)
+                                        {
+                                    <option value="@S.Id">@S.Nome</option>
+                                        }
+                                     }
 
                                 </select>
                                 <div class="container">
@@ -188,14 +203,7 @@
                                     </span>
                                 </div><br />
 
-                                <label class="block text-sm" style="margin: 10px;">
-                                    <span class="text-gray-700 dark:text-gray-400">Nivel:</span>
-                                    <select id="tipoEvento" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                        <option selected="">Tipo Evento</option>
-                                        <option value="0">Treino</option>
-                                        <option value="1">Jogo</option>
-                                    </select>
-                                </label>
+
                             </div>
                         </div>
                         <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
@@ -279,8 +287,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                         }
-                                     }
+                                        }
+                                    }
                                 </tbody>
                             </table>
                         </div>
