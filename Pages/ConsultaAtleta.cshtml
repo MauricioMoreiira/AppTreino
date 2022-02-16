@@ -1,7 +1,7 @@
 ﻿@page
 @using AppTreinoCarlos.Utils
 @using AppTreinoCarlos.Models
-@model AppTreinoCarlos.Pages.ConsultaTreinosModel
+@model AppTreinoCarlos.Pages.ConsultaAtletaModel
 @{
     List<Atleta> Atletas = (List<Atleta>)ViewData["Atleta"];
 }
@@ -11,6 +11,8 @@
 
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/app.js"></script>
 </head>
 
 <body style="display: flex;">
@@ -104,7 +106,7 @@
                         </div>
                         <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
                             <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    onclick="addAtleta()">
+                                    onclick="addAtletaqw()">
                                 Adicionar
                             </button>
                         </footer>
@@ -144,13 +146,13 @@
                                             <div>
                                                 <p class="font-semibold">@TableAtleta.Nome</p>
                                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                    @(TableAtleta.Nivel==0?"Iniciante":@TableAtleta.Nivel==1?"Intermediário":"Avançado")
+                                                    @(TableAtleta.Nivel=="0"?"Iniciante":@TableAtleta.Nivel=="1"?"Intermediário":"Avançado")
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        @TableAtleta.MED_NOTA.ToString("0.00")
+                                        @TableAtleta.MED_NOTA
                                     </td>
                                     <td class="">
                                         <div class="flex items-center space-x-4 text-sm">
@@ -192,7 +194,7 @@
             document.getElementById('modal3').style.display = "none";
         }
 
-        function addAtleta() {
+        function addAtletaqw() {
 
             const _nome = document.getElementById("nomeAtleta").value;
             var _nivel = document.getElementById("nivelAtleta").value;
@@ -213,11 +215,18 @@
             }
 
             const a = new Object();
-            a.Nivel = _nivel;
-            a.Nme = _nome;
-            a.DtExpira = _expira;
-            a.Foto = "";
-            a.InstrutorId = getCookie("idInstrutor");
+            a.id = '0';
+            a.nivel = '0';
+            a.nome = 'swe';
+            a.dtExpira = Date.now();
+            a.foto = '';
+            a.instrutorId = '2'; //getCookie("idInstrutor");
+            a.ativo = '1';
+            a.dtInclui = Date.now();
+            a.MED_NOTA = '0';
+            a.MAX_NOTA = '0';
+            a.QTDE_AVALIACOES = '0';
+            //adicionar demais propriedades
 
 
             $.ajax({
@@ -225,29 +234,16 @@
                 url: '/Home/SetAtleta',
                 type: 'POST',
                 data: JSON.stringify(a),
-                contentType: 'application/json; charset=UTF-8',
+                contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 beforeSend: function () {
                     Notiflix.Loading.dots('Aguarde...');
                 },
-                success: function (data) {
-                    if (data.EmbeddedData == null) {
-                        Notiflix.Loading.remove();
-                        ShowError(data);
-                    }
+                success: function () {
                     Notiflix.Loading.remove();
-                    const returnData = JSON.parse(data);
-                    if (returnData.MessageType !== 0) {
-                        ShowMessage(returnData);
-                        return;
-                    }
-                    document.location.reload(true);
-                    return;
-
                 },
-                error: function (data) {
+                error: function () {
                     Notiflix.Loading.remove();
-                    ShowError(error);
                 }
             });
         }

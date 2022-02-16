@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace AppTreinoCarlos.Pages
 {
-    public class ConsultaTreinosModel : PageModel
+    public class ConsultaAtletaModel : PageModel
     {
         private static CommFunctions _model;
-        public ConsultaTreinosModel(IConfiguration configuration)
+        public ConsultaAtletaModel(IConfiguration configuration)
         {
             _model = new CommFunctions(configuration);
         }
