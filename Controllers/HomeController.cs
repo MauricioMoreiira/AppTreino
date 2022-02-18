@@ -4,6 +4,7 @@ using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Dynamic;
 using static AppTreinoCarlos.Utils.AjaxMessage;
 
 namespace AppTreino.Controllers
@@ -202,11 +203,24 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-        public ActionResult SetAtleta([FromBody] Atleta atleta)
+        public ActionResult SetAtleta([FromBody] dynamic obj)
         {
             try
             {
-                var data = _model.SetAtleta(atleta);
+                Atleta atleta = new Atleta();
+                atleta.Ativo = obj["ativo"];
+                atleta.DtExpira = obj["dtExpira"];
+                atleta.DtInclui = obj["dtInclui"];
+                atleta.Foto = obj["foto"];
+                atleta.Id = obj["id"];
+                atleta.InstrutorId = obj["instrutorId"];
+                atleta.Nivel = obj["nivel"];
+                atleta.Nome = obj["nome"];
+                atleta.MAX_NOTA = "0";
+                atleta.MED_NOTA = "0";
+                atleta.QTDE_AVALIACOES = "0";
+                
+                var data = _model.SetAtleta(obj);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
@@ -217,7 +231,7 @@ namespace AppTreino.Controllers
             }
             catch (Exception exception)
             {
-                return Json(AjaxMessage.Create(new MessageContent
+                    return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Failure,
                     Message = exception.Message,
