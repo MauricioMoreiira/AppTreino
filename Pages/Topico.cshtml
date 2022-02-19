@@ -4,6 +4,8 @@
 @model AppTreinoCarlos.Pages.TopicoModel
 @{
     List<Topico> TakeTopico = (List<Topico>)ViewData["Topicos1"];
+    string idInstrutor = ViewData["idInstrutor3"].ToString();
+
 }
 
 <html>
@@ -93,8 +95,7 @@
                                 <th class="px-4 py-3">Descrição:</th>
                                 <th class="px-4 py-3">Evento</th>
                                 <th class="px-4 py-3">
-                                    <span class="material-icons CorIcon" id="" ; font-size: 30px; cursor: pointer;"
-                                          onclick="exibir();">
+                                    <span  onclick="goAddTopico();" style="cursor:pointer;" class="material-icons CorIcon" id="" ; font-size: 30px; cursor: pointer;">
                                         add_circle
                                     </span>
                                 </th>
@@ -154,6 +155,11 @@
             </div>
         </div>
     </main>
+    <script>
+        function goAddTopico() {
+            window.location = ("./AddTopico?idInstrutor=").concat(@idInstrutor)
+        }
+    </script>
 </body>
 
 </html>
