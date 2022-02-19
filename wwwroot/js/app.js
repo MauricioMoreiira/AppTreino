@@ -8,8 +8,8 @@
         window.location = "./ConsultaAtleta?idAtleta=".concat("0").concat("&idInstrutor=").concat(getCookie('idInstrutor'));
     }
 
-    if (action == "AddTopico") {
-        window.location = "./AddTopico?idInstrutor=".concat(getCookie('idInstrutor'));
+    if (action == "Topico") {
+        window.location = "./Topico?idInstrutor=".concat(getCookie('idInstrutor'));
     }
 
     if (action == "ConsultaTreinoAtleta") {

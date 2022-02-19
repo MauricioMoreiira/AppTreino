@@ -136,25 +136,24 @@
 
             </div>
         </div>
-        <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+        <div class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row ">
             <button onclick="EnviaTreino(@idTreino);" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Salvar
             </button>
-        </footer>
+        </div>
     </div>
 
     <script>
         function SendWrap() {
-            selection = document.getElementById("selection").value
+            selection = document.getElementById("selection")
             var wrap =  ["wr1", "wr2", "wr3", "wr4"];
             for (var i = 0; i < 4; i++) {
-                if (document.getElementById("wr1").value == "") {
-                    document.getElementById(wrap[0]).value = selection
+                if (document.getElementById(wrap[i]).value == "") {
+                    document.getElementById(wrap[i]).value = selection.value.concat("-").concat(selection.options[selection.selectedIndex].text)
+                    return
+                    return
                 }
 
-                if (document.getElementById("wr2").value == "") {
-                    document.getElementById(wrap[1]).value = selection
-                }
             }
         }
 
