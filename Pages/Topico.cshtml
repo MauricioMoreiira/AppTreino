@@ -27,9 +27,6 @@
                 Topicos
             </h2>
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-
-
-
                 <div id="modal3" style="display: flex; justify-items: center; display: none;" x-show="isModalOpen"
                      x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
                      x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
@@ -93,7 +90,7 @@
                         <thead>
                             <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th class="px-4 py-3">Descrição:</th>
-                                <th class="px-4 py-3">Evento</th>
+                                <th class="px-4 py-3">Tipo</th>
                                 <th class="px-4 py-3">
                                     <span  onclick="goAddTopico();" style="cursor:pointer;" class="material-icons CorIcon" id="" ; font-size: 30px; cursor: pointer;">
                                         add_circle
@@ -115,14 +112,13 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <p class="font-semibold">@TableTopicos.Descricao</p>
+                                                <p class="font-semibold">@TableTopicos.descricao</p>
                                                 @*<p class="text-xs text-gray-600 dark:text-gray-400">*@
                                             </div>
                                         </div>
                                     </td>
-
                                     <td class="px-4 py-3 text-sm">
-                                        @(TableTopicos.Tipo == 0 ? "Treino" : "Jogo")
+                                        @(TableTopicos.tipo == 0 ? "Defesa" : "Ataque")
                                     </td>
                                     
                                     <td class="">
@@ -136,7 +132,7 @@
                                             </button>
 
                                             <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                    aria-label="Delete">
+                                                    aria-label="Delete" onclick="inativaTopico('@TableTopicos.id','@TableTopicos.descricao','@TableTopicos.tipo');">
                                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                      viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd"
@@ -158,6 +154,39 @@
     <script>
         function goAddTopico() {
             window.location = ("./AddTopico?idInstrutor=").concat(@idInstrutor)
+        }
+
+        function inativaTopico(id,descricao,tipo) {
+            $.ajax({
+                context: this,
+                url: '/Home/SetTopico',
+                type: 'POST',
+                data: JSON.stringify(o),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+
+                    document.location.reload(true);
+                    return;
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(data);
+                }
+            });
         }
     </script>
 </body>

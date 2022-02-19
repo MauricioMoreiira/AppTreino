@@ -21,8 +21,8 @@ namespace AppTreinoCarlos.Pages
         public void OnGet(string TREINO_INSTRUTOR_ID, string ATLETA_ID, string NOME, string TREINO_ID, string idInstrutor)
         {
             List<Topico> Lst = _model.GetTopicos(idInstrutor);
-            ViewData["TopicoAtaque"] = Lst.Where(x => x.Tipo == 1).ToList<Topico>();
-            ViewData["TopicoDefesa"] = Lst.Where(x => x.Tipo == 0).ToList<Topico>();
+            ViewData["TopicoAtaque"] = Lst.Where(x => x.tipo == 1).ToList<Topico>();
+            ViewData["TopicoDefesa"] = Lst.Where(x => x.tipo == 0).ToList<Topico>();
 
             ViewData["TREINO_INSTRUTOR_ID"] = TREINO_INSTRUTOR_ID;
             ViewData["ATLETA_ID"] = ATLETA_ID;

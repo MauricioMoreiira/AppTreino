@@ -3,6 +3,7 @@ using AppTreinoCarlos.Services;
 using AppTreinoCarlos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Dynamic;
 using static AppTreinoCarlos.Utils.AjaxMessage;
@@ -157,10 +158,14 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-        public ActionResult SetAvaliacao([FromBody] Avaliacao avaliacao)
+        public ActionResult SetAvaliacao([FromBody] dynamic obj)
         {
             try
             {
+                Avaliacao avaliacao = JsonConvert.DeserializeObject<Avaliacao>(obj.ToString());
+                
+                
+
                 var data = _model.SetAvaliacao(avaliacao);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
@@ -219,7 +224,7 @@ namespace AppTreino.Controllers
                 atleta.MAX_NOTA = "0";
                 atleta.MED_NOTA = "0";
                 atleta.QTDE_AVALIACOES = "0";
-                
+
                 var data = _model.SetAtleta(obj);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
@@ -231,7 +236,7 @@ namespace AppTreino.Controllers
             }
             catch (Exception exception)
             {
-                    return Json(AjaxMessage.Create(new MessageContent
+                return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Failure,
                     Message = exception.Message,
@@ -240,6 +245,104 @@ namespace AppTreino.Controllers
             }
         }
 
+        public ActionResult SetTreino([FromBody] dynamic obj)
+        {
+            try
+            {
+                //o.idTreino = @idTreino;
+                //o.idInstrutor = @idInstrutor
+                //o.descricao = _descricao;
+                //o.dataIni = _dataIni;
+                //o.dataFim = _dtFim;
+                //o.tipoEvento = _tipoEvento;
+                //var atletas = [];
+                var o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+
+                Treino treino = new Treino();
+                treino.Descricao = o["descricao"];
+                treino.DtFim = o["dataIni"];
+                treino.DtInicio = o["dataIni"];
+                treino.Id = o["idTreino"];
+                treino.TipoEvento = o["tipoEvento"];
+                //string Descricao = dre["descricao"];
+                //string DtFim = dre["dataIni"];
+                //string DtInicio = dre["dataIni"];
+                //string Id = dre["idTreino"];
+                //string TipoEvento = dre["tipoEvento"];
+
+
+                var data0 = _model.SetTreino(treino);
+
+                TreinoInstrutor setInstrutor = new TreinoInstrutor();
+                setInstrutor.treinoID = data0;
+                setInstrutor.instrutorID = o["idInstrutor"];
+                //string treinoID = obj["treinoID"];
+                //string instrutorID = obj["instrutorID"];
+
+                var data1 = _model.SetTreinoInstrutor(setInstrutor);
+                if (data1 == true)
+                {
+                    foreach (int a in o["atletas"])
+                    {
+                        if (int.Parse(_model.SetTreinoAtleta(data0.ToString(), a.ToString())) == 0)
+                        {
+                            throw new Exception("Não foi possivel adicionar atleta.");
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("Não foi possivel adicionar instrutor.");
+                }
+
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Enviado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = null
+                }));
+            }
+            catch (Exception exception)
+            {
+                //TODO deletar treino
+                //TODO deletar settreino instrutor
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult SetTopico([FromBody] dynamic obj)
+        {
+            try
+            {
+                Topico topico = JsonConvert.DeserializeObject<Topico>(obj.ToString());
+
+
+
+                var data = _model.SetTopicos(topico);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Avaliação com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
 
     }
 }

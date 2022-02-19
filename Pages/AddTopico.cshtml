@@ -3,7 +3,7 @@
 @model AppTreinoCarlos.Pages.AddTopicoModel
 
 @{
-    List<Topico> Topicos = (List<Topico>)ViewData["Topicos"];
+//List<Topico> Topicos = (List<Topico>)ViewData["Topicos"];
 
 }
 <html>
@@ -32,8 +32,8 @@
             <label class="block text-sm" style="margin: 10px;">
                 <span class="text-gray-700 dark:text-gray-400">Tipo Evento:</span>
                 <select id="tipoEvento" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                    <option selected value="0">Treino</option>
-                    <option value="1">Jogo</option>
+                    <option selected value="0">Defesa</option>
+                    <option value="1">Ataque</option>
                 </select>
             </label>
 
@@ -46,7 +46,46 @@
     </div>
 
     <script>
+        function EnviaTopico() {
 
+            const o = new Object();
+            o.id = 0;
+            o.instrutorId = @Request.Cookies["idInstrutor"];
+            o.descricao = document.getElementById("descricao").value;
+            o.ativo = 1
+            var e = document.getElementById(tipoEvento);
+            o.Tipo = e.options[e.selectedIndex].value == "Defesa" ? "0" : "1";
+            $.ajax({
+                context: this,
+                url: '/Home/SetTopico',
+                type: 'POST',
+                data: JSON.stringify(o),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+
+                    document.location.reload(true);
+                    return;
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(data);
+                }
+            });
+        }
 
 
 

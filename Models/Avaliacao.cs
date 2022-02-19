@@ -6,16 +6,16 @@ namespace AppTreinoCarlos.Models
     public class Avaliacao
     {
         [JsonProperty("TREINO_INSTRUTOR_ID")]
-        public int TreinoInstrutorId { get; set; }
+        public int TREINO_INSTRUTOR_ID { get; set; }
 
         [JsonProperty("ATLETA_ID")]
-        public int AtletaId { get; set; }
+        public int ATLETA_ID { get; set; }
 
         [JsonProperty("NOME")]
         public string Nome { get; set; }
 
         [JsonProperty("NOTA")]
-        public int Nota { get; set; }
+        public int NOTA { get; set; }
 
         [JsonProperty("OBS")]
         public string Obs { get; set; }
@@ -24,7 +24,7 @@ namespace AppTreinoCarlos.Models
         public int Id { get; set; }
 
         [JsonProperty("TREINO_ID")]
-        public int TreinoId { get; set; }
+        public int TREINO_ID { get; set; }
 
         [JsonProperty("TOPICO_ID")]
         public int TOPICO_ID { get; set; }

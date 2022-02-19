@@ -238,17 +238,17 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-        public bool SetTreinoInstrutor(TreinoAtletas treinoAtletas)
+        public bool SetTreinoInstrutor(TreinoInstrutor treinoAtletas)
         {
             try
             {
-                dynamic obj = new ExpandoObject();
+
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_TREINO_INSTRUTOR");
                     var apiResult =
                         JsonConvert.DeserializeObject<ResponseService<bool>>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(treinoAtletas), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
                     return apiResult.Data;
                 }
@@ -261,17 +261,15 @@ namespace AppTreinoCarlos.Services
         public bool SetAvaliacao(Avaliacao avaliacao)
         {
             try
-            {
-                dynamic obj = new ExpandoObject();
-                obj.avaliacao = avaliacao;
+            {   
                 using (var httpClient = new HttpClient())
                 {
-                    var url = BuildCall(httpClient, "GET_TREINO");
+                    var url = BuildCall(httpClient, "SET_AVALIACAO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(avaliacao), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
@@ -304,16 +302,14 @@ namespace AppTreinoCarlos.Services
         {
             try
             {
-                dynamic obj = new ExpandoObject();
-                obj.topico = topico;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_TOPICOS");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(topico), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
@@ -321,7 +317,7 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-        public bool SetTreino(Treino obj)
+        public string SetTreino(Treino obj)
         {
             try
             {
@@ -329,7 +325,7 @@ namespace AppTreinoCarlos.Services
                 {
                     var url = BuildCall(httpClient, "SET_TREINO");
                     var apiResult =
-                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                        JsonConvert.DeserializeObject<ResponseService<string>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
                     //apiResult = SetTreinoInstrutor(apiResult.Data.Id, treino);
@@ -341,21 +337,21 @@ namespace AppTreinoCarlos.Services
                 throw new Exception(exception.Message);
             }
         }
-        public bool SetTreinoAtleta(string Idtreino, string idAtleta)
+        public string SetTreinoAtleta(string Idtreino, string idAtleta)
         {
             try
             {
                 dynamic obj = new ExpandoObject();
-                obj.Idtreino = Idtreino;
-                obj.idAtleta = idAtleta;
+                obj.treinoID = Idtreino;
+                obj.atletaID = idAtleta;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_TREINO_ATLETA");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
+                        JsonConvert.DeserializeObject<ResponseService<string>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)

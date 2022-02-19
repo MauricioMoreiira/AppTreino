@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    
+
 </head>
 
 
@@ -32,31 +32,31 @@
                 <label class="block text-sm" style="margin: 10px;">
                     <span class="text-gray-800 dark:text-gray-500"
                           style="font-size: 15px; font-weight: 500;">Ataque</span>
-                    <select  id="ataque" onchange="handleAtaque()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    <select id="ataque" onchange="handleAtaque()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option disabled selected>Ataque</option>
                         @foreach (Topico AtaqueTopico in TopicAtaque)
-                         {
-                            <option >@AtaqueTopico.Descricao</option>
-                         }
+                        {
+                            <option>@AtaqueTopico.descricao</option>
+                        }
                     </select>
                 </label>
 
                 <label class="block text-sm" style="margin: 10px;">
                     <span class="text-gray-700 dark:text-gray-400"
                           style="font-size: 15px; font-weight: 500;">Defesa</span>
-                    <select id="defesa"  onchange="handleDefesa()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    <select id="defesa" onchange="handleDefesa()" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option disabled selected>Defesa</option>
                         @foreach (Topico TopicoDefesa in TopicDefesa)
-                         {
-                            <option >@TopicoDefesa.Descricao</option>
-                         }
+                        {
+                            <option>@TopicoDefesa.descricao</option>
+                        }
                     </select>
                 </label>
 
                 <div class="estrelaAvalia">
                     <link rel="stylesheet"
                           href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                    <div class="estrelas"  id="selected" style="font-size: 30px;">
+                    <div class="estrelas" id="estrelas" style="font-size: 30px;">
                         <input type="radio" id="cm_star-empty" name="fb" value="0" />
                         <label for="cm_star-1"><i class="fa"></i></label>
                         <input type="radio" id="cm_star-1" name="fb" value="1" checked />
@@ -77,7 +77,7 @@
                 Adicionar
             </button>
         </footer>
-            <label id="idTopico" hidden></label>
+        <label id="idTopico" hidden></label>
     </div>
 
     <script>
@@ -85,13 +85,8 @@
             var defesa = document.getElementById('defesa');
             defesa.value = 0;
             var Ataques = @Html.Raw(Json.Serialize(ViewData["TopicoAtaque"]));
-            //for (var i = 0; i < Ataques.length; i = i++) {
-            //    console.log(Ataques)
-            //}
-
-
-
         }
+
         function handleDefesa(e) {
             var ataque = document.getElementById('ataque');
             ataque.value = 0;
@@ -102,19 +97,20 @@
         }
 
         function AvaliaAluno() {
-            const selected = document.getElementById("selected");
-            if (selected.value == "0") { document.getElementById("cm_star-empty").checked = true;}
-            if (selected.value == "1") { document.getElementById("cm_star-1").checked = true;}
-            if (selected.value == "2") { document.getElementById("cm_star-2").checked = true;}
-            if (selected.value == "3") { document.getElementById("cm_star-3").checked = true;}
-            if (selected.value == "4") { document.getElementById("cm_star-4").checked = true;}
+            var avalia = '';
+            if (document.getElementById("cm_star-empty").checked = true) { avalia = "0";}
+            if (document.getElementById("cm_star-1").checked = true) { avalia = "1";}
+            if (document.getElementById("cm_star-2").checked = true) { avalia = "2";}
+            if (document.getElementById("cm_star-3").checked = true) { avalia = "3";}
+            if (document.getElementById("cm_star-4").checked = true) { avalia = "4";}
+            if (document.getElementById("cm_star-5").checked = true) { avalia = "5";}
 
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
 
             const _TREINO_INSTRUTOR_ID = urlParams.get('TREINO_INSTRUTOR_ID');
             const _ATLETA_ID = urlParams.get('ATLETA_ID');
-            const _NOME = urlParams.get('NOME');
+            //const _NOME = urlParams.get('NOME');
             const _TREINO_ID = urlParams.get('TREINO_ID');
             const _idInstrutor = urlParams.get('idInstrutor');
 
@@ -123,12 +119,10 @@
 
             o.TREINO_INSTRUTOR_ID = _TREINO_INSTRUTOR_ID;
             o.ATLETA_ID = _ATLETA_ID;
-            o.TREINO_ID = TREINO_ID;
-            o.NOTA = document.getElementById('selected').value;
+            o.TREINO_ID = _TREINO_ID;
+            o.NOTA = avalia;
             o.OBS = '';
             o.TOPICO_ID = _idInstrutor;
-
-
 
             $.ajax({
                 context: this,
@@ -141,19 +135,19 @@
                     Notiflix.Loading.dots('Aguarde...');
                 },
                 success: function (data) {
-                    if (data.EmbeddedData == null) {
+                    if (data == null) {
                         Notiflix.Loading.remove();
                         ShowError(data);
                     }
                     Notiflix.Loading.remove();
-                    const returnData = JSON.parse(data);
-                    if (returnData.MessageType !== 0) {
-                        ShowMessage(returnData);
-                        return;
-                    }
+                    //const returnData = JSON.parse(data);
+                    //if (returnData.MessageType !== 0) {
+                    //    ShowMessage(returnData);
+                    //    return;
+                    //}
                     /*var t0 = returnData.EmbeddedData;*/
 
-                    document.location.reload(true);
+                    //document.location.reload(true);
                     return;
 
                 },
