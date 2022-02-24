@@ -84,6 +84,11 @@ function RedirectAction(action) {
     window.location.href = action;
 }
 
+function setCookie(cName, cValue) {
+
+    document.cookie = cName + "=" + cValue + ";" ;
+}
+
 function getCookie(cName) {
     const name = cName + "=";
     const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -94,6 +99,7 @@ function getCookie(cName) {
     })
     return res
 }
+
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -136,7 +142,7 @@ function Agora() {
 }
 
 function date_PTtoEN(cDate) {
-    var dd = cDate.substring(0,1);
+    var dd = cDate.substring(0, 1);
     var mm = cDate.substring(3, 4);
     var yy = cDate.substring(6, 9);
     return [yy,

@@ -7,6 +7,7 @@
 
     List<Topico> TopicDefesa = (List<Topico>)ViewData["TopicoDefesa"];
     string NomeAtleta = ViewData["NOME"].ToString();
+    string tmpIdTopico = "";
 }
 
 <html>
@@ -36,7 +37,7 @@
                         <option disabled selected>Ataque</option>
                         @foreach (Topico AtaqueTopico in TopicAtaque)
                         {
-                            <option>@AtaqueTopico.descricao</option>
+                            <option value="@AtaqueTopico.id">@AtaqueTopico.descricao</option>
                         }
                     </select>
                 </label>
@@ -48,7 +49,7 @@
                         <option disabled selected>Defesa</option>
                         @foreach (Topico TopicoDefesa in TopicDefesa)
                         {
-                            <option>@TopicoDefesa.descricao</option>
+                            <option value="@TopicoDefesa.id">@TopicoDefesa.descricao</option>
                         }
                     </select>
                 </label>
@@ -77,19 +78,21 @@
                 Adicionar
             </button>
         </footer>
-        <label id="idTopico" hidden></label>
     </div>
 
     <script>
         function handleAtaque(e) {
             var defesa = document.getElementById('defesa');
             defesa.value = 0;
-            var Ataques = @Html.Raw(Json.Serialize(ViewData["TopicoAtaque"]));
+            var r = document.getElementById('ataque')
+            setCookie("tmpIdTopico", r.options[r.selectedIndex].value);
         }
 
         function handleDefesa(e) {
             var ataque = document.getElementById('ataque');
             ataque.value = 0;
+            var r = document.getElementById('defesa')
+            setCookie("tmpIdTopico", r.options[r.selectedIndex].value);
         }
 
         function idDefesa(descricao) {
@@ -98,12 +101,12 @@
 
         function AvaliaAluno() {
             var avalia = '';//TODO Tem alguma coisa que altera o elemento das estrelas
-            if (document.getElementById("cm_star-5").checked = true) { avalia = "5";}
-            else if (document.getElementById("cm_star-4").checked = true) { avalia = "4";}
-            else if (document.getElementById("cm_star-3").checked = true) { avalia = "3";}
-            else if (document.getElementById("cm_star-2").checked = true) { avalia = "2";}
-            else if (document.getElementById("cm_star-1").checked = true) { avalia = "1";}
-            else if (document.getElementById("cm_star-empty").checked = true) { avalia = "0";}
+            if (document.getElementById("cm_star-5").checked == true) { avalia = "5";}
+            else if (document.getElementById("cm_star-4").checked == true) { avalia = "4";}
+            else if (document.getElementById("cm_star-3").checked == true) { avalia = "3";}
+            else if (document.getElementById("cm_star-2").checked == true) { avalia = "2";}
+            else if (document.getElementById("cm_star-1").checked == true) { avalia = "1";}
+            else if (document.getElementById("cm_star-empty").checked == true) { avalia = "0";}
 
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -122,7 +125,7 @@
             o.TREINO_ID = _TREINO_ID;
             o.NOTA = avalia;
             o.OBS = '';
-            o.TOPICO_ID = _idInstrutor;
+            o.TOPICO_ID = getCookie('tmpIdTopico');
 
             $.ajax({
                 context: this,

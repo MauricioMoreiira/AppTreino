@@ -32,7 +32,7 @@
                     @NomeAtleta
                 </span>
             </h2>
-        
+
             <table class="w-full whitespace-no-wrap" style="width: 70%;">
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -68,18 +68,20 @@
                                     </div>
                                 </td>
                                 <td>
+                                    //TODO Aqui ta com problema
+                                    //TODO É deletar, e salva nova avaliação, não terá inativas
                                     <div class="estrelas" name="estrelas" id="">
                                         <input type="radio" id="cm_star-empty" name="fb" value="0" />
                                         <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-1" name="fb" value="@TableEditAvalicaoes.NOTA" />
+                                        <input type="radio" id="cm_star-1" name="fb" checked="@(TableEditAvalicaoes.NOTA>=1?true:false)" />
                                         <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb" value="@TableEditAvalicaoes.NOTA" />
+                                        <input type="radio" id="cm_star-2" name="fb" checked="@(TableEditAvalicaoes.NOTA>=2?true:false)" />
                                         <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb" value="@TableEditAvalicaoes.NOTA" />
+                                        <input type="radio" id="cm_star-3" name="fb" checked="@(TableEditAvalicaoes.NOTA>=3?true:false)" />
                                         <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb" value="@TableEditAvalicaoes.NOTA" />
+                                        <input type="radio" id="cm_star-4" name="fb" checked="@(TableEditAvalicaoes.NOTA>=4?true:false)" />
                                         <label for="cm_star-5"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb" value="@TableEditAvalicaoes.NOTA" />
+                                        <input type="radio" id="cm_star-5" name="fb" checked="@(TableEditAvalicaoes.NOTA>=5?true:false)" />
                                     </div>
                                 </td>
 
