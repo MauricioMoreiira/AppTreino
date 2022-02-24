@@ -117,3 +117,20 @@ function deleteCookie(cName) {
         }
     })
 }
+
+function AgoraSimples() {
+    var dt = new Date();
+    var mm = dt.getMonth();
+    var yy = dt.getFullYear();
+    var dd = dt.getDate();
+
+    return [yy,
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd
+    ].join('-');
+}
+
+function Agora() {
+    var dt = new Date();
+    return dt.toISOString();
+}

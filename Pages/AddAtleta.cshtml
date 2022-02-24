@@ -1,0 +1,198 @@
+﻿@page
+@using AppTreinoCarlos.Utils
+@using AppTreinoCarlos.Models
+@model AppTreinoCarlos.Pages.AddAtletaModel
+@{
+    //List<Atleta> Atletas = (List<Atleta>)ViewData["Atleta"];
+    string idInstrutor = ViewData["idInstrutor"].ToString();
+    string nome = ViewData["nome"].ToString();
+    string id = ViewData["id"].ToString();
+    string nivel = ViewData["nivel"].ToString();
+    string btn_Save = id == "0" ? "Adicionar" : "Salvar";
+
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/app.js"></script>
+</head>
+
+<body style="display: flex;">
+    <br>
+    <main class="h-full overflow-y-auto">
+        <div class="container px-6 mx-auto grid">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Adicionar Atletas
+            </h2>
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                <div class="mt-4 mb-6">
+
+                    <label class="block text-sm" style="margin: 10px;">
+                        <span class="text-gray-700 dark:text-gray-400">Nome:</span>
+                        <input id="nomeAtleta" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                               placeholder="">
+                    </label>
+
+                    <label class="block text-sm" style="margin: 10px;">
+                        <span class="text-gray-700 dark:text-gray-400">Nivel:</span>
+                        <select id="nivelAtleta" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option selected>Iniciante</option>
+                            <option>Intermediário</option>
+                            <option>Avançado</option>
+                        </select>
+                    </label>
+
+                    @*<label class="block text-sm" style="margin: 10px;">
+                            <span class="text-gray-700 dark:text-gray-400">Validade:</span>
+                            <input id="dtExpira" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                   placeholder="31/01/2022" type="date">
+                        </label>*@
+
+                    <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                            onclick="addAtleta()">
+                        @btn_Save
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- New Table -->
+            <div class="w-full  rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                    <div id="modal3" style="display: flex; justify-items: center; display: none;"
+                         class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+                        <div class="w-full px-6 py-4 bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+                             role="dialog">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+         $(document).ready(function () {
+             document.getElementById("nomeAtleta").value = '@nome'
+             document.getElementById("nivelAtleta").value;
+             switch (@nivel) {
+                 case 0:
+                     document.getElementById("nivelAtleta").value = 'Iniciante';
+                     break;
+                 case 1:
+                     document.getElementById("nivelAtleta").value = 'Intermediário';
+                     break;
+                 case 2:
+                     document.getElementById("nivelAtleta").value = 'Avançado';
+                     break;
+                 default:
+                     document.getElementById("nivelAtleta").value = 'Iniciante';
+             }
+         });
+
+        function exibir() {
+            document.getElementById('modal3').style.display = "block";
+            document.getElementById('modal3').style.display = "flex";
+            document.getElementById('modal3').style.justifyItems = "center";
+        }
+
+        function fecha2() {
+            document.getElementById('modal3').style.display = "none";
+        }
+
+        function addAtleta() {
+
+            const _nome = document.getElementById("nomeAtleta").value;
+            var _nivel = document.getElementById("nivelAtleta").value;
+            switch (_nivel) {
+                case 'Iniciante':
+                    _nivel = '0';
+                    break;
+                case 'Intermediário':
+                    _nivel = '1';
+                    break;
+                case 'Avançado':
+                    _nivel = '2';
+                    break;
+                default:
+                    ShowErrorGen(`Sorry, we are out of ${_nivel}.`);
+            }
+
+            const a = new Object();
+            a.id = @id;
+            a.nivel = _nivel;
+            a.nome = _nome;
+            a.dtExpira = Agora();
+            a.foto = '';
+            a.instrutorId = @idInstrutor; //getCookie("idInstrutor");
+            a.ativo = '1';
+            a.dtInclui = Agora();
+            a.MED_NOTA = '0';
+            a.MAX_NOTA = '0';
+            a.QTDE_AVALIACOES = '0';
+            //adicionar demais propriedades
+
+
+            $.ajax({
+                context: this,
+                url: '/Home/SetAtleta',
+                type: 'POST',
+                data: JSON.stringify(a),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function () {
+                    Notiflix.Loading.remove();
+                },
+                error: function () {
+                    Notiflix.Loading.remove();
+                }
+            });
+        }
+
+        function inativaAtleta(atletaId) {
+            $.ajax({
+                context: this,
+                url: '/Home/InativaAtleta',
+                type: 'POST',
+                data: JSON.stringify(atletaId),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    if (data.EmbeddedData == null) {
+                        Notiflix.Loading.remove();
+                        ShowError(data);
+                    }
+                    Notiflix.Loading.remove();
+                    const returnData = JSON.parse(data);
+                    if (returnData.MessageType !== 0) {
+                        ShowMessage(returnData);
+                        return;
+                    }
+                    document.location.reload(true);
+                    return;
+
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

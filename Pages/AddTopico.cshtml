@@ -1,11 +1,14 @@
 ﻿@page
-@using AppTreinoCarlos.Models;
+@using AppTreinoCarlos.Models
 @model AppTreinoCarlos.Pages.AddTopicoModel
 
 @{
-//List<Topico> Topicos = (List<Topico>)ViewData["Topicos"];
+    string idTopico = ViewData["idTopico"].ToString();
+    string descTopico = ViewData["descTopico"].ToString();
+    string tipoTopico = ViewData["tipoTopico"].ToString();
 
 }
+
 <html>
 <head>
     <title></title>
@@ -25,7 +28,7 @@
             <label class="block text-sm" style="margin: 10px;">
                 <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
                 <input id="descricao" class="inputUnico block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                       placeholder="">
+                       placeholder="" value="@(descTopico!=""?descTopico:" ")">
             </label>
 
 
@@ -46,15 +49,24 @@
     </div>
 
     <script>
+        //TODO Colocar em todas as telas validando o idInstrutor
+        $(document).ready(function () {
+            //document.getElementById("tipoEvento").SelectedIndex = @tipoTopico;
+            let element = document.getElementById("tipoEvento");
+            element.value =  @tipoTopico;
+        });
+
+
         function EnviaTopico() {
 
             const o = new Object();
-            o.id = 0;
+            o.id = @idTopico;
             o.instrutorId = @Request.Cookies["idInstrutor"];
             o.descricao = document.getElementById("descricao").value;
             o.ativo = 1
-            var e = document.getElementById(tipoEvento);
-            o.Tipo = e.options[e.selectedIndex].value == "Defesa" ? "0" : "1";
+            var e = document.getElementById("tipoEvento");
+            //o.Tipo = e.value == "Defesa" ? "0" : "1";
+            o.Tipo = document.getElementById("tipoEvento").value;
             $.ajax({
                 context: this,
                 url: '/Home/SetTopico',
@@ -77,7 +89,9 @@
                         return;
                     }
 
-                    document.location.reload(true);
+                    //document.location.reload(true);
+                    //window.location.reload(history.back());
+                    window.location = document.referrer;
                     return;
                 },
                 error: function (data) {

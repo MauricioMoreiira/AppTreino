@@ -16,9 +16,11 @@ namespace AppTreinoCarlos.Pages
         {
             _model = new CommFunctions(configuration);
         }
-        public void OnGet(string idInstrutor)
+        public void OnGet(string idInstrutor, string idTopico, string descTopico, string tipoTopico)
         {
-            //ViewData["Topicos"] = _model.GetTopicos(idInstrutor);
+            ViewData["idTopico"] = idTopico == null ? "" : idTopico;
+            ViewData["descTopico"] = descTopico == null ? "" : descTopico;
+            ViewData["tipoTopico"] = tipoTopico == null ? "" : tipoTopico;
 
         }
     }

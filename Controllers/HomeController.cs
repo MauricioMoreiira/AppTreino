@@ -212,20 +212,21 @@ namespace AppTreino.Controllers
         {
             try
             {
-                Atleta atleta = new Atleta();
-                atleta.Ativo = obj["ativo"];
-                atleta.DtExpira = obj["dtExpira"];
-                atleta.DtInclui = obj["dtInclui"];
-                atleta.Foto = obj["foto"];
-                atleta.Id = obj["id"];
-                atleta.InstrutorId = obj["instrutorId"];
-                atleta.Nivel = obj["nivel"];
-                atleta.Nome = obj["nome"];
-                atleta.MAX_NOTA = "0";
-                atleta.MED_NOTA = "0";
-                atleta.QTDE_AVALIACOES = "0";
+                Atleta atleta = JsonConvert.DeserializeObject<Atleta>(obj.ToString());
+                //Atleta atleta = new Atleta();
+                //atleta.Ativo = obj["ativo"];
+                //atleta.DtExpira = obj["dtExpira"];
+                //atleta.DtInclui = obj["dtInclui"];
+                //atleta.Foto = obj["foto"];
+                //atleta.Id = obj["id"];
+                //atleta.InstrutorId = obj["instrutorId"];
+                //atleta.Nivel = obj["nivel"];
+                //atleta.Nome = obj["nome"];
+                //atleta.MAX_NOTA = "0";
+                //atleta.MED_NOTA = "0";
+                //atleta.QTDE_AVALIACOES = "0";
 
-                var data = _model.SetAtleta(obj);
+                var data = _model.SetAtleta(atleta);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
@@ -320,6 +321,15 @@ namespace AppTreino.Controllers
         {
             try
             {
+                //var o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+
+                //Topico treino = new Topico();
+                //treino.Descricao = o["descricao"];
+                //treino.DtFim = o["dataIni"];
+                //treino.DtInicio = o["dataIni"];
+                //treino.Id = o["idTreino"];
+                //treino.TipoEvento = o["tipoEvento"];
+
                 Topico topico = JsonConvert.DeserializeObject<Topico>(obj.ToString());
 
 
