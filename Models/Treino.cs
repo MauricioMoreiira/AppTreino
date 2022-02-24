@@ -6,22 +6,22 @@ namespace AppTreinoCarlos.Models
     public class Treino
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [JsonProperty("descricao")]
-        public string Descricao { get; set; }
+        public string descricao { get; set; }
 
         [JsonProperty("dtInicio")]
-        public DateTime DtInicio { get; set; }
+        public DateTime dtInicio { get; set; }
 
         [JsonProperty("dtFim")]
-        public DateTime DtFim { get; set; }
+        public DateTime dtFim { get; set; }
 
         [JsonProperty("tipoEvento")]
-        public int TipoEvento { get; set; }
+        public int tipoEvento { get; set; }
 
         [JsonProperty("dtInclui")]
-        public DateTime DtInclui { get; set; }
+        public DateTime dtInclui { get; set; }
 
         [JsonProperty("TREINO_INSTRUTOR_ID")]
         public int TREINO_INSTRUTOR_ID { get; set; }

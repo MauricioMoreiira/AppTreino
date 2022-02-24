@@ -193,7 +193,31 @@ namespace AppTreino.Controllers
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
-                    Message = "Avaliação com sucesso",
+                    Message = "Inativado com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult InativaTreino([FromBody] string treinoId)
+        {
+            try
+            {
+                var data = _model.inativaTreino(treinoId);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Inativado com sucesso",
                     Title = "Sucesso",
                     EmbeddedData = data
                 }));
@@ -213,19 +237,6 @@ namespace AppTreino.Controllers
             try
             {
                 Atleta atleta = JsonConvert.DeserializeObject<Atleta>(obj.ToString());
-                //Atleta atleta = new Atleta();
-                //atleta.Ativo = obj["ativo"];
-                //atleta.DtExpira = obj["dtExpira"];
-                //atleta.DtInclui = obj["dtInclui"];
-                //atleta.Foto = obj["foto"];
-                //atleta.Id = obj["id"];
-                //atleta.InstrutorId = obj["instrutorId"];
-                //atleta.Nivel = obj["nivel"];
-                //atleta.Nome = obj["nome"];
-                //atleta.MAX_NOTA = "0";
-                //atleta.MED_NOTA = "0";
-                //atleta.QTDE_AVALIACOES = "0";
-
                 var data = _model.SetAtleta(atleta);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
@@ -250,27 +261,15 @@ namespace AppTreino.Controllers
         {
             try
             {
-                //o.idTreino = @idTreino;
-                //o.idInstrutor = @idInstrutor
-                //o.descricao = _descricao;
-                //o.dataIni = _dataIni;
-                //o.dataFim = _dtFim;
-                //o.tipoEvento = _tipoEvento;
-                //var atletas = [];
-                var o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+                dynamic o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+                Treino treino =  JsonConvert.DeserializeObject<Treino>(obj.ToString());
 
-                Treino treino = new Treino();
-                treino.Descricao = o["descricao"];
-                treino.DtFim = o["dataIni"];
-                treino.DtInicio = o["dataIni"];
-                treino.Id = o["idTreino"];
-                treino.TipoEvento = o["tipoEvento"];
-                //string Descricao = dre["descricao"];
-                //string DtFim = dre["dataIni"];
-                //string DtInicio = dre["dataIni"];
-                //string Id = dre["idTreino"];
-                //string TipoEvento = dre["tipoEvento"];
-
+                //Treino treino = new Treino();
+                //treino.descricao = o["descricao"];
+                //treino.dtFim = o["dataIni"];
+                //treino.dtInicio = o["dataIni"];
+                //treino.id = o["idTreino"];
+                //treino.tipoEvento = o["tipoEvento"];
 
                 var data0 = _model.SetTreino(treino);
 
@@ -321,15 +320,6 @@ namespace AppTreino.Controllers
         {
             try
             {
-                //var o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
-
-                //Topico treino = new Topico();
-                //treino.Descricao = o["descricao"];
-                //treino.DtFim = o["dataIni"];
-                //treino.DtInicio = o["dataIni"];
-                //treino.Id = o["idTreino"];
-                //treino.TipoEvento = o["tipoEvento"];
-
                 Topico topico = JsonConvert.DeserializeObject<Topico>(obj.ToString());
 
 
@@ -339,6 +329,31 @@ namespace AppTreino.Controllers
                 {
                     MessageType = MessageType.Success,
                     Message = "Avaliação com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
+
+        public ActionResult SetTreinoOnly([FromBody] dynamic obj)
+        {
+            try
+            {
+                Treino treino = JsonConvert.DeserializeObject<Treino>(obj.ToString());
+                var data = _model.SetTreino(treino);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Enviado com sucesso",
                     Title = "Sucesso",
                     EmbeddedData = data
                 }));

@@ -134,3 +134,14 @@ function Agora() {
     var dt = new Date();
     return dt.toISOString();
 }
+
+function date_PTtoEN(cDate) {
+    var dd = cDate.substring(0,1);
+    var mm = cDate.substring(3, 4);
+    var yy = cDate.substring(6, 9);
+    return [yy,
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd
+    ].join('-');
+}
+

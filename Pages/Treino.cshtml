@@ -8,10 +8,6 @@
     string idInstrutor = ViewData["idInstrutor"].ToString();
     string cidInstrutor = Request.Cookies["idInstrutor"];
     string idTreino = ViewData["idTreino"].ToString();
-    //string idTreino = Request.Cookies["idTreino"];
-    //string idTreino = ViewData["idTreino"].ToString();
-
-    //string idTreino = Request.Cookies["idTreino"];
 }
 
 <!DOCTYPE html>
@@ -74,7 +70,7 @@
                                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                         <th style="width: 10%;" class="px-4 py-3">Treinos</th>
                                         <th style="width: 10%;" class="px-4 py-3">Data</th>
-                                        <th style="width: 10%;" class="px-4 py-3">Qtde</th>
+                                        <th style="width: 10%; text-align:center" class="px-4 py-3">Atletas</th>
                                         <th style="width: 10%;" class="px-4 py-3">
                                             <span class="material-icons CorButton" id="" style="font-size: 30px; cursor: pointer;" href="#open-modal" onclick="goAddTreino();">
                                                 add_circle
@@ -95,7 +91,7 @@
                                                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                             <span class="material-icons"
                                                                   style="font-size: 25px; display: flex; justify-content: center;">
-                                                                sports_tennis
+                                                                @(TableTreino.tipoEvento==0? "sports_tennis":"sports_esports")
                                                             </span>
                                                             <div class="absolute inset-0 rounded-full shadow-inner"
                                                                  aria-hidden="true">
@@ -103,20 +99,21 @@
                                                         </div>
                                                         <div>
                                                             <p class="font-semibold" style="cursor: pointer;"
-                                                               onclick="AvaliaTreino('@TableTreino.Id', '@TableTreino.TREINO_INSTRUTOR_ID');">@TableTreino.Descricao</p>
+                                                               onclick="AvaliaTreino('@TableTreino.id', '@TableTreino.TREINO_INSTRUTOR_ID');">@TableTreino.descricao</p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @TableTreino.DtInicio.ToString("MM/dd/yyyy")
+                                                    @TableTreino.dtInicio.ToString("dd/MM/yyyy")
                                                 </td>
-                                                <td class="px-4 py-3 text-sm ">
+                                                <td class="px-4 py-3 text-sm " style="text-align:center">
                                                     @TableTreino.QTDE_ATLETA
                                                 </td>
                                                 <td class="">
                                                     <div class="flex items-center space-x-4 text-sm">
                                                         <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                                aria-label="Edit">
+                                                                aria-label="Edit"
+                                                                onclick="goEditTreino('@TableTreino.id','@TableTreino.descricao','@TableTreino.dtInicio.ToShortDateString().Replace("/","-")','@TableTreino.tipoEvento','@TableTreino.TREINO_INSTRUTOR_ID')">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                  viewBox="0 0 20 20">
                                                                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -124,7 +121,8 @@
                                                             </svg>
                                                         </button>
                                                         <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                                aria-label="Delete">
+                                                                aria-label="Delete"
+                                                                onclick="inativaTreino('@TableTreino.id');">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                  viewBox="0 0 20 20">
                                                                 <path fill-rule="evenodd"
@@ -150,8 +148,6 @@
 
     <script>
 
-k
-
         function exibir() {
             document.getElementById('modalHid').style.display = "block";
             document.getElementById('modalHid').style.display = "flex";
@@ -170,8 +166,34 @@ k
         function goAddTreino() {
             window.location = "./AddTreino?idTreino=".concat("0").concat("&idInstrutor=").concat(@idInstrutor)
         }
+                
+        function inativaTreino(treinoId) {
+            $.ajax({
+                context: this,
+                url: '/Home/InativaTreino',
+                type: 'POST',
+                data: JSON.stringify(treinoId),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                beforeSend: function () {
+                    Notiflix.Loading.dots('Aguarde...');
+                },
+                success: function (data) {
+                    Notiflix.Loading.remove();
+                    document.location.reload(true);
+                    return;
 
+                },
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
+            });
+        }
 
+        function goEditTreino(id,desc,dtinicio,tipo,TREINO_INSTRUTOR_ID) {
+            window.location = "./EditTreino?idTreino=".concat(id).concat("&desc=").concat(desc).concat("&dtInicio=").concat(dtinicio).concat("&tipo=").concat(tipo).concat("&treinoInstrutorId=").concat(TREINO_INSTRUTOR_ID);
+        }
 
 
 
