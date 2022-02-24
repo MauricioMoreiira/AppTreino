@@ -87,7 +87,7 @@
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Atletas</th>
-                        <th class="px-4 py-3">QTDE</th>
+                        <th class="px-4 py-3" style="text-align:center">QTDE</th>
                         <th class="px-4 py-3" style="text-align: center;">Avaliar</th>
                         <th class="px-4 py-3"></th>
                     </tr>
@@ -116,8 +116,8 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
-                                @TableAvaliar.QTDE_AVALIACOES
+                            <td style="text-align:center">
+                                <span style="text-align:center"> @TableAvaliar.QTDE_AVALIACOES</span> 
                             </td>
 
                             <td style="display: flex; justify-content: center;">
@@ -181,7 +181,7 @@
 
 
 
-        <section id="Modal canvas">
+        @*<section id="Modal canvas">
             <div id="modal5"
                  style="display: none; color: dimgray; padding: 20px; border: solid 1px; border-color: #e9e9e9; box-shadow: #d3d3d3 2px 2px 1px; border-radius: 10px;"
                  x-show=""
@@ -266,7 +266,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>*@
     </main>
 
     <script>

@@ -97,13 +97,13 @@
         }
 
         function AvaliaAluno() {
-            var avalia = '';
-            if (document.getElementById("cm_star-empty").checked = true) { avalia = "0";}
-            if (document.getElementById("cm_star-1").checked = true) { avalia = "1";}
-            if (document.getElementById("cm_star-2").checked = true) { avalia = "2";}
-            if (document.getElementById("cm_star-3").checked = true) { avalia = "3";}
-            if (document.getElementById("cm_star-4").checked = true) { avalia = "4";}
+            var avalia = '';//TODO Tem alguma coisa que altera o elemento das estrelas
             if (document.getElementById("cm_star-5").checked = true) { avalia = "5";}
+            else if (document.getElementById("cm_star-4").checked = true) { avalia = "4";}
+            else if (document.getElementById("cm_star-3").checked = true) { avalia = "3";}
+            else if (document.getElementById("cm_star-2").checked = true) { avalia = "2";}
+            else if (document.getElementById("cm_star-1").checked = true) { avalia = "1";}
+            else if (document.getElementById("cm_star-empty").checked = true) { avalia = "0";}
 
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
