@@ -127,13 +127,13 @@
 
             const a = new Object();
             a.id = @id;
+            a.instrutorId = @idInstrutor; //getCookie("idInstrutor");
             a.nivel = _nivel;
             a.nome = _nome;
             a.dtExpira = Agora();
-            a.foto = '';
-            a.instrutorId = @idInstrutor; //getCookie("idInstrutor");
-            a.ativo = '1';
             a.dtInclui = Agora();
+            a.ativo = '1';
+            a.foto = '';
             a.MED_NOTA = '0';
             a.MAX_NOTA = '0';
             a.QTDE_AVALIACOES = '0';
@@ -152,9 +152,12 @@
                 },
                 success: function () {
                     Notiflix.Loading.remove();
+                    window.location = document.referrer;
+                    return;
                 },
-                error: function () {
+                error: function (data) {
                     Notiflix.Loading.remove();
+                    ShowError(data);
                 }
             });
         }

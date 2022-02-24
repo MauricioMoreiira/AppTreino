@@ -215,16 +215,17 @@
                     Notiflix.Loading.dots('Aguarde...');
                 },
                 success: function (data) {
-                    if (data.EmbeddedData == null) {
-                        Notiflix.Loading.remove();
-                        ShowError(data);
-                    }
+                    //if (data.EmbeddedData == null) {
+                    //    Notiflix.Loading.remove();
+                    //    ShowError(data);
+                    //}
+                    //Notiflix.Loading.remove();
+                    //const returnData = JSON.parse(data);
+                    //if (returnData.MessageType !== 0) {
+                    //    ShowMessage(returnData);
+                    //    return;
+                    //}
                     Notiflix.Loading.remove();
-                    const returnData = JSON.parse(data);
-                    if (returnData.MessageType !== 0) {
-                        ShowMessage(returnData);
-                        return;
-                    }
                     document.location.reload(true);
                     return;
 

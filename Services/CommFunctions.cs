@@ -200,16 +200,14 @@ namespace AppTreinoCarlos.Services
         {
             try
             {
-                dynamic obj = new ExpandoObject();
-                obj.atleta = atleta;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_ATLETA");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
-                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(atleta), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)
