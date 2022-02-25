@@ -19,6 +19,7 @@ namespace AppTreinoCarlos.Pages
             Atleta atleta = _model.GetAtletasCompletos(atletaID, instrutorID).FirstOrDefault<Atleta>();
             Treino treino = _model.GetTreino(treinoID, instrutorID).FirstOrDefault<Treino>();
             Instrutor instrutor = _model.GetInstrutor(instrutorID);
+            //Apoiador apoiador = _model.GetApoiador(instrutorID); //TODO Adicionar
 
             ViewData["atleta"] = atleta;
             ViewData["treino"] = treino;

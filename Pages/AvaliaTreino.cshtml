@@ -86,7 +86,8 @@
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Atletas</th>
-                        <th class="px-4 py-3" style="text-align:center">QTDE</th>
+                        <th class="px-4 py-3" style="text-align:center">Qtd</th>
+                        <th class="px-4 py-3" style="text-align:center">Score</th>
                         <th class="px-4 py-3" style="text-align: center;">Avaliar</th>
                         <th class="px-4 py-3"></th>
                     </tr>
@@ -118,7 +119,9 @@
                             <td style="text-align:center">
                                 <span style="text-align:center"> @TableAvaliar.QTDE_AVALIACOES</span>
                             </td>
-
+                            <td style="text-align:center">
+                                <span style="text-align:center"> @TableAvaliar.MED_AVALIACOES</span>
+                            </td>
                             <td style="display: flex; justify-content: center;">
                                 <span class="material-icons CorIcon" id="mod alHiden"
                                       style="margin-top: 15px;  font-size: 30px; cursor: pointer; "
@@ -154,7 +157,7 @@
                                     <button style="margin: 0px;"
                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                             aria-label="Delete">
-                                        <span class="material-icons" 
+                                        <span class="material-icons"
                                               onclick="goViewCard('@TableAvaliar.ATLETA_ID','@TableAvaliar.TREINO_ID','@TableAvaliar.MED_AVALIACOES');">
                                             print
                                         </span>
@@ -175,16 +178,16 @@
                 </tbody>
             </table>
 
-            <span class="material-icons CorIcon" style="margin-top: 15px;  font-size: 30px; font-weight: 700; cursor: pointer;">
+            @*<span class="material-icons CorIcon" style="margin-top: 15px;  font-size: 30px; font-weight: 700; cursor: pointer;">
                 add
-            </span>
+            </span>*@
         </div>
     </main>
 
     <script>
 
 
-        function goViewCard(atletaID, treinoID, instrutorID, nota) {
+        function goViewCard(atletaID, treinoID, nota) {
             window.location = "./ViewCard?atletaID=".concat(atletaID).concat("&treinoID=").concat(treinoID).concat("&instrutorID=").concat(getCookie('idInstrutor')).concat("&nota=").concat(nota);
         }
 
