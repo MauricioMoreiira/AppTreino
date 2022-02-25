@@ -179,16 +179,16 @@ namespace AppTreinoCarlos.Services
             try
             {
                 dynamic obj = new ExpandoObject();
-                obj.atletaID = treinoID;
+                obj.treinoID = treinoID;
                 obj.atletaID = atletaID;
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "DEL_TREINO_ATLETA");
                     var apiResult =
-                        JsonConvert.DeserializeObject<bool>(
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
                             httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
                         );
-                    return apiResult;
+                    return apiResult.Data;
                 }
             }
             catch (Exception exception)

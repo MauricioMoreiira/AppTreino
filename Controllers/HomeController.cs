@@ -135,15 +135,19 @@ namespace AppTreino.Controllers
                 }));
             }
         }
-        public ActionResult DelTreinoAtleta([FromBody] string treinoID, string atletaID)
+        public ActionResult DelTreinoAtleta([FromBody] dynamic obj)
         {
             try
             {
-                var data = _model.GetTreino(treinoID, atletaID);
+                dynamic o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+                string treino_id = o["treinoID"];
+                string ATLETA_ID = o["atletaID"];
+
+                var data = _model.DelTreinoAtleta(treino_id, ATLETA_ID);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
                     MessageType = MessageType.Success,
-                    Message = "Menu carregado com sucesso",
+                    Message = "Atleta removido com sucesso",
                     Title = "Sucesso",
                     EmbeddedData = data
                 }));
