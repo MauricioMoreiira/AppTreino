@@ -116,13 +116,13 @@
                                 </div>
                             </td>
                             <td style="text-align:center">
-                                <span style="text-align:center"> @TableAvaliar.QTDE_AVALIACOES</span> 
+                                <span style="text-align:center"> @TableAvaliar.QTDE_AVALIACOES</span>
                             </td>
 
                             <td style="display: flex; justify-content: center;">
                                 <span class="material-icons CorIcon" id="mod alHiden"
                                       style="margin-top: 15px;  font-size: 30px; cursor: pointer; "
-                                       onclick="goAvaliacoes('@TableAvaliar.ATLETA_ID', '@TableAvaliar.TREINO_ID','@TableAvaliar.NOME','@idInstrutor');">
+                                      onclick="goAvaliacoes('@TableAvaliar.ATLETA_ID', '@TableAvaliar.TREINO_ID','@TableAvaliar.NOME','@idInstrutor');">
                                     add_circle
                                 </span>
 
@@ -153,9 +153,9 @@
 
                                     <button style="margin: 0px;"
                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                            aria-label="Delete"
-                                            >
-                                        <span class="material-icons" onclick="exibir2()">
+                                            aria-label="Delete">
+                                        <span class="material-icons" 
+                                              onclick="goViewCard('@TableAvaliar.ATLETA_ID','@TableAvaliar.TREINO_ID');">
                                             print
                                         </span>
                                     </button>
@@ -184,8 +184,8 @@
     <script>
 
 
-        function exibir2() {
-            document.getElementById('modal5').style.display = "block";
+        function goViewCard(atletaID, treinoID, instrutorID) {
+            window.location = "./ViewCard?atletaID=".concat(atletaID).concat("&treinoID=").concat(treinoID).concat("&instrutorID=").concat(getCookie('idInstrutor'));
         }
 
         function fecha3() {
@@ -194,11 +194,6 @@
 
         function goeditAvaliacao(treino, atleta, nome) {
             window.location = "./editAvaliacao?idTreino=".concat(treino).concat("&idAtleta=").concat(atleta).concat("&NomeAtleta=").concat(nome);
-        }
-
-        function goAvaliacoes(ATLETA_ID, treino_id, nome) {
-            @*window.location = "./Avaliacoes?TREINO_INSTRUTOR_ID=".concat(@idTreinoInstrutor).concat("&ATLETA_ID=").concat(ATLETA_ID).concat("&NOME=").concat(nome).concat("&TREINO_ID=").concat.(treino_id).concat("&idInstrutor=").concat(@idInstrutor);*@
-            window.location = "./Avaliacoes?TREINO_INSTRUTOR_ID=".concat(@idTreinoInstrutor).concat("&ATLETA_ID=").concat(ATLETA_ID).concat("&NOME=").concat(nome).concat("&TREINO_ID=").concat(treino_id).concat("&idInstrutor=").concat(@idInstrutor);
         }
 
         function goAvaliacoes(ATLETA_ID, treino_id, nome) {
@@ -226,7 +221,7 @@
                     Notiflix.Loading.remove();
                     const returnData = JSON.parse(data);
                     if (returnData.data !== false) {
-                        ShowError(data);                        
+                        ShowError(data);
                     }
                     document.location.reload(true);
                     return;
