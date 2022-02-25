@@ -155,7 +155,7 @@
                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                             aria-label="Delete">
                                         <span class="material-icons" 
-                                              onclick="goViewCard('@TableAvaliar.ATLETA_ID','@TableAvaliar.TREINO_ID');">
+                                              onclick="goViewCard('@TableAvaliar.ATLETA_ID','@TableAvaliar.TREINO_ID','@TableAvaliar.MED_AVALIACOES');">
                                             print
                                         </span>
                                     </button>
@@ -184,8 +184,8 @@
     <script>
 
 
-        function goViewCard(atletaID, treinoID, instrutorID) {
-            window.location = "./ViewCard?atletaID=".concat(atletaID).concat("&treinoID=").concat(treinoID).concat("&instrutorID=").concat(getCookie('idInstrutor'));
+        function goViewCard(atletaID, treinoID, instrutorID, nota) {
+            window.location = "./ViewCard?atletaID=".concat(atletaID).concat("&treinoID=").concat(treinoID).concat("&instrutorID=").concat(getCookie('idInstrutor')).concat("&nota=").concat(nota);
         }
 
         function fecha3() {

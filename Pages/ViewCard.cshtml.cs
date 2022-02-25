@@ -14,7 +14,7 @@ namespace AppTreinoCarlos.Pages
             _model = new CommFunctions(configuration);
         }
 
-        public void OnGet(string atletaID, string treinoID, string instrutorID)
+        public void OnGet(string atletaID, string treinoID, string instrutorID, string nota)
         {
             Atleta atleta = _model.GetAtletasCompletos(atletaID, instrutorID).FirstOrDefault<Atleta>();
             Treino treino = _model.GetTreino(treinoID, instrutorID).FirstOrDefault<Treino>();
@@ -23,6 +23,7 @@ namespace AppTreinoCarlos.Pages
             ViewData["atleta"] = atleta;
             ViewData["treino"] = treino;
             ViewData["instrutor"] = instrutor;
+            ViewData["nota"] = nota;
         }
     }
 }

@@ -16,6 +16,9 @@ namespace AppTreinoCarlos.Models
         [JsonProperty("QTDE_AVALIACOES")]
         public string QTDE_AVALIACOES { get; set; }
 
+        [JsonProperty("MED_AVALIACOES")]
+        public string MED_AVALIACOES { get; set; }
+
         [JsonProperty("TREINO_ID")]
         public string TREINO_ID { get; set; }
     }
