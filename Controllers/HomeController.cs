@@ -163,8 +163,8 @@ namespace AppTreino.Controllers
             try
             {
                 Avaliacao avaliacao = JsonConvert.DeserializeObject<Avaliacao>(obj.ToString());
-                
-                
+
+
 
                 var data = _model.SetAvaliacao(avaliacao);
                 return Json(AjaxMessage.Create(new MessageContent
@@ -262,7 +262,7 @@ namespace AppTreino.Controllers
             try
             {
                 dynamic o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
-                Treino treino =  JsonConvert.DeserializeObject<Treino>(obj.ToString());
+                Treino treino = JsonConvert.DeserializeObject<Treino>(obj.ToString());
 
                 //Treino treino = new Treino();
                 //treino.descricao = o["descricao"];
@@ -322,8 +322,6 @@ namespace AppTreino.Controllers
             {
                 Topico topico = JsonConvert.DeserializeObject<Topico>(obj.ToString());
 
-
-
                 var data = _model.SetTopicos(topico);
                 return Json(AjaxMessage.Create(new MessageContent
                 {
@@ -369,5 +367,31 @@ namespace AppTreino.Controllers
             }
         }
 
+        public ActionResult DelAvaliacao([FromBody] dynamic obj)
+        {
+            try
+            {
+                dynamic o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
+                string ID = o["ID"];
+                string treinoID = o["treinoID"];
+                var data = _model.DelAvaliacao(treinoID, ID);
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Success,
+                    Message = "Excluido com sucesso",
+                    Title = "Sucesso",
+                    EmbeddedData = data
+                }));
+            }
+            catch (Exception exception)
+            {
+                return Json(AjaxMessage.Create(new MessageContent
+                {
+                    MessageType = MessageType.Failure,
+                    Message = exception.Message,
+                    Title = "Erro de Sistema"
+                }));
+            }
+        }
     }
 }

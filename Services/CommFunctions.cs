@@ -381,6 +381,29 @@ namespace AppTreinoCarlos.Services
             }
         }
 
+        public bool DelAvaliacao(string treinoID, string ID)
+        {
+            try
+            {
+                dynamic obj = new ExpandoObject();
+                obj.treinoID = treinoID;
+                obj.ID = ID;
+                using (var httpClient = new HttpClient())
+                {
+                    var url = BuildCall(httpClient, "DEL_AVALIACAO");
+                    var apiResult =
+                        JsonConvert.DeserializeObject<ResponseService<bool>>(
+                            httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Result.Content.ReadAsStringAsync().Result
+                        );
+                    return apiResult.Data;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         //public Boolean UsuarioAtivo(Credential obj)
         //{
         //    try
