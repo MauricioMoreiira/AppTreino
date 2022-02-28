@@ -3,7 +3,6 @@
 @using AppTreinoCarlos.Models
 @model AppTreinoCarlos.Pages.AddAtletaModel
 @{
-    //List<Atleta> Atletas = (List<Atleta>)ViewData["Atleta"];
     string idInstrutor = ViewData["idInstrutor"].ToString();
     string nome = ViewData["nome"].ToString();
     string id = ViewData["id"].ToString();
@@ -52,6 +51,14 @@
                                    placeholder="31/01/2022" type="date">
                         </label>*@
 
+                    <button id="start-camera"
+                            class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Iniciar Camera</button>
+                    <video id="video" width="320" height="240" autoplay hiden></video>
+                    <button id="click-photo"
+                            class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Foto</button>
+                    <canvas id="canvas" width="320" height="240"></canvas>
+                    <textarea id="dataurl" readonly hidden></textarea>
+
                     <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                             onclick="addAtleta()">
                         @btn_Save
@@ -79,6 +86,10 @@
     </main>
 
     <script>
+
+        let dataurl = document.querySelector("#dataurl");
+        //let dataurl_container = document.querySelector("#dataurl-container");
+
          $(document).ready(function () {
              document.getElementById("nomeAtleta").value = '@nome'
              document.getElementById("nivelAtleta").value;
@@ -133,7 +144,7 @@
             a.dtExpira = Agora();
             a.dtInclui = Agora();
             a.ativo = '1';
-            a.foto = '';
+            a.foto = document.getElementById("dataurl").value;
             a.MED_NOTA = '0';
             a.MAX_NOTA = '0';
             a.QTDE_AVALIACOES = '0';
@@ -194,6 +205,29 @@
                 }
             });
         }
+
+        let camera_button = document.querySelector("#start-camera");
+        let video = document.querySelector("#video");
+        let click_button = document.querySelector("#click-photo");
+        let canvas = document.querySelector("#canvas");
+
+        camera_button.addEventListener('click', async function () {
+            document.getElementById('video').hidden = false;
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            video.srcObject = stream;
+        });
+
+        click_button.addEventListener('click', function () {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            let image_data_url = canvas.toDataURL('image/jpeg');
+            document.getElementById('video').hidden = true;
+            //stream.getTracks().forEach(function (track) {
+            //    track.stop();
+            //}); //TODO Desabilitar camera
+            // data url of the image
+            dataurl.value = image_data_url;  //TODO Tratar...muito grande varchar
+            //dataurl_container.style.display = 'block';
+        });
 
     </script>
 </body>

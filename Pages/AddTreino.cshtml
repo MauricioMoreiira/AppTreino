@@ -126,10 +126,10 @@
                 </select>
                 <div class="container">
                     <span>
-                        <input id="wr1" name="" value="" disabled class="wrap-list">
-                        <input id="wr2" name="" value="" disabled class="wrap-list2">
-                        <input id="wr3" name="" value="" disabled class="wrap-list3">
-                        <input id="wr4" name="" value="" disabled class="wrap-list4">
+                        <input id="wr1" name="" value="" readonly class="wrap-list" onclick="removeAtleta('wr1');">
+                        <input id="wr2" name="" value="" readonly class="wrap-list2" onclick="removeAtleta('wr2');">
+                        <input id="wr3" name="" value="" readonly class="wrap-list3" onclick="removeAtleta('wr3');">
+                        <input id="wr4" name="" value="" readonly class="wrap-list4" onclick="removeAtleta('wr4');">
                     </span>
                 </div><br />
 
@@ -157,6 +157,11 @@
                     return;
                 }
             }
+        }
+
+        function removeAtleta(wr) {
+             document.getElementById(wr).value = "";
+             return;
         }
 
         $('#selectOption').change(function () {

@@ -23,7 +23,7 @@ namespace AppTreino.Controllers
         {
             try
             {
-                var data = _model.Login(obj.Usuario, obj.Senha);
+                var data = _model.Login(obj.Usuario.ToLower(), obj.Senha);
                 if (data == null) { throw new Exception("Não Autorizado"); }
                 return Json(AjaxMessage.Create(new MessageContent
                 {

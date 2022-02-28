@@ -110,14 +110,14 @@
                 },
                 success: function (data) {
                     const returnData = JSON.parse(data);
-                    if (data.EmbeddedData === null) {
-                        Notiflix.Loading.remove();
-                        ShowError(data);
-                        return;
-                    }
+                    //if (data.EmbeddedData === null) {
+                    //    Notiflix.Loading.remove();
+                    //    ShowError(data);
+                    //    return;
+                    //}
                     Notiflix.Loading.remove();
                     if (returnData.MessageType !== 0) {
-                        ShowMessage(returnData);
+                        ShowError(data);
                         return;
                     }
                     var t0 = returnData.EmbeddedData;
@@ -125,10 +125,10 @@
                     return;
 
                 },
-                //error: function (data) {
-                //    Notiflix.Loading.remove();
-                //    ShowError(error);
-                //}
+                error: function (data) {
+                    Notiflix.Loading.remove();
+                    ShowError(error);
+                }
             });
         }
 
