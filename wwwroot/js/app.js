@@ -151,3 +151,11 @@ function date_PTtoEN(cDate) {
     ].join('-');
 }
 
+function validalogin() {
+    var id = getCookie("idInstrutor");
+    if (id == "" || id == "undefined" || id == null) {
+        //location.href = "http://appplano.com.br";
+        location.href = "/";
+
+    }    
+}

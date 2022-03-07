@@ -267,7 +267,7 @@ namespace AppTreino.Controllers
             {
                 dynamic o = JsonConvert.DeserializeObject<dynamic>(obj.ToString());
                 Treino treino = JsonConvert.DeserializeObject<Treino>(obj.ToString());
-
+                treino.dtInicio = Util.ENtoDate(o["dataIni"].ToString(), "-", "012");
                 //Treino treino = new Treino();
                 //treino.descricao = o["descricao"];
                 //treino.dtFim = o["dataIni"];

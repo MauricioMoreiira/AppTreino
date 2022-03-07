@@ -35,5 +35,8 @@ namespace AppTreinoCarlos.Models
         [JsonProperty("DT_INCLUI")]
         public DateTime DT_INCLUI { get; set; }
 
+        [JsonProperty("TIPO")]
+        public string TIPO { get; set; }
+
     }
 }

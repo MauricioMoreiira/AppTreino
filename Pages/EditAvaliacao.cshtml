@@ -5,7 +5,6 @@
 @{
     List<Avaliacao> EditaAvalicao = (List<Avaliacao>)ViewData["Avaliacoes"];
     string NomeAtleta = ViewData["Atleta"].ToString();
-
 }
 <html>
 <head>
@@ -33,12 +32,11 @@
                 </span>
             </h2>
 
-            <table class="w-full whitespace-no-wrap" style="width: 70%;">
+            <table class="w-full whitespace-no-wrap" style="width: 100%;">
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Tópicos</th>
-                        <th class="px-4 py-3">Estrelas</th>
-                        <th class="px-4 py-3"></th>
+                        <th class="px-4 py-3" style="text-align:center">Estrelas</th>
                         <th class="px-4 py-3"></th>
 
                     </tr>
@@ -46,40 +44,40 @@
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     @if (EditaAvalicao != null)
                     {
-                        foreach (Avaliacao TableEditAvalicaoes in EditaAvalicao)
+                        foreach (Avaliacao a in EditaAvalicao)
                         {
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td>
                                     <div class="flex items-center text-sm">
-                                        <!-- Avatar with inset shadow -->
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                            <span class="material-icons"
-                                                  style="font-size: 35px; display: flex; justify-content: center;">
-                                                account_circle
-                                            </span>
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold">
-                                                @TableEditAvalicaoes.TOPICO_DESCRICAO
-                                            </p>
-                                        </div>
+                                        <span class="material-icons"
+                                              style="font-size: 35px; display: flex; justify-content: center;">
+                                            @(a.TIPO=="1"? "local_fire_department": "call_received")
+                                        </span>
+                                        <span class="font-semibold">
+                                            @a.TOPICO_DESCRICAO
+                                        </span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="estrelas" name="estrelas" id="">
-                                        <input type="radio" id="cm_star-empty" name="fb" value="0" />
-                                        <input type="radio" id="cm_star-1" name="fb1" @(TableEditAvalicaoes.NOTA >= 1 ? "checked" : "unchecked") />
-                                        <label for="cm_star-1"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-2" name="fb2" @(TableEditAvalicaoes.NOTA >= 2 ? "checked" : "unchecked") />
-                                        <label for="cm_star-2"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-3" name="fb3" @(TableEditAvalicaoes.NOTA >= 3 ? "checked" : "unchecked") />
-                                        <label for="cm_star-3"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-4" name="fb4" @(TableEditAvalicaoes.NOTA >= 4 ? "checked" : "unchecked") />
-                                        <label for="cm_star-4"><i class="fa"></i></label>
-                                        <input type="radio" id="cm_star-5" name="fb5" @(TableEditAvalicaoes.NOTA >= 5 ? "checked" : "unchecked") />
-                                        <label for="cm_star-5"><i class="fa"></i></label>
+                                    <div style="text-align: center">
+                                        @switch (a.NOTA)
+                                        {
+                                            case 1:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★☆☆☆☆</label>
+                                                break;
+                                            case 2:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★☆☆☆</label>
+                                                break;
+                                            case 3:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★☆☆</label>
+                                                break;
+                                            case 4:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★☆</label>
+                                                break;
+                                            case 5:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★★</label>
+                                                break;
+                                        }
                                     </div>
                                 </td>
 
@@ -88,7 +86,7 @@
                                         <button style="margin: 0px;"
                                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                 aria-label="Delete"
-                                                onclick="delAvaliacao(@TableEditAvalicaoes.Id,@TableEditAvalicaoes.TREINO_ID)">
+                                                onclick="delAvaliacao(@a.Id,@a.TREINO_ID)">
                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
                                                       d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -106,6 +104,19 @@
         </div>
     </main>
     <script>
+        $(document).ready(function () {
+            validalogin();
+            //let radios = document.getElementsByTagName('input');
+            //for (i = 0; i < radios.length; i++) {
+            //    radios[i].onclick = function (e) {
+            //        if (e.ctrlKey) {
+            //            this.checked = false;
+            //        }
+            //    }
+            //}
+            //$("input:radio").attr("checked", true);
+        });
+
         function delAvaliacao(id, treinoid) {
             const o = new Object();
             o.ID = id;

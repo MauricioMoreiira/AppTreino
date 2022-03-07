@@ -2,9 +2,7 @@
 @using AppTreinoCarlos.Models
 @model AppTreinoCarlos.Pages.AddTreinoModel
 @{
-    //List<Treino> Treinos = (List<Treino>)ViewData["Treino1"];
     List<Atleta> Atletas = (List<Atleta>)ViewData["Atletas"];
-    //string idInstrutor = ViewData["idInstrutor1"].ToString();
     string idInstrutor = Request.Cookies["idInstrutor"];
     string idTreino = ViewData["idTreino"].ToString();
 }
@@ -145,6 +143,7 @@
 
     <script>
         $(document).ready(function () {
+            validalogin();
             document.getElementById("dataIni").valueAsDate = new Date();
         });
 
@@ -212,8 +211,8 @@
             const _tipoEvento = document.getElementById("tipoEvento").value;
 
             const o = new Object();
-            o.idTreino = @idTreino;
-            o.idInstrutor = @idInstrutor;
+            o.idTreino = @(idTreino??"0");
+            o.idInstrutor = getCookie("idInstrutor");
             o.descricao = _descricao;
             o.dataIni = _dataIni;
             o.dataFim = _dtFim;
