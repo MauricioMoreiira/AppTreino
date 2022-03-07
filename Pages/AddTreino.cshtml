@@ -113,7 +113,8 @@
                 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
                 </script>
                 <select name="selection" id="selection"
-                        class=" block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" multiple="">
+                        class=" block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        size="4">
                     @if (Atletas != null)
                     {
                         @foreach (Atleta S in Atletas)
@@ -209,6 +210,17 @@
             const _dataIni = document.getElementById("dataIni").value;
             const _dtFim = _dataIni;
             const _tipoEvento = document.getElementById("tipoEvento").value;
+            if (_descricao == "") {
+                window.Notiflix.Report.warning(
+                    'Falta informar',
+                    'Necessário informar descrição',
+                    'Ok',
+                    function () {
+                        $("#descricao").focus();
+                    }
+                );
+                return;
+            }
 
             const o = new Object();
             o.idTreino = @(idTreino??"0");

@@ -5,10 +5,8 @@
 @using AppTreinoCarlos.Models
 @{
     List<TreinoAtletas> Avalia = (List<TreinoAtletas>)ViewData["Avaliacoes"];
-
     string idTreinoInstrutor = ViewData["idTreinoInstrutor"].ToString();
     string idInstrutor = ViewData["idInstrutor"].ToString();
-
 }
 
 <html>
@@ -100,7 +98,8 @@
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td>
                                 <div class="flex items-center text-sm">
-                                    <!-- ICONE DO ATLETA -->
+                                    <!-- ICONE DO ATLETA //TODO Foto do atleta -->
+
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                         <span class="material-icons"
                                               style="font-size: 35px; display: flex; justify-content: center;">
@@ -179,8 +178,8 @@
             </table>
 
             @*<span class="material-icons CorIcon" style="margin-top: 15px;  font-size: 30px; font-weight: 700; cursor: pointer;">
-                add
-            </span>*@
+                    add
+                </span>*@
         </div>
     </main>
 
