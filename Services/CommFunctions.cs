@@ -1,15 +1,12 @@
 ﻿using AppTreinoCarlos.Models;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Reporting.Map.WebForms.BingMaps;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AppTreinoCarlos.Services
 {
@@ -305,7 +302,7 @@ namespace AppTreinoCarlos.Services
         public bool SetAvaliacao(Avaliacao avaliacao)
         {
             try
-            {   
+            {
                 using (var httpClient = new HttpClient())
                 {
                     var url = BuildCall(httpClient, "SET_AVALIACAO");

@@ -137,7 +137,7 @@
                                         <th style="width: 60%; text-align:left;" class="px-4 py-3">Treinos</th>
                                         <th style="width: 20%;" class="px-4 py-3">Data</th>
                                         @*<th style="width: 10%; text-align:center" class="px-4 py-3">Atletas</th>*@
-                                        <th style="width: 20%;" class="px-4 py-3">
+                                        <th style="width: 20%; text-align: center" class="px-4 py-3">
                                             <span class="material-icons CorButton" id="" style="font-size: 30px; cursor: pointer;" href="#open-modal" onclick="goAddTreino();">
                                                 add_circle
                                             </span>
@@ -176,9 +176,9 @@
                                                         @TableTreino.dtInicio.ToString("dd/MM/yyyy")
                                                     </span>
                                                 </td>
-                                                <td class="">
-                                                    <div class="flex items-center space-x-4 text-sm">
-                                                        <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                <td class="flex items-center space-x-4 text-sm justify-content-center">
+                                                    <div style="text-align:center" class="flex items-center space-x-4 text-sm justify-content-center ">
+                                                        <button class="flex items-center justify-content-center px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                                 aria-label="Edit"
                                                                 onclick="goEditTreino('@TableTreino.id','@TableTreino.descricao','@TableTreino.dtInicio.ToShortDateString().Replace("/","-")','@TableTreino.tipoEvento','@TableTreino.TREINO_INSTRUTOR_ID')">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
@@ -187,7 +187,7 @@
                                                                 </path>
                                                             </svg>
                                                         </button>
-                                                        <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                        <button class="flex items-center justify-content-center px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                                 aria-label="Delete"
                                                                 onclick="inativaTreino('@TableTreino.id');">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
