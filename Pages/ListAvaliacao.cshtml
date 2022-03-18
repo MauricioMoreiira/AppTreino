@@ -1,0 +1,232 @@
+﻿@page
+@using AppTreinoCarlos.Models
+@using AppTreinoCarlos.Utils
+@model AppTreinoCarlos.Pages.ListAvaliacaoModel
+@{
+    Layout = null;
+    List<Avaliacao> EditaAvalicao = (List<Avaliacao>)ViewData["Avaliacoes"];
+    List<Avaliacao> lAtaque = EditaAvalicao.Where(x => x.TIPO == "1").ToList();
+    List<Avaliacao> lDefesa = EditaAvalicao.Where(x => x.TIPO == "0").ToList();
+    List<Atleta> atletas = (List<Atleta>)ViewData["Atleta"];
+    Atleta atleta = atletas[0];
+}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Avaliações</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
+    <script src="./assets/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="./assets/css/tailwind.output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" href="~/img/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/tailwind.output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
+    <script src="../assets/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="/js/app.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body style="">
+    <br>
+    <main class="h-full pb-16 overflow-y-auto">
+        <div class="container px-6 mx-auto grid" style="margin-left: auto; margin-right: auto;">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Avaliações
+                <br />
+            </h2>
+            <div class="row0">
+                <span class="my-0 font-semibold text-gray-500  dark:text-gray-200" style="font-size: small">
+                    @atleta.nome
+                </span>
+                <span class="my-0 font-semibold text-gray-500  dark:text-gray-200" style="font-size: small">
+                    <img src="@atleta.foto" alt="Foto" style="width:100px; height:100px; border-radius:50%" />
+                </span>
+
+            </div>
+            @if (lAtaque != null)
+            {
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200" style="margin:20px 10px 0px 10px">
+                    Ataque
+                    <br />
+                </h2>
+                <table class="w-full whitespace-no-wrap" style="width: 100%;">
+                    <thead>
+                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                            <th class="px-4 py-3">Tópicos</th>
+                            <th class="px-4 py-3" style="text-align:center">Estrelas</th>
+                            <th class="px-4 py-3"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        @foreach (Avaliacao item in lAtaque)
+                        {
+                            <tr class="text-gray-700 dark:text-gray-400">
+                                <td>
+                                    <div class="flex items-center text-sm">
+                                        <span class="material-icons"
+                                              style="font-size: 35px; display: flex; justify-content: center;">
+                                            @(item.TIPO=="1"? "local_fire_department": "call_received")
+                                        </span>
+                                        <span class="font-semibold">
+                                            @item.TOPICO_DESCRICAO
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="text-align: center">
+                                        @switch (item.NOTA)
+                                        {
+                                            case 1:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★☆☆☆☆</label>
+                                                break;
+                                            case 2:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★☆☆☆</label>
+                                                break;
+                                            case 3:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★☆☆</label>
+                                                break;
+                                            case 4:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★☆</label>
+                                                break;
+                                            case 5:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★★</label>
+                                                break;
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (lAtaque != null)
+                {
+                    var z1 = lAtaque.Sum(x => x.NOTA).ToString();
+                    var z2 = lAtaque.Count().ToString();
+                    decimal z3 = int.Parse(z1) / int.Parse(z2);
+                    <label class="font-semibold text-gray-500 dark:text-gray-200" style="text-align:right; font-size:small">
+                        Ataque @String.Format("{0:#,0.000}", z3)
+                    </label>
+                }
+
+            }
+            @if (lDefesa != null)
+            {
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200" style="margin:20px 10px 0px 10px">
+                    Defesa
+                    <br />
+                </h2>
+                <table class="w-full whitespace-no-wrap" style="width: 100%;">
+                    <thead>
+                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                            <th class="px-4 py-3">Tópicos</th>
+                            <th class="px-4 py-3" style="text-align:center">Estrelas</th>
+                            <th class="px-4 py-3"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        @foreach (Avaliacao item in lDefesa)
+                        {
+                            <tr class="text-gray-700 dark:text-gray-400">
+                                <td>
+                                    <div class="flex items-center text-sm">
+                                        <span class="material-icons"
+                                              style="font-size: 35px; display: flex; justify-content: center;">
+                                            @(item.TIPO=="1"? "local_fire_department": "call_received")
+                                        </span>
+                                        <span class="font-semibold">
+                                            @item.TOPICO_DESCRICAO
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="text-align: center">
+                                        @switch (item.NOTA)
+                                        {
+                                            case 1:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★☆☆☆☆</label>
+                                                break;
+                                            case 2:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★☆☆☆</label>
+                                                break;
+                                            case 3:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★☆☆</label>
+                                                break;
+                                            case 4:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★☆</label>
+                                                break;
+                                            case 5:
+                                                <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★★</label>
+                                                break;
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (lDefesa != null)
+                {
+                    var z1 = lDefesa.Sum(x => x.NOTA).ToString();
+                    var z2 = lDefesa.Count().ToString();
+                    decimal z3 = int.Parse(z1) / int.Parse(z2);
+                    <label class="text-sm font-semibold text-gray-500 dark:text-gray-200" style="text-align:right">
+                        Defesa @String.Format("{0:#,0.000}", z3)
+                    </label>
+                }
+            }
+            <div>
+                @if (EditaAvalicao != null)
+                {
+                    var z1 = EditaAvalicao.Sum(x => x.NOTA).ToString();
+                    var z2 = EditaAvalicao.Count().ToString();
+                    decimal z3 = int.Parse(z1) / int.Parse(z2);
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Geral  @String.Format("{0:#,0.000}", z3)
+                        <br />
+                    </h2>
+                    @switch (z3)
+                    {
+                        case 1:
+                            <label style="text-align: center; color: goldenrod; font-size: x-large; ">★☆☆☆☆</label>
+                            break;
+                        case 2:
+                            <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★☆☆☆</label>
+                            break;
+                        case 3:
+                            <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★☆☆</label>
+                            break;
+                        case 4:
+                            <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★☆</label>
+                            break;
+                        case 5:
+                            <label style="text-align: center; color: goldenrod; font-size: x-large; ">★★★★★</label>
+                            break;
+                    }
+                }
+                else
+                {
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Geral 0
+                        <br />
+                    </h2>
+                }
+            </div>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function () {
+            validalogin();
+
+        });
+
+    </script>
+</body>
+
+</html>
